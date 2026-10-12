@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KryptoKlar - Norwegian crypto tax, done right</title>
+<meta name="description" content="KryptoKlar calculates your Norwegian crypto tax: gains, losses, income and wealth in NOK with FIFO, from Kraken, Binance, Coinbase, KuCoin, Firi and Revolut X. Your data stays on your PC.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070b12;--s1:#0c1320;--s2:#121b2b;--bd:#1c2738;--tx:#c9d1d9;--hi:#eef3f9;--mu:#7d8a9c;--ac:#e2aa28;--nv:#1f4e79;--up:#3fb950;--dn:#ff5d6c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 Inter,system-ui,sans-serif}
+a{color:var(--ac);text-decoration:none}a:hover{text-decoration:underline}
+.w{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;gap:22px;height:64px;border-bottom:1px solid var(--bd)}
+.brand{display:flex;align-items:center;gap:10px;font:700 15px "JetBrains Mono",monospace;letter-spacing:2px;color:var(--hi)}.brand img{width:26px;height:26px}
+nav .sp{flex:1}nav a.lang{color:var(--mu);font:600 13px Inter;border:1px solid var(--bd);border-radius:4px;padding:3px 8px}nav a.l{color:var(--mu);font-size:14px}
+.btn{display:inline-block;background:var(--ac);color:#111;font-weight:700;padding:12px 22px;border-radius:6px;font-size:15px}
+.btn:hover{text-decoration:none;filter:brightness(1.08)}.btn.g{background:none;color:var(--hi);border:1px solid var(--bd)}
+.hero{padding:84px 0 64px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+h1{font-size:48px;line-height:1.08;margin:0 0 18px;color:var(--hi);letter-spacing:-1.2px;font-weight:800}
+h1 em{font-style:normal;color:var(--ac)}
+.lead{font-size:19px;margin:0 0 28px;max-width:560px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}.note{color:var(--mu);font-size:13px;margin-top:14px}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:22px}
+.sum{font:500 14px "JetBrains Mono",monospace}.sum .t{color:var(--mu);font:600 11px Inter;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.sum .r{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd)}.sum .r:last-of-type{border:0}
+.sum .r b{color:var(--hi)}.sum .pos{color:var(--up)}.sum .neg{color:var(--dn)}
+.sum .st{margin-top:12px;font:600 12px Inter;color:var(--up)}
+section{padding:64px 0;border-top:1px solid var(--bd)}
+h2{font-size:32px;color:var(--hi);margin:0 0 10px;letter-spacing:-.5px}.sub{color:var(--mu);margin:0 0 36px;max-width:660px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card h3{margin:0 0 6px;color:var(--hi);font-size:17px}.card p{margin:0;font-size:15px}
+.k{font:700 12px "JetBrains Mono",monospace;color:var(--ac);letter-spacing:1px;margin-bottom:8px;display:block}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--bd)}
+th{color:var(--mu);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:1px}td b{color:var(--hi)}
+ul.ck{list-style:none;padding:0;margin:12px 0 0}ul.ck li{padding-left:22px;position:relative;margin:6px 0;font-size:15px}
+ul.ck li:before{content:"✓";position:absolute;left:0;color:var(--up);font-weight:700}
+.beta{border-color:rgba(226,170,40,.55)}
+details{border-bottom:1px solid var(--bd);padding:16px 0}summary{cursor:pointer;color:var(--hi);font-weight:600;list-style:none}
+summary::-webkit-details-marker{display:none}summary:before{content:"+";color:var(--ac);display:inline-block;width:22px;font-weight:700}
+details[open] summary:before{content:"–"}details p{margin:10px 0 0 22px}
+.risk{background:rgba(226,170,40,.06);border:1px solid rgba(226,170,40,.3);border-radius:10px;padding:20px 22px;font-size:14px}
+footer{border-top:1px solid var(--bd);padding:32px 0 48px;color:var(--mu);font-size:13px}
+.todo{outline:1px dashed var(--ac);outline-offset:3px}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding:48px 0 40px;gap:32px}h1{font-size:34px}.g3,.g2{grid-template-columns:1fr}
+ nav a.l{display:none}section{padding:48px 0}h2{font-size:26px}th,td{padding:8px 6px;font-size:14px}}
+</style></head><body>
+<div class="w">
+<nav><div class="brand"><img src="icon.png" alt="">KRYPTOKLAR</div><span class="sp"></span>
+  <a class="l" href="#what">What it does</a><a class="l" href="#exchanges">Exchanges</a><a class="l" href="#beta">Beta</a><a class="l" href="#faq">FAQ</a><a class="lang" href="index.html">NO</a>
+  <a class="btn" href="#beta" style="padding:8px 16px;font-size:14px">Join the beta</a></nav>
+
+<div class="hero">
+  <div>
+    <h1>Norwegian crypto tax,<br><em>done right.</em></h1>
+    <p class="lead">KryptoKlar collects your trades from your exchanges, works out <b>gains, losses, income and wealth in NOK</b> with FIFO, and gives you the numbers for the tax return - with a full PDF record behind every figure.</p>
+    <ul class="ck" style="margin:-12px 0 26px;font-size:16px">
+      <li><b>Every exchange in one calculation</b> - a coin bought on Binance and sold on Kraken is matched correctly</li>
+      <li><b>Turn old losses into a deduction</b> - import your old exchange history and losses you wrote off can count again</li></ul>
+    <div class="cta"><a class="btn" href="#beta">Join the free beta</a><a class="btn g" href="#what">What it does</a></div>
+    <p class="note">Windows app. Your data stays on your PC. API keys are read-only and stored in Windows' own credential store.</p>
+  </div>
+  <div class="card sum">
+    <div class="t">Tax year 2026 · example</div>
+    <div class="r"><span>Gains</span><b class="pos">+ 18 420 NOK</b></div>
+    <div class="r"><span>Losses</span><b class="neg">− 9 350 NOK</b></div>
+    <div class="r"><span>Staking income</span><b>1 240 NOK</b></div>
+    <div class="r"><span>Wealth 31.12</span><b>84 900 NOK</b></div>
+    <div class="st">✓ All holdings match the exchanges</div>
+  </div>
+</div>
+
+<section id="what">
+  <h2>What it does</h2>
+  <p class="sub">The work an accountant would do with your exchange history, following the Norwegian rules - repeatable, and checked against what your exchanges actually hold.</p>
+  <div class="g3">
+    <div class="card"><span class="k">01 · COLLECT</span><h3>All your exchanges</h3><p>Read-only API sync, or the exchange's own statement file. Re-importing is safe: nothing is ever counted twice.</p></div>
+    <div class="card"><span class="k">02 · CALCULATE</span><h3>Norwegian rules, in NOK</h3><p>FIFO per coin across all exchanges. Each purchase's NOK cost fixed on its own date. Coin-to-coin swaps, fees paid in coin, staking and futures included.</p></div>
+    <div class="card"><span class="k">03 · CHECK</span><h3>Nothing silently missing</h3><p>Holdings are reconciled with your exchanges' real balances. Missing purchase history is flagged, never guessed.</p></div>
+    <div class="card"><span class="k">04 · DOCUMENT</span><h3>PDF + CSV record</h3><p>The figures for the tax return, plus every sale with its FIFO working - the record you must be able to show if Skatteetaten asks.</p></div>
+    <div class="card"><span class="k">05 · RECOVER</span><h3>Old losses count</h3><p>Coins from the last bull run sitting at a loss? Import the old history, sell, and deduct the real loss - never more than you actually lost.</p></div>
+    <div class="card"><span class="k">06 · PRIVATE</span><h3>Stays on your PC</h3><p>No account, no cloud. KryptoKlar talks to your exchanges and to public price sources - nothing else.</p></div>
+  </div>
+</section>
+
+<section id="exchanges">
+  <h2>Supported exchanges</h2>
+  <p class="sub">More are added on request - tell us which one you need in the beta feedback.</p>
+  <div class="card" style="padding:6px 10px">
+  <table>
+    <tr><th>Exchange</th><th>How</th><th>What is covered</th></tr>
+    <tr><td><b>Kraken</b></td><td>API</td><td>Spot, futures, staking / Earn rewards, deposits and withdrawals</td></tr>
+    <tr><td><b>Binance</b></td><td>API</td><td>Spot trades, deposits and withdrawals</td></tr>
+    <tr><td><b>Coinbase</b></td><td>API or file</td><td>Buys, sells, converts, sends, receives, rewards - full history</td></tr>
+    <tr><td><b>KuCoin</b></td><td>API + file</td><td>Last 12 months by API, older years from KuCoin's trade export</td></tr>
+    <tr><td><b>Firi</b></td><td>File</td><td>Trades, staking rewards, deposits, withdrawals, fees</td></tr>
+    <tr><td><b>Revolut X</b></td><td>File</td><td>Buys, sells, sends and fees</td></tr>
+    <tr><td><b>Anything else</b></td><td>Template</td><td>Other exchanges and wallets via the KryptoKlar import template</td></tr>
+  </table></div>
+</section>
+
+<section id="beta">
+  <h2>Free beta - 20 testers</h2>
+  <p class="sub">KryptoKlar is in beta. The first 20 testers get a free licence. In return we ask for honest feedback - once before your first report export, and once after you've used it.</p>
+  <div class="g2">
+    <div class="card beta"><h3>Beta licence</h3><div style="font-size:34px;font-weight:800;color:var(--hi);margin:6px 0">Free</div>
+      <ul class="ck"><li>Full app: all exchanges, checks, PDF and CSV</li><li>Feedback form inside the app - takes 3 minutes</li><li>Your feedback decides what comes next</li></ul>
+      <p style="margin-top:18px"><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeqYTrtTA8j8Pz99euSA3FQAZPuopmDZPtOBWoJsl92XnQlng/viewform" target="_blank" rel="noopener">Ask for a beta licence</a></p></div>
+    <div class="card"><h3>Download</h3><p>Windows 10 / 11. Free to install - the figures on screen are always free to look at; the licence unlocks the report export.</p>
+      <p style="margin-top:18px"><a class="btn g todo" href="#">Download for Windows</a></p>
+      <p class="note">The app tells you when a new version is out.</p></div>
+  </div>
+</section>
+
+<section id="faq">
+  <h2>FAQ</h2>
+  <details><summary>Is this tax advice?</summary><p>No. KryptoKlar is a calculation tool that applies the Norwegian rules as it interprets them, and states which ruleset it used in every report. You are responsible for your tax return - check the figures, and ask Skatteetaten or an accountant when unsure.</p></details>
+  <details><summary>Does my data leave my computer?</summary><p>No. Your transactions, reports and settings stay on your PC. API keys are stored in Windows' credential store and used read-only. Beta feedback is sent only when you press Send, and contains no transaction data.</p></details>
+  <details><summary>What about earlier years?</summary><p>You choose where the full FIFO calculation starts. Years already filed another way stay closed. For coins where you have the complete history, the real old purchase prices can be used - so a real loss can be deducted when you sell.</p></details>
+  <details><summary>My exchange isn't listed.</summary><p>Use the import template for now, and tell us in the feedback. New exchanges are added on request.</p></details>
+  <details><summary>Mac or Linux?</summary><p>Windows only for now.</p></details>
+</section>
+
+<div class="risk"><b>Important:</b> KryptoKlar's result is only as complete as the data you give it. Transactions it never sees - other exchanges, wallets, history an exchange no longer provides - must be imported, or the result will be wrong. The app shows checks to help you find gaps.</div>
+
+<footer>KryptoKlar · Made in Norway · Not tax advice · <a href="https://github.com/Duplexsteel/KryptoKlar/releases">Releases</a> · <a href="index.html">Norsk</a></footer>
+</div></body></html>
