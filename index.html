@@ -1,133 +1,271 @@
 <!doctype html>
 <html lang="nb"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KryptoKlar - kryptoskatt, gjort riktig</title>
+<title>KryptoKlar - kryptoskatt du kan forstå</title>
 <meta name="description" content="KryptoKlar regner ut kryptoskatten din: gevinst, tap, inntekt og formue i NOK med FIFO, fra Kraken, Binance, Coinbase, KuCoin, Firi og Revolut X. Dataene dine blir på din PC.">
-<link rel="icon" href="icon.png">
+<meta name="theme-color" content="#F4F7F5">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="icon.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#070b12;--s1:#0c1320;--s2:#121b2b;--bd:#1c2738;--tx:#c9d1d9;--hi:#eef3f9;--mu:#7d8a9c;--ac:#e2aa28;--nv:#1f4e79;--up:#3fb950;--dn:#ff5d6c}
+:root{--paper:#F4F7F5;--sheet:#FFFFFF;--ink:#15302A;--ink2:#3F5650;--line:#D3DFD8;--spruce:#2E7D64;--spruce-d:#246652;
+--mint:#E1F0E8;--mint2:#9AD8BD;--loss:#A3473A;--dark:#15302A;--r:10px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 Inter,system-ui,sans-serif}
-a{color:var(--ac);text-decoration:none}a:hover{text-decoration:underline}
-.w{max-width:1080px;margin:0 auto;padding:0 20px}
-nav{display:flex;align-items:center;gap:22px;height:64px;border-bottom:1px solid var(--bd)}
-.brand{display:flex;align-items:center;gap:10px;font:700 15px "JetBrains Mono",monospace;letter-spacing:2px;color:var(--hi)}.brand img{width:26px;height:26px}
-nav .sp{flex:1}nav a.lang{color:var(--mu);font:600 13px Inter;border:1px solid var(--bd);border-radius:4px;padding:3px 8px}nav a.l{color:var(--mu);font-size:14px}
-.btn{display:inline-block;background:var(--ac);color:#111;font-weight:700;padding:12px 22px;border-radius:6px;font-size:15px}
-.btn:hover{text-decoration:none;filter:brightness(1.08)}.btn.g{background:none;color:var(--hi);border:1px solid var(--bd)}
-.hero{padding:84px 0 64px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-h1{font-size:48px;line-height:1.08;margin:0 0 18px;color:var(--hi);letter-spacing:-1.2px;font-weight:800}
-h1 em{font-style:normal;color:var(--ac)}
-.lead{font-size:19px;margin:0 0 28px;max-width:560px}
-.cta{display:flex;gap:12px;flex-wrap:wrap}.note{color:var(--mu);font-size:13px;margin-top:14px}
-.card{background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:22px}
-.sum{font:500 14px "JetBrains Mono",monospace}.sum .t{color:var(--mu);font:600 11px Inter;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
-.sum .r{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd)}.sum .r:last-of-type{border:0}
-.sum .r b{color:var(--hi)}.sum .pos{color:var(--up)}.sum .neg{color:var(--dn)}
-.sum .st{margin-top:12px;font:600 12px Inter;color:var(--up)}
-section{padding:64px 0;border-top:1px solid var(--bd)}
-h2{font-size:32px;color:var(--hi);margin:0 0 10px;letter-spacing:-.5px}.sub{color:var(--mu);margin:0 0 36px;max-width:660px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.card h3{margin:0 0 6px;color:var(--hi);font-size:17px}.card p{margin:0;font-size:15px}
-.k{font:700 12px "JetBrains Mono",monospace;color:var(--ac);letter-spacing:1px;margin-bottom:8px;display:block}
-table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--bd)}
-th{color:var(--mu);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:1px}td b{color:var(--hi)}
-ul.ck{list-style:none;padding:0;margin:12px 0 0}ul.ck li{padding-left:22px;position:relative;margin:6px 0;font-size:15px}
-ul.ck li:before{content:"✓";position:absolute;left:0;color:var(--up);font-weight:700}
-.beta{border-color:rgba(226,170,40,.55)}
-details{border-bottom:1px solid var(--bd);padding:16px 0}summary{cursor:pointer;color:var(--hi);font-weight:600;list-style:none}
-summary::-webkit-details-marker{display:none}summary:before{content:"+";color:var(--ac);display:inline-block;width:22px;font-weight:700}
-details[open] summary:before{content:"–"}details p{margin:10px 0 0 22px}
-.risk{background:rgba(226,170,40,.06);border:1px solid rgba(226,170,40,.3);border-radius:10px;padding:20px 22px;font-size:14px}
-footer{border-top:1px solid var(--bd);padding:32px 0 48px;color:var(--mu);font-size:13px}
-.todo{outline:1px dashed var(--ac);outline-offset:3px}
-.dd{position:relative}.dd>button{background:none;border:0;color:var(--mu);font:14px Inter;cursor:pointer;padding:22px 0}
-.dd>button:after{content:" \25BE"}.dd:hover>button,.dd:focus-within>button{color:var(--hi)}
-.dd .m{display:none;position:absolute;right:0;top:58px;min-width:210px;background:var(--ac);border-radius:6px;padding:6px 0;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.45)}
-.dd:hover .m,.dd:focus-within .m{display:block}.dd .m a{display:block;padding:10px 18px;color:#111;font-size:15px;font-weight:500}
-.dd .m a:hover{background:rgba(0,0,0,.12);text-decoration:none}section[id]{scroll-margin-top:16px}
-@media(max-width:820px){.hero{grid-template-columns:1fr;padding:48px 0 40px;gap:32px}h1{font-size:34px}.g3,.g2{grid-template-columns:1fr}
- nav a.l{display:none}nav{gap:12px}nav .btn,.dd>button{white-space:nowrap}.dd .m{position:fixed;left:16px;right:16px;top:60px}nav .brand{font-size:13px;letter-spacing:.12em}section{padding:48px 0}h2{font-size:26px}th,td{padding:8px 6px;font-size:14px}}
-</style></head><body>
-<div class="w">
-<nav><div class="brand"><img src="icon.png" alt="">KRYPTOKLAR</div><span class="sp"></span>
-  <a class="l" href="#what">Hva den gjør</a><a class="l" href="#exchanges">Børser</a><a class="l" href="#beta">Beta</a><a class="l" href="#faq">Spørsmål</a><div class="dd"><button type="button">Info</button><div class="m"><a href="info.html#guider">Guider</a><a href="info.html#eksempler">Eksempelrapporter</a><a href="info.html#lenker">Nyttige lenker</a><a href="info.html#om">Om KryptoKlar</a><a href="info.html#kontakt">Kontakt</a></div></div><a class="lang" href="en.html">EN</a>
-  <a class="btn" href="#beta" style="padding:8px 16px;font-size:14px">Bli betatester</a></nav>
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 "Schibsted Grotesk",system-ui,sans-serif;
+ -webkit-font-smoothing:antialiased}
 
-<div class="hero">
-  <div>
-    <h1>Kryptoskatt,<br><em>gjort riktig.</em></h1>
-    <p class="lead">KryptoKlar henter handlene dine fra børsene, regner ut <b>gevinst, tap, inntekt og formue i NOK</b> med FIFO, og gir deg tallene til skattemeldingen - med full PDF-dokumentasjon bak hvert tall.</p>
-    <ul class="ck" style="margin:-12px 0 26px;font-size:16px">
-      <li><b>Alle børser i én beregning</b> - en mynt kjøpt på Binance og solgt på Kraken blir matchet riktig</li>
-      <li><b>Gjør gamle tap om til fradrag</b> - importer gammel børshistorikk, så kan tap du hadde gitt opp telle igjen</li></ul>
-    <div class="cta"><a class="btn" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener">Kjøp betalisens - 99 kr</a><a class="btn g" href="#what">Hva den gjør</a></div>
-    <p class="note">Windows-program. Dataene dine blir på din PC. API-nøkler er kun-lese og lagres i Windows sitt eget nøkkellager.</p>
-  </div>
-  <div class="card sum">
-    <div class="t">Inntektsår 2026 · eksempel</div>
-    <div class="r"><span>Gevinst</span><b class="pos">+ 18 420 NOK</b></div>
-    <div class="r"><span>Tap</span><b class="neg">− 9 350 NOK</b></div>
-    <div class="r"><span>Staking-inntekt</span><b>1 240 NOK</b></div>
-    <div class="r"><span>Formue 31.12</span><b>84 900 NOK</b></div>
-    <div class="st">✓ Alle beholdninger stemmer med børsene</div>
-  </div>
+a{color:var(--spruce-d);text-underline-offset:3px}a:hover{color:var(--ink)}
+:focus-visible{outline:3px solid var(--spruce);outline-offset:3px;border-radius:4px}
+img,svg{display:block}
+.w{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{margin:0;color:var(--ink);font-weight:700;letter-spacing:-.015em}
+h1{font-size:clamp(40px,6.2vw,66px);line-height:1.02;font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(28px,3.4vw,38px);line-height:1.12}
+h3{font-size:19px;line-height:1.3}
+p{margin:0}
+.lead{font-size:20px;line-height:1.55;color:var(--ink2);max-width:36em}
+.sub{color:var(--ink2);max-width:38em;margin-top:12px}
+.note{color:var(--ink2);font-size:15px;margin-top:10px}
+
+/* nav */
+header{position:sticky;top:0;z-index:40;background:rgba(244,247,245,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;gap:26px;height:66px}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font-weight:700;font-size:21px;letter-spacing:-.02em}
+.brand .mark{width:28px;height:28px;color:var(--spruce)}
+nav .sp{flex:1}
+nav .l{color:var(--ink2);text-decoration:none;font-size:16px;font-weight:500}nav .l:hover{color:var(--ink)}
+.lang{color:var(--ink2);text-decoration:none;font-size:14px;font-weight:600;border:1px solid var(--line);border-radius:6px;padding:4px 9px}
+.dd{position:relative}
+.dd>button,.menu-btn{font:inherit;font-size:16px;font-weight:500;color:var(--ink2);background:none;border:0;cursor:pointer;padding:8px 0;display:flex;align-items:center;gap:6px}
+.dd>button:after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.dd>button[aria-expanded=true]:after{transform:translateY(2px) rotate(225deg)}
+.dd .m{display:none;position:absolute;left:-14px;top:44px;min-width:230px;background:var(--sheet);border:1px solid var(--line);
+ border-radius:var(--r);padding:8px;box-shadow:0 14px 36px rgba(21,48,42,.14)}
+.dd>button[aria-expanded=true]+.m{display:block}
+.dd .m a{display:block;padding:10px 12px;border-radius:6px;color:var(--ink);text-decoration:none;font-weight:500}
+.dd .m a:hover{background:var(--mint)}
+.menu-btn{display:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;
+ background:var(--spruce);color:#fff;font-weight:600;font-size:16px;text-decoration:none;border:2px solid var(--spruce);transition:background .15s}
+.btn:hover{background:var(--spruce-d);border-color:var(--spruce-d);color:#fff}
+.btn.g{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.g:hover{background:var(--ink);color:#fff}
+.btn.s{min-height:40px;padding:0 16px;font-size:15px}
+.dark .btn{background:var(--mint2);border-color:var(--mint2);color:var(--ink)}.dark .btn:hover{background:#fff;border-color:#fff}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;padding:72px 0 88px}
+.hero h1{margin-bottom:22px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero .note{max-width:32em}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:22px 22px 18px;
+ box-shadow:0 1px 0 rgba(21,48,42,.04),0 22px 50px -18px rgba(21,48,42,.22)}
+.sheet h3{font-size:15px;color:var(--ink2);font-weight:600;margin-bottom:10px}
+.rows{list-style:none;margin:0;padding:0;font-size:14.5px}
+.rows li{display:grid;grid-template-columns:92px 1fr auto;gap:12px;padding:7px 10px;border-radius:6px;background:var(--paper);margin-bottom:5px}
+.rows .d{color:var(--ink2)}.rows .v{text-align:right;font-weight:600}
+.into{display:flex;align-items:center;gap:10px;margin:14px 0 10px;color:var(--ink2);font-size:14px}
+.into:before,.into:after{content:"";flex:1;height:1px;background:var(--line)}
+.fields{width:100%;border-collapse:collapse;font-size:16px}
+.fields td{padding:9px 2px;border-bottom:1px solid var(--line)}.fields tr:last-child td{border-bottom:0}
+.fields td:last-child{text-align:right;font-weight:700;font-size:18px}
+.fields .gain{color:var(--spruce-d)}.fields .loss{color:var(--loss)}
+.fields small{display:block;color:var(--ink2);font-size:13px;font-weight:400}
+.cap{font-size:13.5px;color:var(--ink2);margin-top:12px}
+.flag{display:inline-block;width:20px;height:auto;vertical-align:-2px;border-radius:2px}
+.rules-tag{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink2);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 6px;margin-left:8px;white-space:nowrap;flex:none}
+.made{display:inline-flex;align-items:flex-start;gap:8px}.made .flag{margin-top:5px;flex:none}
+@media (prefers-reduced-motion:no-preference){
+ .rows li{animation:settle .7s cubic-bezier(.2,.8,.2,1) both}
+ .rows li:nth-child(1){--x:64px;animation-delay:.15s}.rows li:nth-child(2){--x:38px;animation-delay:.25s}
+ .rows li:nth-child(3){--x:14px;animation-delay:.35s}.rows li:nth-child(4){--x:38px;animation-delay:.45s}
+ .rows li:nth-child(5){--x:64px;animation-delay:.55s}.rows li:nth-child(6){--x:84px;animation-delay:.65s}
+ .fields td:last-child{animation:show .5s ease both 1.25s}
+ @keyframes settle{from{opacity:0;transform:translateX(var(--x))}to{opacity:1;transform:none}}
+ @keyframes show{from{opacity:0}to{opacity:1}}}
+
+/* sections */
+section{padding:88px 0}
+.band{background:var(--sheet);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dark{background:var(--dark);color:#E7F0EB}.dark h2,.dark h3{color:#fff}.dark .sub,.dark .note{color:#B9CCC3}.dark a{color:var(--mint2)}
+.head{margin-bottom:44px}
+
+/* steps: a real sequence */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s;position:relative}
+.steps:before{content:"";position:absolute;top:21px;left:22px;right:calc(25% - 15px);height:2px;background:var(--line)}
+.steps li{position:relative;counter-increment:s}
+.steps li:before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--paper);
+ border:2px solid var(--spruce);color:var(--spruce-d);font-weight:700;font-size:18px;margin-bottom:18px;position:relative}
+.steps h3{margin-bottom:8px}.steps p{color:var(--ink2);font-size:16px}
+.effort{margin-top:40px;padding:16px 20px;border-left:4px solid var(--spruce);background:var(--mint);border-radius:0 var(--r) var(--r) 0;max-width:46em}
+
+/* output */
+.out{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.ck{list-style:none;margin:20px 0 0;padding:0}
+.ck li{position:relative;padding-left:30px;margin:12px 0}
+.ck li:before{content:"";position:absolute;left:2px;top:7px;width:14px;height:8px;border-left:2.5px solid var(--spruce);border-bottom:2.5px solid var(--spruce);transform:rotate(-45deg)}
+.rules{margin:20px 0 0;padding:0}
+.rules div{display:grid;grid-template-columns:minmax(150px,.8fr) 1.2fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.rules dt{font-weight:600}.rules dd{margin:0;color:var(--ink2);font-size:16px}
+.files{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.callout{margin-top:36px;padding:22px 24px;border-radius:var(--r);background:var(--paper);border:1px solid var(--line)}
+.callout h3{margin-bottom:6px}
+
+/* exchanges */
+.ex{width:100%;border-collapse:collapse}
+.ex th{text-align:left;font-size:14px;color:var(--ink2);font-weight:600;padding:0 12px 10px 0;border-bottom:2px solid var(--ink)}
+.ex td{padding:16px 12px 16px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.ex td:first-child{font-weight:700;font-size:18px;white-space:nowrap}
+.how{display:inline-block;font-size:14px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--mint);color:var(--spruce-d);white-space:nowrap}
+.how.f{background:#ECEFF3;color:#3E4C5E}
+
+/* pricing */
+.price{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.amount{display:flex;align-items:baseline;gap:14px;margin:18px 0 6px}
+.amount b{font-size:72px;line-height:1;font-weight:800;letter-spacing:-.03em;color:#fff}
+.amount span{font-size:18px;color:#B9CCC3}
+.dark .ck li:before{border-color:var(--mint2)}
+.pf{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.free-tag{display:inline-block;font-size:14px;font-weight:700;color:var(--spruce-d);background:var(--mint);border-radius:999px;padding:3px 11px;margin-bottom:14px}
+.hold{width:100%;border-collapse:collapse;font-size:16px}.hold th{text-align:left;font-size:13.5px;color:var(--ink2);font-weight:600;padding:0 0 8px;border-bottom:1px solid var(--line)}
+.hold td{padding:11px 0;border-bottom:1px solid var(--line)}.hold td:first-child{font-weight:700;width:64px}.hold td.e{color:var(--ink2);font-size:14.5px}
+.hold td:last-child,.hold th:last-child{text-align:right;font-weight:700}.hold tr.t td{border-bottom:0;font-size:18px}
+.later{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 4px}.later div{flex:1 1 90px;border:1px solid #2F4D45;border-radius:8px;padding:10px 12px}
+.later b{display:block;color:#fff;font-size:20px}.later span{font-size:14px;color:#B9CCC3}
+.free{border:1px solid #2F4D45;border-radius:var(--r);padding:24px}
+.free h3{margin-bottom:12px}
+.free dl{margin:0}.free dt{font-weight:600;color:#fff;margin-top:14px}.free dd{margin:4px 0 0;color:#B9CCC3;font-size:16px}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.trust div{border-top:2px solid var(--ink);padding-top:16px}.trust h3{margin-bottom:8px}.trust p{color:var(--ink2);font-size:16px}
+
+/* faq */
+.faq{max-width:780px}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;font-weight:600;font-size:18px;position:relative}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"";position:absolute;right:8px;top:27px;width:9px;height:9px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg)}
+details[open] summary:after{transform:rotate(225deg);top:31px}
+details>div,details>p,details>table,details>ol,details>ul{margin:0 0 20px}
+details p{color:var(--ink2)}
+.warn{margin-top:36px;max-width:780px;padding:18px 20px;border-radius:var(--r);background:#FBF3E4;border:1px solid #EBD7B0;color:#4A3B1C;font-size:16px}
+
+/* generic pieces used by the Info pages */
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.card h3{margin-bottom:8px}.card p{color:var(--ink2);font-size:16px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+table{border-collapse:collapse;width:100%}
+.prose td,.prose th{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:16px}
+.prose th{font-size:14px;color:var(--ink2)}
+
+footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);font-size:15px}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.foot .brand{font-size:18px}.foot .brand .mark{width:22px;height:22px}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;gap:20px;flex-wrap:wrap}
+.foot p{margin-top:8px;max-width:30em}
+
+@media (max-width:900px){
+ .hero,.out,.price,.pf{grid-template-columns:1fr;gap:44px}.hero{padding:44px 0 64px}
+ .steps{grid-template-columns:1fr 1fr}.steps:before{display:none}
+ .trust{grid-template-columns:1fr;gap:28px}.g2{grid-template-columns:1fr}
+ nav .l,nav .dd{display:none}.menu-btn{display:flex}
+ nav{gap:14px}
+ .mobile{display:none;border-top:1px solid var(--line);padding:8px 0 16px}
+ .mobile.open{display:block}
+ .mobile a{display:block;padding:12px 0;color:var(--ink);text-decoration:none;font-weight:500;font-size:17px}
+ .mobile .grp{color:var(--ink2);font-size:14px;margin-top:10px}
+ .mobile .in{padding-left:14px}
+}
+@media (min-width:901px){.mobile{display:none!important}}
+@media (max-width:600px){
+ .w{padding-left:16px;padding-right:16px}section{padding:60px 0}
+ body{font-size:16px}.lead{font-size:18px}
+ .steps{grid-template-columns:1fr}
+ nav .lang{display:none}
+ .brand{font-size:19px}
+ header .btn.s{padding:0 12px}
+ .rows li{grid-template-columns:78px 1fr auto;gap:8px;font-size:13px;padding:6px 8px}
+ .ex thead{display:none}.ex tr{display:block;padding:14px 0;border-bottom:1px solid var(--line)}
+ .ex td{display:block;border:0;padding:2px 0}.ex td:first-child,.ex td:nth-child(2){display:inline-block;font-size:18px;margin-right:10px}
+ .rules div{grid-template-columns:1fr;gap:2px}
+ .amount b{font-size:60px}
+ .cta .btn{flex:1 1 100%}
+}
+</style></head><body>
+<header><div class="w"><nav aria-label="Hovedmeny">
+<a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="5" y="5" width="5" height="22" rx="1.4"/><rect x="20" y="5" width="8" height="3.6" rx="1.4"/><rect x="16" y="9.6" width="8" height="3.6" rx="1.4"/><rect x="12" y="14.2" width="8" height="3.6" rx="1.4"/><rect x="16" y="18.8" width="8" height="3.6" rx="1.4"/><rect x="20" y="23.4" width="8" height="3.6" rx="1.4"/></g></svg>KryptoKlar</a>
+<a class="l" href="#slik">Slik virker det</a><a class="l" href="#borser">Børser</a><a class="l" href="#pris">Pris</a><a class="l" href="#sporsmal">Spørsmål</a><div class="dd"><button type="button" aria-expanded="false" aria-controls="info-m">Info</button><div class="m" id="info-m"><a href="info.html#guider">Guider</a><a href="info.html#eksempler">Eksempelrapporter</a><a href="info.html#lenker">Nyttige lenker</a><a href="info.html#om">Om KryptoKlar</a><a href="info.html#kontakt">Kontakt</a></div></div>
+<span class="sp"></span><a class="lang" href="en.html" lang="en">EN</a>
+<a class="btn s" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener">Kjøp - 99 kr</a>
+<button type="button" class="menu-btn" aria-expanded="false" aria-controls="mob">Meny</button></nav>
+<div class="mobile" id="mob"><a href="#slik">Slik virker det</a><a href="#borser">Børser</a><a href="#pris">Pris</a><a href="#sporsmal">Spørsmål</a><div class="grp">Info</div><div class="in"><a href="info.html#guider">Guider</a><a href="info.html#eksempler">Eksempelrapporter</a><a href="info.html#lenker">Nyttige lenker</a><a href="info.html#om">Om KryptoKlar</a><a href="info.html#kontakt">Kontakt</a></div><a href="en.html">English</a></div></div></header>
+<main>
+<div class="w hero">
+ <div><h1>Kryptoskatt du kan forstå.</h1><p class="lead">KryptoKlar henter handlene dine fra børsene, regner ut gevinst, tap, inntekt og formue i kroner etter norske regler, og viser hvor hvert tall kommer fra.</p>
+  <div class="cta"><a class="btn" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener">Kjøp betalisens - 99 kr</a><a class="btn g" href="eksempel/KryptoKlar-eksempelrapport-2025.pdf">Se en eksempelrapport</a></div>
+  <p class="note">Prøv gratis først: installer, koble til børsene og se at alt blir importert og kontrollert. For Windows og Android.</p></div>
+ <figure class="sheet" style="margin:0"><h3>Fra transaksjoner ...</h3><ul class="rows"><li><span class="d">19.01.2025</span><span>Kjøp 2 ETH</span><span class="v">67 200 kr</span></li><li><span class="d">06.02.2025</span><span>Kjøp 1 500 XRP</span><span class="v">8 663 kr</span></li><li><span class="d">14.03.2025</span><span>Staking-belønning ETH</span><span class="v">139 kr</span></li><li><span class="d">19.04.2025</span><span>Salg 0,02 BTC</span><span class="v">19 950 kr</span></li><li><span class="d">13.06.2025</span><span>Bytte XRP til ETH</span><span class="v">2 625 kr</span></li><li><span class="d">30.09.2025</span><span>Salg 1 ETH</span><span class="v">27 300 kr</span></li></ul>
+  <div class="into">... til tallene i skattemeldingen<span class="rules-tag"><svg class="flag" viewBox="0 0 22 16" role="img" aria-label="Norsk flagg"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><path d="M6 0h4v16H6zM0 6h22v4H0z" fill="#fff"/><path d="M7 0h2v16H7zM0 7h22v2H0z" fill="#00205B"/></svg>Norske regler</span></div><table class="fields"><tr><td>Formuesverdi</td><td class="">99 298 kr</td></tr><tr><td>Skattepliktig gevinst</td><td class="gain">7 527 kr</td></tr><tr><td>Fradragsberettiget tap</td><td class="loss">6 616 kr</td></tr><tr><td>Andre inntekter<small>staking og belønninger</small></td><td class="">428 kr</td></tr></table>
+  <figcaption class="cap">Eksempel: inntektsår 2025 med oppdiktede tall, utdrag fra <a href="eksempel/KryptoKlar-eksempelrapport-2025.pdf">eksempelrapporten</a>.</figcaption></figure>
 </div>
 
-<section id="what">
-  <h2>Hva den gjør</h2>
-  <p class="sub">Full oversikt over børshistorikken din, regnet etter norske regler og kontrollert mot det børsene viser at du eier - samlet i en PDF du kan bruke selv eller ta med til regnskapsføreren.</p>
-  <div class="g3">
-    <div class="card"><span class="k">01 · HENT</span><h3>Alle børsene dine</h3><p>Synk med kun-lese API-nøkkel, eller børsens egen eksportfil. Trygt å importere på nytt: ingenting telles dobbelt.</p></div>
-    <div class="card"><span class="k">02 · BEREGN</span><h3>Norske regler, i NOK</h3><p>FIFO per mynt på tvers av alle børser. Hvert kjøp får inngangsverdi i NOK på sin egen dato. Bytte mellom mynter, gebyr betalt i mynt, staking og futures er med.</p></div>
-    <div class="card"><span class="k">03 · KONTROLLER</span><h3>Ingenting forsvinner i stillhet</h3><p>Beholdningen avstemmes mot børsenes faktiske saldo. Manglende kjøpshistorikk blir varslet, aldri gjettet.</p></div>
-    <div class="card"><span class="k">04 · DOKUMENTER</span><h3>PDF + CSV</h3><p>Tallene til skattemeldingen, pluss hvert salg med FIFO-utregning - dokumentasjonen du må kunne vise hvis Skatteetaten spør.</p></div>
-    <div class="card"><span class="k">05 · HENT TILBAKE</span><h3>Gamle tap teller</h3><p>Mynter fra forrige bull run som ligger med tap? Importer den gamle historikken, selg, og før opp det reelle tapet - aldri mer enn du faktisk tapte.</p></div>
-    <div class="card"><span class="k">06 · PRIVAT</span><h3>Blir på din PC</h3><p>Ingen konto, ingen sky. KryptoKlar snakker med børsene dine og offentlige priskilder - ingenting annet.</p></div>
-  </div>
-</section>
+<section id="slik" class="band"><div class="w">
+ <div class="head"><h2>Slik virker det</h2><p class="sub">Fire steg fra børshistorikk til ferdig skattemelding. Det meste av jobben din er å koble til børsene første gang.</p></div>
+ <ol class="steps"><li><h3>Koble til børsene</h3><p>Med en API-nøkkel som bare kan lese, eller børsens egen eksportfil. Det er trygt å importere samme periode igjen - ingenting telles dobbelt.</p></li><li><h3>KryptoKlar regner</h3><p>FIFO per mynt på tvers av alle børser. Hvert kjøp får kostpris i kroner på sin egen dato, med kurs fra Norges Bank.</p></li><li><h3>Du ser over kontrollene</h3><p>Beholdningen avstemmes mot det børsene viser at du eier. Mangler det kjøpshistorikk, sier programmet fra i stedet for å gjette.</p></li><li><h3>Du fører inn tallene</h3><p>Tallene står klare for kortet Virtuelle eiendeler i skattemeldingen. PDF og CSV er dokumentasjonen din hvis Skatteetaten spør.</p></li></ol>
+ <p class="effort"><b>Hvor mye må du gjøre selv?</b> Koble til hver børs én gang, og legg inn det programmet ikke kan se - for eksempel en lommebok uten børs, eller forvaltningskostnader som programvare og en andel av internett.</p>
+</div></section>
 
-<section id="exchanges">
-  <h2>Støttede børser</h2>
-  <p class="sub">Flere legges til etter ønske - si fra hvilken du trenger på <a href="https://discord.gg/hnAGgsAQ5V" target="_blank" rel="noopener">Discord</a>.</p>
-  <div class="card" style="padding:6px 10px">
-  <table>
-    <tr><th>Børs</th><th>Hvordan</th><th>Hva som dekkes</th></tr>
-    <tr><td><b>Kraken</b></td><td>API</td><td>Spot, futures, staking / Earn-belønning, innskudd og uttak</td></tr>
-    <tr><td><b>Binance</b></td><td>API</td><td>Spothandler, innskudd og uttak</td></tr>
-    <tr><td><b>Coinbase</b></td><td>API eller fil</td><td>Kjøp, salg, konverteringer, sendinger, mottak, belønninger - full historikk</td></tr>
-    <tr><td><b>KuCoin</b></td><td>API + fil</td><td>Siste 12 måneder via API, eldre år fra KuCoins eksportfil</td></tr>
-    <tr><td><b>Firi</b></td><td>Fil</td><td>Handler, staking-belønning, innskudd, uttak, gebyrer</td></tr>
-    <tr><td><b>Revolut X</b></td><td>Fil</td><td>Kjøp, salg, sendinger og gebyrer</td></tr>
-    <tr><td><b>Alt annet</b></td><td>Mal</td><td>Andre børser og lommebøker via KryptoKlars importmal</td></tr>
-  </table></div>
-</section>
+<section><div class="w pf">
+ <div><span class="free-tag">Gratis</span><h2>Hele beholdningen din, på ett sted</h2><p class="sub">Har du mynter på flere børser, ser du dem samlet: hvor mye du har av hver mynt, hva den er verdt nå, og hva du har betalt for den.</p><ul class="ck"><li>Beholdning per mynt, lagt sammen fra alle børsene du har koblet til med API-nøkkel</li><li>Dagens verdi i USD, oppdatert når du åpner appen</li><li>Snittkostpris etter FIFO og urealisert gevinst eller tap</li><li>Verdi per børs, og futures-kontoen for seg</li></ul></div>
+ <figure class="sheet" style="margin:0"><table class="hold"><thead><tr><th>Mynt</th><th>Beholdning</th><th>Verdi</th></tr></thead>
+  <tbody><tr><td>BTC</td><td class="e">0,04</td><td>3 760 $</td></tr><tr><td>ETH</td><td class="e">1,09</td><td>3 597 $</td></tr><tr><td>XRP</td><td class="e">1 000</td><td>2 100 $</td></tr><tr class="t"><td colspan="2">Totalt</td><td>9 457 $</td></tr></tbody></table>
+  <figcaption class="cap">Eksempel med oppdiktede tall, samlet fra Kraken, Binance og Coinbase.</figcaption></figure>
+</div></section>
 
-<section id="beta">
-  <h2>Betapris 99 kr - senere 500 kr</h2>
-  <p class="sub">KryptoKlar er i beta. Prøv gratis først: installer, koble til børsene og se at alt blir importert og kontrollert. Tallene til skattemeldingen, PDF-rapporten og CSV-filene låses opp med lisens. Betalisensen koster 99 kr én gang (prisen blir senere 500 kr), og den gjelder for alltid: basisversjonen med oppdateringer og nye børser inkludert. Spørsmål, hjelp og tilbakemeldinger går via Discord-serveren vår - der svarer vi raskt, og det du ber om, styrer hva som kommer.</p>
-  <div class="g2">
-    <div class="card beta"><h3>Betalisens</h3><div style="font-size:34px;font-weight:800;color:var(--hi);margin:6px 0">99 kr <span style="font-size:18px;font-weight:600;color:var(--mut,#8b949e);text-decoration:line-through">500 kr</span></div>
-      <ul class="ck"><li>Livstidslisens - betal én gang, aldri abonnement</li><li>Hele programmet: alle børser, kontroller, PDF og CSV</li><li>Oppdateringer og nye børser inkludert</li><li>Direkte kontakt med utvikleren på Discord</li><li>Dine tilbakemeldinger styrer hva som kommer</li></ul>
-      <p style="margin-top:18px"><a class="btn" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener">Kjøp - 99 kr</a></p><p class="note">Sikker betaling med kort via Stripe. Lisensnøkkelen sendes til e-posten din innen 24 timer. Spørsmål? <a href="https://discord.gg/hnAGgsAQ5V" target="_blank" rel="noopener">Discord</a>.</p></div>
-    <div class="card"><h3>Last ned</h3><p>Windows 10 / 11 og Android. Prøv gratis: installer, koble til børsene og se at alt blir importert og kontrollert. Lisensen låser opp tallene til skattemeldingen, PDF-rapporten og CSV-filene.</p>
-      <p style="margin-top:18px"><a class="btn g todo" href="#">Last ned for Windows</a></p>
-      <p class="note">Programmet sier fra når en ny versjon er ute.</p></div>
-  </div>
-</section>
+<section class="band"><div class="w out">
+ <div><h2>Det du får</h2><p class="sub">En rapport du kan bruke selv, eller ta med til regnskapsføreren.</p><ul class="ck"><li>Tallene til skattemeldingen, i samme rekkefølge som feltene der</li><li>Hvert salg og bytte med FIFO-utregning: hvilke kjøp som ble brukt, og til hvilken pris</li><li>Kontrollene som ble kjørt, og hva som eventuelt må ses over</li><li>Formue per 31.12 med kursene som er brukt</li><li>Futures oppsummert per kategori, med alle poster i en egen CSV</li><li>CSV-filer til Excel: per mynt, alle transaksjoner, futures</li></ul><div class="files"><a class="btn g s" href="eksempel/KryptoKlar-eksempelrapport-2025.pdf">Eksempelrapport (PDF)</a><a class="btn g s" href="eksempel/fifo_transactions_2025_nb.csv">Eksempel-CSV</a></div>
+  <div class="callout"><h3>Gamle tap kan telle igjen</h3><p>Har du mynter fra forrige oppgang som ligger med tap? Importer den gamle børshistorikken, så regner KryptoKlar ut det reelle tapet når du selger - aldri mer enn du faktisk tapte.</p></div></div>
+ <div><h2>Slik regnes det</h2><dl class="rules"><div><dt>FIFO per mynt</dt><dd>Første kjøp ut først, på tvers av alle børsene dine.</dd></div><div><dt>Kostpris i kroner</dt><dd>Låst på kjøpsdatoen, med Norges Banks dagskurs.</dd></div><div><dt>Bytte mellom mynter</dt><dd>Er et salg, også til og fra stablecoins.</dd></div><div><dt>Overføring mellom egne kontoer</dt><dd>Er ikke et salg.</dd></div><div><dt>Gebyr betalt i mynt</dt><dd>Regnes som et lite salg av mynten.</dd></div><div><dt>Staking og belønninger</dt><dd>Inntekt til markedsverdi, som også blir kostprisen.</dd></div><div><dt>Gevinst og tap</dt><dd>Føres hver for seg, aldri trukket fra hverandre.</dd></div><div><dt>Formue</dt><dd>Markedsverdi 31.12. Kontanter på børser vises for seg.</dd></div></dl><p class="note">Regelsettet heter NO-krypto-2026.1 og står i hver rapport.</p></div>
+</div></section>
 
-<section id="faq">
-  <h2>Spørsmål og svar</h2>
-  <details><summary>Er dette skatterådgivning?</summary><p>Nei. KryptoKlar er et beregningsverktøy som bruker de norske reglene slik det tolker dem, og oppgir hvilket regelsett som er brukt i hver rapport. Du er selv ansvarlig for skattemeldingen - sjekk tallene, og spør Skatteetaten eller en regnskapsfører hvis du er usikker.</p></details>
-  <details><summary>Forlater dataene mine PC-en?</summary><p>Nei. Transaksjoner, rapporter og innstillinger blir på din PC. API-nøkler lagres i Windows sitt nøkkellager og brukes kun til lesing. Tilbakemeldinger sendes bare når du trykker Send, og inneholder ingen transaksjonsdata.</p></details>
-  <details><summary>Hva med tidligere år?</summary><p>Du velger hvor full FIFO-beregning starter. År som allerede er levert på annen måte forblir lukket. For mynter der du har hele historikken, kan de reelle gamle kjøpsprisene brukes - så et reelt tap kan føres opp når du selger.</p></details>
-  <details><summary>Min børs står ikke på listen.</summary><p>Bruk importmalen inntil videre, og si fra på <a href="https://discord.gg/hnAGgsAQ5V" target="_blank" rel="noopener">Discord</a>. Nye børser legges til etter ønske.</p></details>
-  <details><summary>Hvilke enheter?</summary><p>Windows-PC og Android-mobil. Én lisens gjelder begge. iPhone kan komme senere.</p></details>
-</section>
+<section id="borser"><div class="w">
+ <div class="head"><h2>Børser</h2><p class="sub">Flere legges til etter ønske - si fra på <a href="https://discord.gg/hnAGgsAQ5V">Discord</a> hvilken du trenger.</p></div>
+ <table class="ex"><thead><tr><th>Børs</th><th>Hvordan</th><th>Hva som dekkes</th></tr></thead><tbody><tr><td>Kraken</td><td><span class="how">API</span></td><td>Spot, futures, staking og Earn-belønninger, innskudd og uttak</td></tr><tr><td>Binance</td><td><span class="how">API</span></td><td>Spothandler, innskudd og uttak</td></tr><tr><td>Coinbase</td><td><span class="how">API eller fil</span></td><td>Kjøp, salg, konverteringer, sendinger, mottak og belønninger</td></tr><tr><td>KuCoin</td><td><span class="how">API og fil</span></td><td>Siste 12 måneder via API, eldre år fra KuCoins eksportfil</td></tr><tr><td>Firi</td><td><span class="how f">Fil</span></td><td>Handler, staking-belønninger, innskudd, uttak og gebyrer</td></tr><tr><td>Revolut X</td><td><span class="how f">Fil</span></td><td>Kjøp, salg, sendinger og gebyrer</td></tr><tr><td>Andre</td><td><span class="how f">Mal</span></td><td>Andre børser og lommebøker via KryptoKlars importmal</td></tr></tbody></table>
+</div></section>
 
-<div class="risk"><b>Viktig:</b> Resultatet blir bare så komplett som dataene du gir KryptoKlar. Transaksjoner den aldri ser - andre børser, lommebøker, historikk en børs ikke lenger gir ut - må importeres, ellers blir resultatet feil. Programmet viser kontroller som hjelper deg å finne hull.</div>
+<section id="pris" class="dark"><div class="w price">
+ <div><h2>Betalisens</h2>
+  <p class="amount"><b>99 kr</b><span>én gang</span></p>
+  <p class="sub">KryptoKlar er i beta, og betalisensen selges til de første 50. Den gjelder for alltid.</p><ul class="ck"><li>Hele programmet: alle børser, kontroller, PDF og CSV</li><li>Oppdateringer og nye børser inkludert</li><li>Ingen abonnement</li><li>Én lisens gjelder både PC og mobil</li><li>Direkte kontakt med utvikleren på Discord</li></ul>
+  <div class="cta"><a class="btn" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener">Kjøp betalisens - 99 kr</a></div>
+  <p class="note">Betaling med kort via Stripe. Lisensnøkkelen sendes til e-posten din innen 24 timer.</p></div>
+ <div><div class="free"><h3>Etter betaen</h3><div class="later"><div><b>49 kr</b><span>per måned</span></div><div><b>399 kr</b><span>per år</span></div><div><b>999 kr</b><span>livstid</span></div></div></div>
+  <div class="free" style="margin-top:16px"><h3>Prøv gratis først</h3><dl><dt>Gratis</dt><dd>Porteføljen, og at alt blir importert og kontrollert. Total formue vises.</dd><dt>Med lisens</dt><dd>Tallene til skattemeldingen, PDF-rapporten og CSV-filene.</dd><dt>Last ned</dt><dd>Windows 10 og 11, og Android. <a href="https://github.com/Duplexsteel/KryptoKlar/releases">Nedlastinger</a>. Programmet sier fra når en ny versjon er ute.</dd></dl></div></div>
+</div></section>
 
-<footer>KryptoKlar · Laget i Norge · Ikke skatterådgivning · <a href="vilkar.html">Vilkår</a> · <a href="https://github.com/Duplexsteel/KryptoKlar/releases">Nedlastinger</a> · <a href="en.html">English</a></footer>
-</div></body></html>
+<section><div class="w">
+ <div class="head"><h2>Dataene dine</h2></div><div class="trust"><div><h3>Blir på din enhet</h3><p>Ingen konto og ingen sky. Transaksjoner, rapporter og innstillinger lagres hos deg.</p></div><div><h3>Nøkler som bare kan lese</h3><p>KryptoKlar kan aldri handle eller ta ut penger. På PC lagres API-nøklene i Windows sitt eget nøkkellager.</p></div><div><h3>Snakker bare med det som trengs</h3><p>Børsene dine, offentlige kilder for priser og valutakurser, og KryptoKlar-nettsiden for å se etter oppdateringer. Tilbakemeldinger sendes bare når du trykker Send, uten transaksjonsdata.</p></div></div>
+</div></section>
+
+<section id="sporsmal" class="band"><div class="w">
+ <div class="head"><h2>Spørsmål og svar</h2></div><div class="faq"><details><summary>Er dette skatterådgivning?</summary><p>Nei. KryptoKlar er et beregningsverktøy som bruker de norske reglene slik det tolker dem, og oppgir hvilket regelsett som er brukt i hver rapport. Du er selv ansvarlig for skattemeldingen - sjekk tallene, og spør Skatteetaten eller en regnskapsfører hvis du er usikker.</p></details><details><summary>Hva med tidligere år?</summary><p>Du velger hvor full FIFO-beregning starter. År som allerede er levert på annen måte, forblir lukket. For mynter der du har hele historikken, kan de reelle gamle kjøpsprisene brukes - så et reelt tap kan føres opp når du selger.</p></details><details><summary>Hva med kontanter på børsene?</summary><p>Dollar og kroner som ligger på en børs, er formue, men ikke en virtuell eiendel. KryptoKlar viser saldoen per 31.12 for seg, så du kan føre den som innskudd eller fordring i utlandet.</p></details><details><summary>Min børs står ikke på listen.</summary><p>Bruk importmalen inntil videre, og si fra på <a href="https://discord.gg/hnAGgsAQ5V">Discord</a>. Nye børser legges til etter ønske.</p></details><details><summary>Hvilke enheter?</summary><p>Windows-PC og Android-mobil. Én lisens gjelder begge. iPhone kan komme senere.</p></details><details><summary>Hvordan får jeg hjelp?</summary><p>Spør på <a href="https://discord.gg/hnAGgsAQ5V">Discord</a>, eller send en melding fra programmet: Data og oppsett, Tilbakemelding og ønsker.</p></details></div>
+ <p class="warn"><b>Viktig:</b> Resultatet blir bare så komplett som dataene du gir KryptoKlar. Transaksjoner programmet aldri ser - andre børser, lommebøker, historikk en børs ikke lenger gir ut - må importeres, ellers blir resultatet feil. Kontrollene hjelper deg å finne hull.</p>
+</div></section>
+</main>
+<footer><div class="w foot"><div><a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="5" y="5" width="5" height="22" rx="1.4"/><rect x="20" y="5" width="8" height="3.6" rx="1.4"/><rect x="16" y="9.6" width="8" height="3.6" rx="1.4"/><rect x="12" y="14.2" width="8" height="3.6" rx="1.4"/><rect x="16" y="18.8" width="8" height="3.6" rx="1.4"/><rect x="20" y="23.4" width="8" height="3.6" rx="1.4"/></g></svg>KryptoKlar</a><p><span class="made"><svg class="flag" viewBox="0 0 22 16" role="img" aria-label="Norsk flagg"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><path d="M6 0h4v16H6zM0 6h22v4H0z" fill="#fff"/><path d="M7 0h2v16H7zM0 7h22v2H0z" fill="#00205B"/></svg>Laget i Norge. Ikke skatterådgivning - du er selv ansvarlig for skattemeldingen.</span></p></div>
+<ul><li><a href="vilkar.html">Vilkår</a></li><li><a href="info.html">Info</a></li><li><a href="https://discord.gg/hnAGgsAQ5V">Discord</a></li><li><a href="https://github.com/Duplexsteel/KryptoKlar/releases">Nedlastinger</a></li><li><a href="en.html">English</a></li></ul></div></footer>
+<script>
+document.querySelectorAll('.dd>button,.menu-btn').forEach(function(b){
+  var panel=document.getElementById(b.getAttribute('aria-controls'));
+  b.addEventListener('click',function(e){e.stopPropagation();var o=b.getAttribute('aria-expanded')!=='true';
+    b.setAttribute('aria-expanded',o);if(b.classList.contains('menu-btn'))panel.classList.toggle('open',o);});
+  panel.addEventListener('click',function(e){if(e.target.tagName==='A'){b.setAttribute('aria-expanded','false');panel.classList.remove('open');}});
+});
+document.addEventListener('click',function(){document.querySelectorAll('.dd>button').forEach(function(b){b.setAttribute('aria-expanded','false')})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('[aria-expanded=true]').forEach(function(b){b.click()})});
+</script>
+</body></html>
