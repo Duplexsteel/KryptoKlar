@@ -1,9 +1,15 @@
 <!doctype html>
 <html lang="nb"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KryptoKlar - kryptoskatt du kan forstå</title>
-<meta name="description" content="KryptoKlar regner ut kryptoskatten din: gevinst, tap, inntekt og formue i NOK med FIFO, fra Kraken, Binance, Coinbase, KuCoin, Firi og Revolut X. Dataene dine blir på din PC.">
+<title>Kryptokompis - kryptoskatt og kryptoportefølje for Norge</title>
+<meta name="description" content="Kryptokompis samler kryptoporteføljen din fra alle børsene og lager skatterapport for krypto etter norske regler: kostpris, gevinst, tap og formue i kroner. Gratis å prøve.">
 <meta name="theme-color" content="#F4F7F5">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Kryptokompis">
+<meta property="og:title" content="Kryptokompis - din kryptokompis for oversikt og skatt"><meta property="og:description" content="Kryptokompis samler kryptoporteføljen din fra alle børsene og lager skatterapport for krypto etter norske regler: kostpris, gevinst, tap og formue i kroner. Gratis å prøve.">
+<meta property="og:url" content="https://duplexsteel.github.io/KryptoKlar/index.html"><meta property="og:locale" content="nb_NO">
+<meta property="og:image" content="https://duplexsteel.github.io/KryptoKlar/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="nb" href="https://duplexsteel.github.io/KryptoKlar/index.html"><link rel="alternate" hreflang="en" href="https://duplexsteel.github.io/KryptoKlar/en.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="icon.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,6 +141,11 @@ section{padding:88px 0}
 .hold td:last-child,.hold th:last-child{text-align:right;font-weight:700}.hold tr.t td{border-bottom:0;font-size:18px}
 .later{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 4px}.later div{flex:1 1 90px;border:1px solid #2F4D45;border-radius:8px;padding:10px 12px}
 .later b{display:block;color:#fff;font-size:20px}.later span{font-size:14px;color:#B9CCC3}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:44px}
+.grid4 div{border-top:2px solid var(--ink);padding-top:16px}.grid4 h3{margin-bottom:8px}.grid4 p{color:var(--ink2);font-size:16px}
+.ins div{border-top-color:var(--spruce)}
+.go{margin-bottom:56px}.steps.go{grid-template-columns:repeat(3,1fr)}.steps.go:before{right:calc(33.3% - 6px)}.dark .steps:before{background:#2F4D45}.dark .steps li:before{background:var(--dark);border-color:var(--mint2);color:var(--mint2)}
+.dark .steps p{color:#B9CCC3}.dark .price h3{font-size:24px}
 .free{border:1px solid #2F4D45;border-radius:var(--r);padding:24px}
 .free h3{margin-bottom:12px}
 .free dl{margin:0}.free dt{font-weight:600;color:#fff;margin-top:14px}.free dd{margin:4px 0 0;color:#B9CCC3;font-size:16px}
@@ -170,8 +181,8 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 
 @media (max-width:900px){
  .hero,.out,.price,.pf{grid-template-columns:1fr;gap:44px}.hero{padding:44px 0 64px}
- .steps{grid-template-columns:1fr 1fr}.steps:before{display:none}
- .trust{grid-template-columns:1fr;gap:28px}.g2{grid-template-columns:1fr}
+ .steps,.steps.go{grid-template-columns:1fr 1fr}.steps:before{display:none}
+ .trust{grid-template-columns:1fr;gap:28px}.g2{grid-template-columns:1fr}.grid4{grid-template-columns:1fr 1fr}
  nav .l,nav .dd{display:none}.menu-btn{display:flex}
  nav{gap:14px}
  .mobile{display:none;border-top:1px solid var(--line);padding:8px 0 16px}
@@ -184,7 +195,7 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 @media (max-width:600px){
  .w{padding-left:16px;padding-right:16px}section{padding:60px 0}
  body{font-size:16px}.lead{font-size:18px}
- .steps{grid-template-columns:1fr}
+ .steps,.steps.go{grid-template-columns:1fr}.grid4{grid-template-columns:1fr}
  nav .lang{display:none}
  .brand{font-size:19px}
  header .btn.s{padding:0 12px}
@@ -197,66 +208,72 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 }
 </style></head><body>
 <header><div class="w"><nav aria-label="Hovedmeny">
-<a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="5" y="5" width="5" height="22" rx="1.4"/><rect x="20" y="5" width="8" height="3.6" rx="1.4"/><rect x="16" y="9.6" width="8" height="3.6" rx="1.4"/><rect x="12" y="14.2" width="8" height="3.6" rx="1.4"/><rect x="16" y="18.8" width="8" height="3.6" rx="1.4"/><rect x="20" y="23.4" width="8" height="3.6" rx="1.4"/></g></svg>KryptoKlar</a>
-<a class="l" href="#slik">Slik virker det</a><a class="l" href="#borser">Børser</a><a class="l" href="#pris">Pris</a><a class="l" href="#sporsmal">Spørsmål</a><div class="dd"><button type="button" aria-expanded="false" aria-controls="info-m">Info</button><div class="m" id="info-m"><a href="info.html#guider">Guider</a><a href="info.html#eksempler">Eksempelrapporter</a><a href="info.html#lenker">Nyttige lenker</a><a href="info.html#om">Om KryptoKlar</a><a href="info.html#kontakt">Kontakt</a></div></div>
+<a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="5" y="5" width="5" height="22" rx="1.4"/><rect x="20" y="5" width="8" height="3.6" rx="1.4"/><rect x="16" y="9.6" width="8" height="3.6" rx="1.4"/><rect x="12" y="14.2" width="8" height="3.6" rx="1.4"/><rect x="16" y="18.8" width="8" height="3.6" rx="1.4"/><rect x="20" y="23.4" width="8" height="3.6" rx="1.4"/></g></svg>Kryptokompis</a>
+<a class="l" href="#portefolje">Portefølje</a><a class="l" href="#skatt">Skatt</a><a class="l" href="#import">Import</a><a class="l" href="#innsikt">Innsikt</a><a class="l" href="#sporsmal">Spørsmål</a><div class="dd"><button type="button" aria-expanded="false" aria-controls="info-m">Info</button><div class="m" id="info-m"><a href="info.html#guider">Guider</a><a href="info.html#eksempler">Eksempelrapporter</a><a href="info.html#lenker">Nyttige lenker</a><a href="info.html#om">Om Kryptokompis</a><a href="info.html#kontakt">Kontakt</a></div></div>
 <span class="sp"></span><a class="lang" href="en.html" lang="en">EN</a>
-<a class="btn s" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener">Kjøp - 99 kr</a>
+<a class="btn s" href="#kom-i-gang">Kom i gang</a>
 <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mob">Meny</button></nav>
-<div class="mobile" id="mob"><a href="#slik">Slik virker det</a><a href="#borser">Børser</a><a href="#pris">Pris</a><a href="#sporsmal">Spørsmål</a><div class="grp">Info</div><div class="in"><a href="info.html#guider">Guider</a><a href="info.html#eksempler">Eksempelrapporter</a><a href="info.html#lenker">Nyttige lenker</a><a href="info.html#om">Om KryptoKlar</a><a href="info.html#kontakt">Kontakt</a></div><a href="en.html">English</a></div></div></header>
+<div class="mobile" id="mob"><a href="#portefolje">Portefølje</a><a href="#skatt">Skatt</a><a href="#import">Import</a><a href="#innsikt">Innsikt</a><a href="#sporsmal">Spørsmål</a><div class="grp">Info</div><div class="in"><a href="info.html#guider">Guider</a><a href="info.html#eksempler">Eksempelrapporter</a><a href="info.html#lenker">Nyttige lenker</a><a href="info.html#om">Om Kryptokompis</a><a href="info.html#kontakt">Kontakt</a></div><a href="en.html">English</a></div></div></header>
 <main>
 <div class="w hero">
- <div><h1>Kryptoskatt du kan forstå.</h1><p class="lead">KryptoKlar henter handlene dine fra børsene, regner ut gevinst, tap, inntekt og formue i kroner etter norske regler, og viser hvor hvert tall kommer fra.</p>
-  <div class="cta"><a class="btn" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener">Kjøp betalisens - 99 kr</a><a class="btn g" href="eksempel/KryptoKlar-eksempelrapport-2025.pdf">Se en eksempelrapport</a></div>
-  <p class="note">Prøv gratis først: installer, koble til børsene og se at alt blir importert og kontrollert. For Windows og Android.</p></div>
+ <div><h1>Din kryptokompis for oversikt og skatt.</h1><p class="lead">Kryptokompis samler kryptoen din fra alle børsene. Du ser hele porteføljen på ett sted, og får skatterapporten for krypto regnet ut etter norske regler - med kostpris, gevinst, tap og formue i kroner.</p>
+  <div class="cta"><a class="btn" href="#kom-i-gang">Kom i gang</a><a class="btn g" href="eksempel/Kryptokompis-eksempelrapport-2025.pdf">Se en eksempelrapport</a></div>
+  <p class="note">Gratis å prøve. For Windows og Android.</p></div>
  <figure class="sheet" style="margin:0"><h3>Fra transaksjoner ...</h3><ul class="rows"><li><span class="d">19.01.2025</span><span>Kjøp 2 ETH</span><span class="v">67 200 kr</span></li><li><span class="d">06.02.2025</span><span>Kjøp 1 500 XRP</span><span class="v">8 663 kr</span></li><li><span class="d">14.03.2025</span><span>Staking-belønning ETH</span><span class="v">139 kr</span></li><li><span class="d">19.04.2025</span><span>Salg 0,02 BTC</span><span class="v">19 950 kr</span></li><li><span class="d">13.06.2025</span><span>Bytte XRP til ETH</span><span class="v">2 625 kr</span></li><li><span class="d">30.09.2025</span><span>Salg 1 ETH</span><span class="v">27 300 kr</span></li></ul>
   <div class="into">... til tallene i skattemeldingen<span class="rules-tag"><svg class="flag" viewBox="0 0 22 16" role="img" aria-label="Norsk flagg"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><path d="M6 0h4v16H6zM0 6h22v4H0z" fill="#fff"/><path d="M7 0h2v16H7zM0 7h22v2H0z" fill="#00205B"/></svg>Norske regler</span></div><table class="fields"><tr><td>Formuesverdi</td><td class="">99 298 kr</td></tr><tr><td>Skattepliktig gevinst</td><td class="gain">7 527 kr</td></tr><tr><td>Fradragsberettiget tap</td><td class="loss">6 616 kr</td></tr><tr><td>Andre inntekter<small>staking og belønninger</small></td><td class="">428 kr</td></tr></table>
-  <figcaption class="cap">Eksempel: inntektsår 2025 med oppdiktede tall, utdrag fra <a href="eksempel/KryptoKlar-eksempelrapport-2025.pdf">eksempelrapporten</a>.</figcaption></figure>
+  <figcaption class="cap">Eksempel: inntektsår 2025 med oppdiktede tall, utdrag fra <a href="eksempel/Kryptokompis-eksempelrapport-2025.pdf">eksempelrapporten</a>.</figcaption></figure>
 </div>
 
-<section id="slik" class="band"><div class="w">
- <div class="head"><h2>Slik virker det</h2><p class="sub">Fire steg fra børshistorikk til ferdig skattemelding. Det meste av jobben din er å koble til børsene første gang.</p></div>
- <ol class="steps"><li><h3>Koble til børsene</h3><p>Med en API-nøkkel som bare kan lese, eller børsens egen eksportfil. Det er trygt å importere samme periode igjen - ingenting telles dobbelt.</p></li><li><h3>KryptoKlar regner</h3><p>FIFO per mynt på tvers av alle børser. Hvert kjøp får kostpris i kroner på sin egen dato, med kurs fra Norges Bank.</p></li><li><h3>Du ser over kontrollene</h3><p>Beholdningen avstemmes mot det børsene viser at du eier. Mangler det kjøpshistorikk, sier programmet fra i stedet for å gjette.</p></li><li><h3>Du fører inn tallene</h3><p>Tallene står klare for kortet Virtuelle eiendeler i skattemeldingen. PDF og CSV er dokumentasjonen din hvis Skatteetaten spør.</p></li></ol>
- <p class="effort"><b>Hvor mye må du gjøre selv?</b> Koble til hver børs én gang, og legg inn det programmet ikke kan se - for eksempel en lommebok uten børs, eller forvaltningskostnader som programvare og en andel av internett.</p>
-</div></section>
-
-<section><div class="w pf">
- <div><span class="free-tag">Gratis</span><h2>Hele beholdningen din, på ett sted</h2><p class="sub">Har du mynter på flere børser, ser du dem samlet: hvor mye du har av hver mynt, hva den er verdt nå, og hva du har betalt for den.</p><ul class="ck"><li>Beholdning per mynt, lagt sammen fra alle børsene du har koblet til med API-nøkkel</li><li>Dagens verdi i USD, oppdatert når du åpner appen</li><li>Snittkostpris etter FIFO og urealisert gevinst eller tap</li><li>Verdi per børs, og futures-kontoen for seg</li></ul></div>
+<section id="portefolje" class="band"><div class="w pf">
+ <div><span class="free-tag">Gratis</span><h2>Kryptoporteføljen din, samlet på ett sted</h2><p class="sub">Har du mynter på flere børser, ser du dem samlet: hvor mye du har av hver mynt, hva den er verdt nå, og hva du har betalt for den.</p><ul class="ck"><li>Beholdning per mynt, lagt sammen fra alle børsene du har koblet til med API-nøkkel</li><li>Dagens verdi i USD, oppdatert når du åpner appen</li><li>Snittkostpris etter FIFO og urealisert gevinst eller tap</li><li>Verdi per børs, og futures-kontoen for seg</li></ul></div>
  <figure class="sheet" style="margin:0"><table class="hold"><thead><tr><th>Mynt</th><th>Beholdning</th><th>Verdi</th></tr></thead>
   <tbody><tr><td>BTC</td><td class="e">0,04</td><td>3 760 $</td></tr><tr><td>ETH</td><td class="e">1,09</td><td>3 597 $</td></tr><tr><td>XRP</td><td class="e">1 000</td><td>2 100 $</td></tr><tr class="t"><td colspan="2">Totalt</td><td>9 457 $</td></tr></tbody></table>
   <figcaption class="cap">Eksempel med oppdiktede tall, samlet fra Kraken, Binance og Coinbase.</figcaption></figure>
 </div></section>
 
-<section class="band"><div class="w out">
- <div><h2>Det du får</h2><p class="sub">En rapport du kan bruke selv, eller ta med til regnskapsføreren.</p><ul class="ck"><li>Tallene til skattemeldingen, i samme rekkefølge som feltene der</li><li>Hvert salg og bytte med FIFO-utregning: hvilke kjøp som ble brukt, og til hvilken pris</li><li>Kontrollene som ble kjørt, og hva som eventuelt må ses over</li><li>Formue per 31.12 med kursene som er brukt</li><li>Futures oppsummert per kategori, med alle poster i en egen CSV</li><li>CSV-filer til Excel: per mynt, alle transaksjoner, futures</li></ul><div class="files"><a class="btn g s" href="eksempel/KryptoKlar-eksempelrapport-2025.pdf">Eksempelrapport (PDF)</a><a class="btn g s" href="eksempel/fifo_transactions_2025_nb.csv">Eksempel-CSV</a></div>
-  <div class="callout"><h3>Gamle tap kan telle igjen</h3><p>Har du mynter fra forrige oppgang som ligger med tap? Importer den gamle børshistorikken, så regner KryptoKlar ut det reelle tapet når du selger - aldri mer enn du faktisk tapte.</p></div></div>
- <div><h2>Slik regnes det</h2><dl class="rules"><div><dt>FIFO per mynt</dt><dd>Første kjøp ut først, på tvers av alle børsene dine.</dd></div><div><dt>Kostpris i kroner</dt><dd>Låst på kjøpsdatoen, med Norges Banks dagskurs.</dd></div><div><dt>Bytte mellom mynter</dt><dd>Er et salg, også til og fra stablecoins.</dd></div><div><dt>Overføring mellom egne kontoer</dt><dd>Er ikke et salg.</dd></div><div><dt>Gebyr betalt i mynt</dt><dd>Regnes som et lite salg av mynten.</dd></div><div><dt>Staking og belønninger</dt><dd>Inntekt til markedsverdi, som også blir kostprisen.</dd></div><div><dt>Gevinst og tap</dt><dd>Føres hver for seg, aldri trukket fra hverandre.</dd></div><div><dt>Formue</dt><dd>Markedsverdi 31.12. Kontanter på børser vises for seg.</dd></div></dl><p class="note">Regelsettet heter NO-krypto-2026.1 og står i hver rapport.</p></div>
+<section id="skatt"><div class="w">
+ <div class="head"><h2>Kryptoskatt for Norge</h2><p class="sub">Skatterapport for krypto som følger de norske reglene, med tallene klare for kortet Virtuelle eiendeler i skattemeldingen.</p></div>
+ <div class="out">
+  <div><ul class="ck"><li>Tallene til skattemeldingen, i samme rekkefølge som feltene der</li><li>Hvert salg og bytte med FIFO-utregning: hvilke kjøp som ble brukt, og til hvilken pris</li><li>Formue per 31.12 med kursene som er brukt</li><li>Futures oppsummert per kategori, med alle poster i en egen CSV</li><li>PDF du kan vise Skatteetaten eller regnskapsføreren, og CSV-filer til Excel</li></ul><div class="files"><a class="btn g s" href="eksempel/Kryptokompis-eksempelrapport-2025.pdf">Eksempelrapport (PDF)</a><a class="btn g s" href="eksempel/fifo_transactions_2025_nb.csv">Eksempel-CSV</a></div></div>
+  <div><h3>Slik regnes det</h3><dl class="rules"><div><dt>FIFO per mynt</dt><dd>Første kjøp ut først, på tvers av alle børsene dine.</dd></div><div><dt>Bytte mellom mynter</dt><dd>Er et salg, også til og fra stablecoins.</dd></div><div><dt>Overføring mellom egne kontoer</dt><dd>Er ikke et salg.</dd></div><div><dt>Gebyr betalt i mynt</dt><dd>Regnes som et lite salg av mynten.</dd></div><div><dt>Staking og belønninger</dt><dd>Inntekt til markedsverdi, som også blir kostprisen.</dd></div><div><dt>Gevinst og tap</dt><dd>Føres hver for seg, aldri trukket fra hverandre.</dd></div><div><dt>Formue</dt><dd>Markedsverdi 31.12. Kontanter på børser vises for seg.</dd></div></dl><p class="note">Regelsettet heter NO-krypto-2026.1 og står i hver rapport.</p></div>
+ </div>
 </div></section>
 
-<section id="borser"><div class="w">
- <div class="head"><h2>Børser</h2><p class="sub">Flere legges til etter ønske - si fra på <a href="https://discord.gg/hnAGgsAQ5V">Discord</a> hvilken du trenger.</p></div>
- <table class="ex"><thead><tr><th>Børs</th><th>Hvordan</th><th>Hva som dekkes</th></tr></thead><tbody><tr><td>Kraken</td><td><span class="how">API</span></td><td>Spot, futures, staking og Earn-belønninger, innskudd og uttak</td></tr><tr><td>Binance</td><td><span class="how">API</span></td><td>Spothandler, innskudd og uttak</td></tr><tr><td>Coinbase</td><td><span class="how">API eller fil</span></td><td>Kjøp, salg, konverteringer, sendinger, mottak og belønninger</td></tr><tr><td>KuCoin</td><td><span class="how">API og fil</span></td><td>Siste 12 måneder via API, eldre år fra KuCoins eksportfil</td></tr><tr><td>Firi</td><td><span class="how f">Fil</span></td><td>Handler, staking-belønninger, innskudd, uttak og gebyrer</td></tr><tr><td>Revolut X</td><td><span class="how f">Fil</span></td><td>Kjøp, salg, sendinger og gebyrer</td></tr><tr><td>Andre</td><td><span class="how f">Mal</span></td><td>Andre børser og lommebøker via KryptoKlars importmal</td></tr></tbody></table>
+<section id="import" class="band"><div class="w">
+ <div class="head"><h2>Transaksjoner og kostpris</h2><p class="sub">Kryptokompis henter historikken din og gir hvert kjøp riktig kostpris i kroner. Det meste av jobben din er å koble til børsene første gang.</p></div>
+ <div class="grid4"><div><h3>API-nøkkel som bare kan lese</h3><p>Børsene synkes automatisk i bakgrunnen. Kryptokompis kan aldri handle eller ta ut penger.</p></div><div><h3>Eller børsens egen eksportfil</h3><p>Last opp filen, så kjenner Kryptokompis igjen børsen. Det er trygt å importere samme periode igjen - ingenting telles dobbelt.</p></div><div><h3>Kostpris krypto, i kroner</h3><p>Hvert kjøp får kostpris på sin egen dato, med Norges Banks dagskurs. Den følger mynten videre gjennom bytter og overføringer.</p></div><div><h3>Gamle tap kan telle igjen</h3><p>Mynter fra forrige oppgang som ligger med tap? Importer den gamle historikken, så regnes det reelle tapet når du selger - aldri mer enn du faktisk tapte.</p></div></div>
+ <table class="ex"><thead><tr><th>Børs</th><th>Hvordan</th><th>Hva som dekkes</th></tr></thead><tbody><tr><td>Kraken</td><td><span class="how">API</span></td><td>Spot, futures, staking og Earn-belønninger, innskudd og uttak</td></tr><tr><td>Binance</td><td><span class="how">API</span></td><td>Spothandler, innskudd og uttak</td></tr><tr><td>Coinbase</td><td><span class="how">API eller fil</span></td><td>Kjøp, salg, konverteringer, sendinger, mottak og belønninger</td></tr><tr><td>KuCoin</td><td><span class="how">API og fil</span></td><td>Siste 12 måneder via API, eldre år fra KuCoins eksportfil</td></tr><tr><td>Firi</td><td><span class="how f">Fil</span></td><td>Handler, staking-belønninger, innskudd, uttak og gebyrer</td></tr><tr><td>Revolut X</td><td><span class="how f">Fil</span></td><td>Kjøp, salg, sendinger og gebyrer</td></tr><tr><td>Andre</td><td><span class="how f">Mal</span></td><td>Andre børser og lommebøker via importmalen i Kryptokompis</td></tr></tbody></table>
+ <p class="note">Mangler børsen din? Si fra på <a href="https://discord.gg/hnAGgsAQ5V">Discord</a>, så legges den til.</p>
 </div></section>
 
-<section id="pris" class="dark"><div class="w price">
- <div><h2>Betalisens</h2>
-  <p class="amount"><b>99 kr</b><span>én gang</span></p>
-  <p class="sub">KryptoKlar er i beta, og betalisensen selges til de første 50. Den gjelder for alltid.</p><ul class="ck"><li>Hele programmet: alle børser, kontroller, PDF og CSV</li><li>Oppdateringer og nye børser inkludert</li><li>Ingen abonnement</li><li>Én lisens gjelder både PC og mobil</li><li>Direkte kontakt med utvikleren på Discord</li></ul>
-  <div class="cta"><a class="btn" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener">Kjøp betalisens - 99 kr</a></div>
-  <p class="note">Betaling med kort via Stripe. Lisensnøkkelen sendes til e-posten din innen 24 timer.</p></div>
- <div><div class="free"><h3>Etter betaen</h3><div class="later"><div><b>49 kr</b><span>per måned</span></div><div><b>399 kr</b><span>per år</span></div><div><b>999 kr</b><span>livstid</span></div></div></div>
-  <div class="free" style="margin-top:16px"><h3>Prøv gratis først</h3><dl><dt>Gratis</dt><dd>Porteføljen, og at alt blir importert og kontrollert. Total formue vises.</dd><dt>Med lisens</dt><dd>Tallene til skattemeldingen, PDF-rapporten og CSV-filene.</dd><dt>Last ned</dt><dd>Windows 10 og 11, og Android. <a href="https://github.com/Duplexsteel/KryptoKlar/releases">Nedlastinger</a>. Programmet sier fra når en ny versjon er ute.</dd></dl></div></div>
+<section id="innsikt"><div class="w">
+ <div class="head"><h2>Innsikt og varsler</h2><p class="sub">Kryptokompis sier fra når noe ikke stemmer, i stedet for å gjette.</p></div>
+ <div class="grid4 ins"><div><h3>Kontroller før du leverer</h3><p>Beholdningen avstemmes mot det børsene viser at du eier, og rapporten merkes foreløpig eller endelig.</p></div><div><h3>Hull i dataene</h3><p>Salg uten kjøpshistorikk, beløp uten kronekurs, mynter uten pris og handler som er lagret to ganger blir varslet.</p></div><div><h3>Resultater per mynt og periode</h3><p>Realisert gevinst og tap, gebyrer og vinnerandel per mynt - per uke, måned eller år. Krever lisens.</p></div><div><h3>Varsler i appen</h3><p>Når en ny versjon er ute, og når en kostnad over 10 000 kr ikke er betalt via bank og kanskje ikke gir fradrag.</p></div></div>
 </div></section>
 
-<section><div class="w">
- <div class="head"><h2>Dataene dine</h2></div><div class="trust"><div><h3>Blir på din enhet</h3><p>Ingen konto og ingen sky. Transaksjoner, rapporter og innstillinger lagres hos deg.</p></div><div><h3>Nøkler som bare kan lese</h3><p>KryptoKlar kan aldri handle eller ta ut penger. På PC lagres API-nøklene i Windows sitt eget nøkkellager.</p></div><div><h3>Snakker bare med det som trengs</h3><p>Børsene dine, offentlige kilder for priser og valutakurser, og KryptoKlar-nettsiden for å se etter oppdateringer. Tilbakemeldinger sendes bare når du trykker Send, uten transaksjonsdata.</p></div></div>
+<section id="kom-i-gang" class="dark"><div class="w">
+ <div class="head"><h2>Kom i gang</h2><p class="sub">Prøv gratis først. Betal når du trenger tallene til skattemeldingen.</p></div>
+ <ol class="steps go"><li><h3>Last ned</h3><p>Windows 10 og 11, og Android. <a href="https://github.com/Duplexsteel/KryptoKlar/releases">Nedlastinger</a></p></li><li><h3>Koble til børsene</h3><p>Porteføljen og kontrollene er gratis. Total formue vises.</p></li><li><h3>Kjøp lisens</h3><p>Lisensen låser opp tallene til skattemeldingen, PDF-rapporten og CSV-filene.</p></li></ol>
+ <div class="price">
+  <div><h3>Betalisens</h3>
+   <p class="amount"><b>99 kr</b><span>én gang</span></p>
+   <p class="sub">Kryptokompis er i beta, og betalisensen selges til de første 50. Den gjelder for alltid.</p><ul class="ck"><li>Hele programmet: alle børser, kontroller, PDF og CSV</li><li>Oppdateringer og nye børser inkludert</li><li>Ingen abonnement</li><li>Én lisens gjelder både PC og mobil</li><li>Direkte kontakt med utvikleren på Discord</li></ul>
+   <div class="cta"><a class="btn" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener">Kjøp betalisens - 99 kr</a></div>
+   <p class="note">Betaling med kort via Stripe. Lisensnøkkelen sendes til e-posten din innen 24 timer.</p></div>
+  <div class="free"><h3>Etter betaen</h3><div class="later"><div><b>49 kr</b><span>per måned</span></div><div><b>399 kr</b><span>per år</span></div><div><b>999 kr</b><span>livstid</span></div></div></div>
+ </div>
+</div></section>
+
+<section id="data"><div class="w">
+ <div class="head"><h2>Dataene dine</h2></div><div class="trust"><div><h3>Blir på din enhet</h3><p>Ingen konto og ingen sky. Transaksjoner, rapporter og innstillinger lagres hos deg.</p></div><div><h3>Nøkler som bare kan lese</h3><p>Kryptokompis kan aldri handle eller ta ut penger. På PC lagres API-nøklene i Windows sitt eget nøkkellager.</p></div><div><h3>Snakker bare med det som trengs</h3><p>Børsene dine, offentlige kilder for priser og valutakurser, og Kryptokompis-nettsiden for å se etter oppdateringer. Tilbakemeldinger sendes bare når du trykker Send, uten transaksjonsdata.</p></div></div>
 </div></section>
 
 <section id="sporsmal" class="band"><div class="w">
- <div class="head"><h2>Spørsmål og svar</h2></div><div class="faq"><details><summary>Er dette skatterådgivning?</summary><p>Nei. KryptoKlar er et beregningsverktøy som bruker de norske reglene slik det tolker dem, og oppgir hvilket regelsett som er brukt i hver rapport. Du er selv ansvarlig for skattemeldingen - sjekk tallene, og spør Skatteetaten eller en regnskapsfører hvis du er usikker.</p></details><details><summary>Hva med tidligere år?</summary><p>Du velger hvor full FIFO-beregning starter. År som allerede er levert på annen måte, forblir lukket. For mynter der du har hele historikken, kan de reelle gamle kjøpsprisene brukes - så et reelt tap kan føres opp når du selger.</p></details><details><summary>Hva med kontanter på børsene?</summary><p>Dollar og kroner som ligger på en børs, er formue, men ikke en virtuell eiendel. KryptoKlar viser saldoen per 31.12 for seg, så du kan føre den som innskudd eller fordring i utlandet.</p></details><details><summary>Min børs står ikke på listen.</summary><p>Bruk importmalen inntil videre, og si fra på <a href="https://discord.gg/hnAGgsAQ5V">Discord</a>. Nye børser legges til etter ønske.</p></details><details><summary>Hvilke enheter?</summary><p>Windows-PC og Android-mobil. Én lisens gjelder begge. iPhone kan komme senere.</p></details><details><summary>Hvordan får jeg hjelp?</summary><p>Spør på <a href="https://discord.gg/hnAGgsAQ5V">Discord</a>, eller send en melding fra programmet: Data og oppsett, Tilbakemelding og ønsker.</p></details></div>
- <p class="warn"><b>Viktig:</b> Resultatet blir bare så komplett som dataene du gir KryptoKlar. Transaksjoner programmet aldri ser - andre børser, lommebøker, historikk en børs ikke lenger gir ut - må importeres, ellers blir resultatet feil. Kontrollene hjelper deg å finne hull.</p>
+ <div class="head"><h2>Spørsmål og svar</h2></div><div class="faq"><details><summary>Hvordan skattlegges krypto i Norge?</summary><p>Gevinst ved salg eller bytte er skattepliktig, og tap gir fradrag, begge med 22 % skatt. Staking og andre belønninger er inntekt. Kryptoen teller også med i formuen, med verdien per 31.12. Kryptokompis regner ut alt dette i kroner - sjekk alltid tallene før du leverer.</p></details><details><summary>Er dette skatterådgivning?</summary><p>Nei. Kryptokompis er et beregningsverktøy som bruker de norske reglene slik det tolker dem, og oppgir hvilket regelsett som er brukt i hver rapport. Du er selv ansvarlig for skattemeldingen - spør Skatteetaten eller en regnskapsfører hvis du er usikker.</p></details><details><summary>Hva med tidligere år?</summary><p>Du velger hvor full FIFO-beregning starter. År som allerede er levert på annen måte, forblir lukket. For mynter der du har hele historikken, kan de reelle gamle kjøpsprisene brukes - så et reelt tap kan føres opp når du selger.</p></details><details><summary>Hva med kontanter på børsene?</summary><p>Dollar og kroner som ligger på en børs, er formue, men ikke en virtuell eiendel. Kryptokompis viser saldoen per 31.12 for seg, så du kan føre den som innskudd eller fordring i utlandet.</p></details><details><summary>Hvilke enheter?</summary><p>Windows-PC og Android-mobil. Én lisens gjelder begge. iPhone kan komme senere.</p></details><details><summary>Hvordan får jeg hjelp?</summary><p>Spør på <a href="https://discord.gg/hnAGgsAQ5V">Discord</a>, eller send en melding fra appen: Data og oppsett, Tilbakemelding og ønsker.</p></details></div>
+ <p class="warn"><b>Viktig:</b> Resultatet blir bare så komplett som dataene du gir Kryptokompis. Transaksjoner appen aldri ser - andre børser, lommebøker, historikk en børs ikke lenger gir ut - må importeres, ellers blir resultatet feil. Kontrollene hjelper deg å finne hull.</p>
 </div></section>
 </main>
-<footer><div class="w foot"><div><a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="5" y="5" width="5" height="22" rx="1.4"/><rect x="20" y="5" width="8" height="3.6" rx="1.4"/><rect x="16" y="9.6" width="8" height="3.6" rx="1.4"/><rect x="12" y="14.2" width="8" height="3.6" rx="1.4"/><rect x="16" y="18.8" width="8" height="3.6" rx="1.4"/><rect x="20" y="23.4" width="8" height="3.6" rx="1.4"/></g></svg>KryptoKlar</a><p><span class="made"><svg class="flag" viewBox="0 0 22 16" role="img" aria-label="Norsk flagg"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><path d="M6 0h4v16H6zM0 6h22v4H0z" fill="#fff"/><path d="M7 0h2v16H7zM0 7h22v2H0z" fill="#00205B"/></svg>Laget i Norge. Ikke skatterådgivning - du er selv ansvarlig for skattemeldingen.</span></p></div>
+<footer><div class="w foot"><div><a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="5" y="5" width="5" height="22" rx="1.4"/><rect x="20" y="5" width="8" height="3.6" rx="1.4"/><rect x="16" y="9.6" width="8" height="3.6" rx="1.4"/><rect x="12" y="14.2" width="8" height="3.6" rx="1.4"/><rect x="16" y="18.8" width="8" height="3.6" rx="1.4"/><rect x="20" y="23.4" width="8" height="3.6" rx="1.4"/></g></svg>Kryptokompis</a><p><span class="made"><svg class="flag" viewBox="0 0 22 16" role="img" aria-label="Norsk flagg"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><path d="M6 0h4v16H6zM0 6h22v4H0z" fill="#fff"/><path d="M7 0h2v16H7zM0 7h22v2H0z" fill="#00205B"/></svg>Laget i Norge. Ikke skatterådgivning - du er selv ansvarlig for skattemeldingen.</span></p></div>
 <ul><li><a href="vilkar.html">Vilkår</a></li><li><a href="info.html">Info</a></li><li><a href="https://discord.gg/hnAGgsAQ5V">Discord</a></li><li><a href="https://github.com/Duplexsteel/KryptoKlar/releases">Nedlastinger</a></li><li><a href="en.html">English</a></li></ul></div></footer>
 <script>
 document.querySelectorAll('.dd>button,.menu-btn').forEach(function(b){

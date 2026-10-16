@@ -1,29 +1,25 @@
-# KryptoKlar - Norwegian crypto tax, done right
+# Kryptokompis
 
-KryptoKlar is a Windows app that collects your trades from your exchanges, calculates **gains, losses, income and wealth in NOK** with FIFO under the Norwegian rules, and gives you the figures for the tax return - with a full PDF and CSV record behind every number.
+**Din kryptokompis for oversikt og skatt.**
 
-**Website:** https://duplexsteel.github.io/KryptoKlar/ · **Download:** [Releases](https://github.com/Duplexsteel/KryptoKlar/releases/latest)
+Kryptokompis samler kryptoen din fra alle børsene. Du ser hele kryptoporteføljen på ett sted, og får skatterapporten for krypto regnet ut etter norske regler: kostpris, gevinst, tap, inntekt og formue i kroner, med PDF og CSV som dokumentasjon bak hvert tall.
 
-> **Free beta:** the first 20 testers get a free licence in return for feedback. See the website.
+- **Nettside:** https://duplexsteel.github.io/KryptoKlar/
+- **Nedlasting:** [Releases](https://github.com/Duplexsteel/KryptoKlar/releases/latest) (Windows og Android)
+- **Spørsmål og hjelp:** [Discord](https://discord.gg/hnAGgsAQ5V)
 
-## Supported exchanges
+## Børser
 
-| Exchange | How | What is covered |
-| --- | --- | --- |
-| Kraken | API | Spot, futures, staking / Earn rewards, deposits and withdrawals |
-| Binance | API | Spot trades, deposits and withdrawals |
-| Coinbase | API or file | Full history: buys, sells, converts, sends, receives, rewards |
-| KuCoin | API + file | Last 12 months by API, older years from KuCoin's trade export |
-| Firi | File | Trades, staking rewards, deposits, withdrawals, fees |
-| Revolut X | File | Buys, sells, sends and fees |
-| Anything else | Template | The KryptoKlar import template |
+Kraken, Binance, Coinbase og KuCoin via API-nøkkel som bare kan lese, og Firi, Revolut X og Coinbase via eksportfil. Andre børser og lommebøker via importmalen.
 
-## Privacy
+## Dataene dine
 
-Your data stays on your PC. API keys are read-only and stored in Windows' credential store. Feedback is sent only when you press Send and contains no transaction data.
+Dataene blir på din egen enhet. Ingen konto, ingen sky. API-nøklene kan bare lese.
 
-## Not tax advice
+Ikke skatterådgivning - du er selv ansvarlig for skattemeldingen.
 
-KryptoKlar is a calculation tool. You are responsible for your tax return.
+---
 
-This repository holds the website and the downloads. The source code is not public. © KryptoKlar - all rights reserved.
+*English:* Kryptokompis brings your crypto from every exchange together, shows your whole portfolio and calculates your Norwegian crypto tax (FIFO, NOK cost basis, gains, losses, wealth). See the website for details.
+
+This repository holds the public website (GitHub Pages), releases and the update manifest (`latest.json`).
