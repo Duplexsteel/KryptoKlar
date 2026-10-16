@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="nb"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Info - KryptoKlar</title><link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070b12;--s1:#0c1320;--s2:#121b2b;--bd:#1c2738;--tx:#c9d1d9;--hi:#eef3f9;--mu:#7d8a9c;--ac:#e2aa28;--nv:#1f4e79;--up:#3fb950;--dn:#ff5d6c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 Inter,system-ui,sans-serif}
+a{color:var(--ac);text-decoration:none}a:hover{text-decoration:underline}
+.w{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;gap:22px;height:64px;border-bottom:1px solid var(--bd)}
+.brand{display:flex;align-items:center;gap:10px;font:700 15px "JetBrains Mono",monospace;letter-spacing:2px;color:var(--hi)}.brand img{width:26px;height:26px}
+nav .sp{flex:1}nav a.lang{color:var(--mu);font:600 13px Inter;border:1px solid var(--bd);border-radius:4px;padding:3px 8px}nav a.l{color:var(--mu);font-size:14px}
+.btn{display:inline-block;background:var(--ac);color:#111;font-weight:700;padding:12px 22px;border-radius:6px;font-size:15px}
+.btn:hover{text-decoration:none;filter:brightness(1.08)}.btn.g{background:none;color:var(--hi);border:1px solid var(--bd)}
+.hero{padding:84px 0 64px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+h1{font-size:48px;line-height:1.08;margin:0 0 18px;color:var(--hi);letter-spacing:-1.2px;font-weight:800}
+h1 em{font-style:normal;color:var(--ac)}
+.lead{font-size:19px;margin:0 0 28px;max-width:560px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}.note{color:var(--mu);font-size:13px;margin-top:14px}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:22px}
+.sum{font:500 14px "JetBrains Mono",monospace}.sum .t{color:var(--mu);font:600 11px Inter;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.sum .r{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd)}.sum .r:last-of-type{border:0}
+.sum .r b{color:var(--hi)}.sum .pos{color:var(--up)}.sum .neg{color:var(--dn)}
+.sum .st{margin-top:12px;font:600 12px Inter;color:var(--up)}
+section{padding:64px 0;border-top:1px solid var(--bd)}
+h2{font-size:32px;color:var(--hi);margin:0 0 10px;letter-spacing:-.5px}.sub{color:var(--mu);margin:0 0 36px;max-width:660px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card h3{margin:0 0 6px;color:var(--hi);font-size:17px}.card p{margin:0;font-size:15px}
+.k{font:700 12px "JetBrains Mono",monospace;color:var(--ac);letter-spacing:1px;margin-bottom:8px;display:block}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--bd)}
+th{color:var(--mu);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:1px}td b{color:var(--hi)}
+ul.ck{list-style:none;padding:0;margin:12px 0 0}ul.ck li{padding-left:22px;position:relative;margin:6px 0;font-size:15px}
+ul.ck li:before{content:"✓";position:absolute;left:0;color:var(--up);font-weight:700}
+.beta{border-color:rgba(226,170,40,.55)}
+details{border-bottom:1px solid var(--bd);padding:16px 0}summary{cursor:pointer;color:var(--hi);font-weight:600;list-style:none}
+summary::-webkit-details-marker{display:none}summary:before{content:"+";color:var(--ac);display:inline-block;width:22px;font-weight:700}
+details[open] summary:before{content:"–"}details p{margin:10px 0 0 22px}
+.risk{background:rgba(226,170,40,.06);border:1px solid rgba(226,170,40,.3);border-radius:10px;padding:20px 22px;font-size:14px}
+footer{border-top:1px solid var(--bd);padding:32px 0 48px;color:var(--mu);font-size:13px}
+.todo{outline:1px dashed var(--ac);outline-offset:3px}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding:48px 0 40px;gap:32px}h1{font-size:34px}.g3,.g2{grid-template-columns:1fr}
+ nav a.l{display:none}section{padding:48px 0}h2{font-size:26px}th,td{padding:8px 6px;font-size:14px}}
+
+.sn{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 8px}.sn a{border:1px solid var(--bd);border-radius:999px;padding:6px 14px;
+ font-size:14px;color:var(--hi)}.sn a:hover{border-color:var(--ac);text-decoration:none}
+ol.st{padding-left:22px}ol.st li{margin:8px 0}.mono{font:500 13px "JetBrains Mono",monospace;color:var(--hi)}
+.dl a{display:inline-block;margin:4px 10px 4px 0}
+</style></head><body>
+<div class="w">
+<nav><a class="brand" href="index.html"><img src="icon.png" alt="">KRYPTOKLAR</a><span class="sp"></span>
+  <a class="l" href="index.html">Til forsiden</a><a class="lang" href="info-en.html">EN</a>
+  <a class="btn" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener" style="padding:8px 16px;font-size:14px">Kjøp - 99 kr</a></nav>
+<div style="padding:48px 0 8px"><h1>Info</h1><p class="lead">Guider, eksempelrapporter, nyttige lenker og hvordan du får tak i oss.</p><div class="sn"><a href="#guider">Guider</a><a href="#eksempler">Eksempelrapporter</a><a href="#lenker">Nyttige lenker</a><a href="#om">Om KryptoKlar</a><a href="#kontakt">Kontakt</a></div></div>
+<section id="guider">
+<h2>Guider</h2>
+<p class="sub">Fra installasjon til ferdige tall i skattemeldingen.</p>
+<details open><summary>Kom i gang</summary><ol class="st">
+<li>Last ned og installer KryptoKlar (Windows eller Android). Godta vilkårene.</li>
+<li><b>Data og oppsett → Deg:</b> navn på rapporten, og fra hvilket år full FIFO-beregning skal starte.</li>
+<li><b>Børser og lommebøker → Legg til børs:</b> koble til med en API-nøkkel som bare kan lese, eller importer eksportfilen fra børsen.</li>
+<li>KryptoKlar synker og regner ut. Se <b>Skatterapport → Kontroller</b>: alt grønt betyr at dataene henger sammen.</li>
+<li>Med lisens får du tallene til skattemeldingen, PDF-rapporten og CSV-filene. Usikker? Prøv med <b>eksempeldata</b> først.</li></ol></details>
+<details><summary>Lag en API-nøkkel som bare kan lese</summary>
+<p>KryptoKlar trenger aldri å handle eller ta ut penger. Lag nøkkelen med bare lesetilgang:</p>
+<table><tr><th>Børs</th><th>Tilgang som trengs</th></tr>
+<tr><td><b>Kraken</b></td><td>Query Funds, Query Open/Closed Orders &amp; Trades, Query Ledger Entries. <a href="https://support.kraken.com/articles/360000919966-how-to-create-an-api-key" target="_blank" rel="noopener">Krakens guide</a></td></tr>
+<tr><td><b>Binance</b></td><td>Bare "Enable Reading". La handel og uttak være av. <a href="https://www.binance.com/en/support/faq/how-to-create-api-keys-on-binance-360002502072" target="_blank" rel="noopener">Binances guide</a></td></tr>
+<tr><td><b>Coinbase</b></td><td>Coinbase Developer Platform: "View only", signaturalgoritme ECDSA. <a href="https://help.coinbase.com/en/coinbase/getting-started/developer-platform/how-to-create-an-api-key" target="_blank" rel="noopener">Coinbases guide</a></td></tr>
+<tr><td><b>KuCoin</b></td><td>API Management → bare "General" (ikke Trade, ikke Transfer). Passfrasen er den du valgte. KuCoins API gir bare de siste 12 månedene. <a href="https://www.kucoin.com/support/360015102174" target="_blank" rel="noopener">KuCoins guide</a></td></tr></table></details>
+<details><summary>Eksportfiler (uten API-nøkkel)</summary><table><tr><th>Børs</th><th>Slik henter du filen</th></tr>
+<tr><td><b>Revolut X</b></td><td>Revolut-appen → Revolut X → Kontoutskrift → velg periode og Excel/CSV.</td></tr>
+<tr><td><b>Firi</b></td><td>firi.com → Transaksjoner → Eksporter / Last ned CSV, alle år du har handlet.</td></tr>
+<tr><td><b>Coinbase</b></td><td>coinbase.com → Profil → Statements / Reports → Transaction history → CSV. Én fil per år går fint.</td></tr>
+<tr><td><b>KuCoin, eldre år</b></td><td>Orders → Spot Orders → Filled Orders → Export (huk av "Show Order-Splitting"). Eldre år får du fra KuCoins kundeservice.</td></tr>
+<tr><td><b>Andre</b></td><td>Last ned KryptoKlar-malen i appen, fyll inn én rad per transaksjon og importer.</td></tr></table>
+<p>Det er trygt å importere samme periode flere ganger - ingenting telles dobbelt.</p></details>
+<details><summary>Slik fører du tallene i skattemeldingen</summary><ol class="st">
+<li>I skattemeldingen: <b>Finans → Virtuelle eiendeler / kryptovaluta</b>. Du kan bruke ett samlet kort for alle myntene.</li>
+<li>Før inn beløpene fra KryptoKlar (kapittel 1 i PDF-en): Formuesverdi, Skattepliktig gevinst, Fradragsberettiget tap, Andre inntekter og Forvaltningskostnader.</li>
+<li>Gevinst og tap føres i hvert sitt felt - de skal ikke trekkes fra hverandre.</li>
+<li><b>Kontanter på børser</b> (dollar/kroner) er ikke en virtuell eiendel. Saldoen per 31.12 føres selv som innskudd/fordring i utlandet.</li>
+<li>Ta vare på PDF-en og CSV-filene. Den sendes ikke inn, men er dokumentasjonen hvis Skatteetaten spør.</li></ol></details>
+<details><summary>Flytt dataene til mobilen eller en annen PC</summary><ol class="st">
+<li>På PC-en: <b>Data og oppsett → Flytt til en annen PC → Eksporter alt</b>. Velg et passord hvis API-nøklene skal være med.</li>
+<li>Send filen til mobilen (e-post, sky, kabel).</li>
+<li>På mobilen: samme sted → <b>Importer</b>, velg filen og skriv passordet.</li></ol></details></section>
+<section id="eksempler">
+<h2>Eksempelrapporter</h2>
+<p class="sub">Laget av KryptoKlar fra et oppdiktet år (2025) med kjøp, salg med gevinst, bytte med tap, staking, overføring til egen lommebok og futures. Ingen ekte personer eller kurser.</p>
+<div class="g2"><div class="card"><h3>PDF-rapporten</h3><p>Det du tar vare på som dokumentasjon: tallene til skattemeldingen, kontroller, hvert salg med FIFO-utregning, formue og vedlegg.</p>
+<p class="dl" style="margin-top:12px"><a class="btn" href="eksempel/KryptoKlar-eksempelrapport-2025.pdf" target="_blank" rel="noopener">Eksempelrapport (norsk)</a><a class="btn g" href="eksempel/KryptoKlar-example-report-2025.pdf" target="_blank" rel="noopener">Example (English)</a></p></div>
+<div class="card"><h3>CSV-filene</h3><p>Til Excel (semikolon og desimalkomma): per mynt, alle transaksjoner med FIFO, og alle futures-poster.</p>
+<p class="dl" style="margin-top:12px"><a href="eksempel/tax_summary_2025_nb.csv">Per mynt</a> · <a href="eksempel/fifo_transactions_2025_nb.csv">Transaksjoner</a> · <a href="eksempel/futures_detail_2025_nb.csv">Futures</a></p></div></div></section>
+<section id="lenker">
+<h2>Nyttige lenker</h2>
+<table><tr><td><a href="https://www.skatteetaten.no/virtuellvaluta" target="_blank" rel="noopener">Skatteetaten - virtuelle eiendeler og kryptovaluta</a></td><td>Reglene og hvordan det føres</td></tr>
+<tr><td><a href="https://www.skatteetaten.no/nn/person/til-fra-noreg/verdiar/inntekt-formue/inntekt-og-formue-i-utlandet/" target="_blank" rel="noopener">Skatteetaten - inntekt og formue i utlandet</a></td><td>Kontanter og fordringer i utlandet</td></tr>
+<tr><td><a href="https://www.norges-bank.no/tema/Statistikk/Valutakurser/" target="_blank" rel="noopener">Norges Bank - valutakurser</a></td><td>USD/NOK-kursene KryptoKlar bruker</td></tr>
+<tr><td><a href="https://discord.gg/hnAGgsAQ5V" target="_blank" rel="noopener">KryptoKlar på Discord</a></td><td>Spørsmål, hjelp og ønsker</td></tr></table></section>
+<section id="om">
+<h2>Om KryptoKlar</h2>
+<p class="sub">KryptoKlar er laget i Norge av en utvikler som selv handler krypto og ville ha tall han kunne stole på.</p>
+<ul class="ck"><li>Norske regler: FIFO per mynt på tvers av børser, NOK-kurs fra Norges Bank på hver transaksjonsdato, gevinst og tap hver for seg.</li>
+<li>Dataene dine blir på din egen enhet. API-nøkler kan bare lese.</li>
+<li>Hver rapport viser hvilket regelsett som er brukt, og hva som er antatt.</li>
+<li>Ikke skatterådgivning - du er selv ansvarlig for skattemeldingen. <a href="vilkar.html">Vilkår</a></li></ul></section>
+<section id="kontakt">
+<h2>Kontakt</h2>
+<p class="sub">Raskest svar får du på Discord - spørsmål, feil, ønsker om nye børser og hjelp med kjøp og lisens.</p>
+<p><a class="btn" href="https://discord.gg/hnAGgsAQ5V" target="_blank" rel="noopener">Bli med på Discord</a></p>
+<p class="note">Du kan også sende en melding fra appen: Data og oppsett → Tilbakemelding og ønsker.</p></section>
+
+<footer>KryptoKlar · <a href="index.html">Til forsiden</a> · <a href="vilkar.html">Vilkår</a> · <a href="https://discord.gg/hnAGgsAQ5V">Discord</a></footer>
+</div></body></html>
