@@ -81,15 +81,25 @@ nav .l{color:var(--ink2);text-decoration:none;font-size:16px;font-weight:500}nav
 .fields .gain{color:var(--spruce-d)}.fields .loss{color:var(--loss)}
 .fields small{display:block;color:var(--ink2);font-size:13px;font-weight:400}
 .cap{font-size:13.5px;color:var(--ink2);margin-top:12px}
+.ptotal{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.pchange{font-weight:700;font-size:15px;margin:2px 0 10px}.up{color:var(--spruce-d)}.down{color:var(--loss)}
+.coins{list-style:none;margin:0;padding:0}
+.coins li{display:grid;grid-template-columns:70px 1fr auto;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.coins li:last-child{border-bottom:0}.coins small{display:block;font-size:13px;color:var(--ink2);font-weight:500}
+.cv{text-align:right}.cv small.up{color:var(--spruce-d)}.cv small.down{color:var(--loss)}
+.cb{height:8px;background:var(--mint);border-radius:999px;overflow:hidden}.cb i{display:block;height:100%;background:var(--spruce);border-radius:999px}
+.htax{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.htax div{background:var(--paper);border-radius:8px;padding:10px 12px}
+.htax small{display:block;font-size:12.5px;color:var(--ink2)}.htax b{font-size:17px}.htax .gain{color:var(--spruce-d)}.htax .loss{color:var(--loss)}
 .flag{display:inline-block;width:20px;height:auto;vertical-align:-2px;border-radius:2px}
 .rules-tag{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink2);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 6px;margin-left:8px;white-space:nowrap;flex:none}
 .made{display:inline-flex;align-items:flex-start;gap:8px}.made .flag{margin-top:5px;flex:none}
 @media (prefers-reduced-motion:no-preference){
- .rows li{animation:settle .7s cubic-bezier(.2,.8,.2,1) both}
+ .rows li,.coins li{animation:settle .7s cubic-bezier(.2,.8,.2,1) both}
+ .coins li:nth-child(1){--x:48px;animation-delay:.15s}.coins li:nth-child(2){--x:28px;animation-delay:.27s}.coins li:nth-child(3){--x:48px;animation-delay:.39s}
  .rows li:nth-child(1){--x:64px;animation-delay:.15s}.rows li:nth-child(2){--x:38px;animation-delay:.25s}
  .rows li:nth-child(3){--x:14px;animation-delay:.35s}.rows li:nth-child(4){--x:38px;animation-delay:.45s}
  .rows li:nth-child(5){--x:64px;animation-delay:.55s}.rows li:nth-child(6){--x:84px;animation-delay:.65s}
- .fields td:last-child{animation:show .5s ease both 1.25s}
+ .htax b,.ptotal{animation:show .5s ease both .9s}
  @keyframes settle{from{opacity:0;transform:translateX(var(--x))}to{opacity:1;transform:none}}
  @keyframes show{from{opacity:0}to{opacity:1}}}
 
@@ -200,6 +210,7 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
  .brand{font-size:19px}
  header .btn.s{padding:0 12px}
  .rows li{grid-template-columns:78px 1fr auto;gap:8px;font-size:13px;padding:6px 8px}
+ .htax{grid-template-columns:1fr}.htax div{display:flex;justify-content:space-between;align-items:baseline}.coins li{grid-template-columns:60px 1fr auto;gap:10px}.ptotal{font-size:34px}
  .ex thead{display:none}.ex tr{display:block;padding:14px 0;border-bottom:1px solid var(--line)}
  .ex td{display:block;border:0;padding:2px 0}.ex td:first-child,.ex td:nth-child(2){display:inline-block;font-size:18px;margin-right:10px}
  .rules div{grid-template-columns:1fr;gap:2px}

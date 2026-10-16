@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="nb"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kryptokompis - kryptoskatt og kryptoportefølje for Norge</title>
-<meta name="description" content="Kryptokompis samler kryptoporteføljen din fra alle børsene og lager skatterapport for krypto etter norske regler: kostpris, gevinst, tap og formue i kroner. Gratis å prøve.">
+<title>Kryptokompis - kryptoportefølje og kryptoskatt for Norge</title>
+<meta name="description" content="Kryptokompis samler kryptoporteføljen din fra alle børsene, med verdi i kroner og endring siste 24 timer - automatisk. Og skatterapport for krypto etter norske regler: kostpris, gevinst, tap og formue. Gratis å prøve.">
 <meta name="theme-color" content="#F4F7F5">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Kryptokompis">
-<meta property="og:title" content="Kryptokompis - din kryptokompis for oversikt og skatt"><meta property="og:description" content="Kryptokompis samler kryptoporteføljen din fra alle børsene og lager skatterapport for krypto etter norske regler: kostpris, gevinst, tap og formue i kroner. Gratis å prøve.">
+<meta property="og:title" content="Kryptokompis - din kryptokompis for oversikt og skatt"><meta property="og:description" content="Kryptokompis samler kryptoporteføljen din fra alle børsene, med verdi i kroner og endring siste 24 timer - automatisk. Og skatterapport for krypto etter norske regler: kostpris, gevinst, tap og formue. Gratis å prøve.">
 <meta property="og:url" content="https://duplexsteel.github.io/KryptoKompis/index.html"><meta property="og:locale" content="nb_NO">
 <meta property="og:image" content="https://duplexsteel.github.io/KryptoKompis/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -81,15 +81,25 @@ nav .l{color:var(--ink2);text-decoration:none;font-size:16px;font-weight:500}nav
 .fields .gain{color:var(--spruce-d)}.fields .loss{color:var(--loss)}
 .fields small{display:block;color:var(--ink2);font-size:13px;font-weight:400}
 .cap{font-size:13.5px;color:var(--ink2);margin-top:12px}
+.ptotal{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.pchange{font-weight:700;font-size:15px;margin:2px 0 10px}.up{color:var(--spruce-d)}.down{color:var(--loss)}
+.coins{list-style:none;margin:0;padding:0}
+.coins li{display:grid;grid-template-columns:70px 1fr auto;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.coins li:last-child{border-bottom:0}.coins small{display:block;font-size:13px;color:var(--ink2);font-weight:500}
+.cv{text-align:right}.cv small.up{color:var(--spruce-d)}.cv small.down{color:var(--loss)}
+.cb{height:8px;background:var(--mint);border-radius:999px;overflow:hidden}.cb i{display:block;height:100%;background:var(--spruce);border-radius:999px}
+.htax{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.htax div{background:var(--paper);border-radius:8px;padding:10px 12px}
+.htax small{display:block;font-size:12.5px;color:var(--ink2)}.htax b{font-size:17px}.htax .gain{color:var(--spruce-d)}.htax .loss{color:var(--loss)}
 .flag{display:inline-block;width:20px;height:auto;vertical-align:-2px;border-radius:2px}
 .rules-tag{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink2);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 6px;margin-left:8px;white-space:nowrap;flex:none}
 .made{display:inline-flex;align-items:flex-start;gap:8px}.made .flag{margin-top:5px;flex:none}
 @media (prefers-reduced-motion:no-preference){
- .rows li{animation:settle .7s cubic-bezier(.2,.8,.2,1) both}
+ .rows li,.coins li{animation:settle .7s cubic-bezier(.2,.8,.2,1) both}
+ .coins li:nth-child(1){--x:48px;animation-delay:.15s}.coins li:nth-child(2){--x:28px;animation-delay:.27s}.coins li:nth-child(3){--x:48px;animation-delay:.39s}
  .rows li:nth-child(1){--x:64px;animation-delay:.15s}.rows li:nth-child(2){--x:38px;animation-delay:.25s}
  .rows li:nth-child(3){--x:14px;animation-delay:.35s}.rows li:nth-child(4){--x:38px;animation-delay:.45s}
  .rows li:nth-child(5){--x:64px;animation-delay:.55s}.rows li:nth-child(6){--x:84px;animation-delay:.65s}
- .fields td:last-child{animation:show .5s ease both 1.25s}
+ .htax b,.ptotal{animation:show .5s ease both .9s}
  @keyframes settle{from{opacity:0;transform:translateX(var(--x))}to{opacity:1;transform:none}}
  @keyframes show{from{opacity:0}to{opacity:1}}}
 
@@ -200,6 +210,7 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
  .brand{font-size:19px}
  header .btn.s{padding:0 12px}
  .rows li{grid-template-columns:78px 1fr auto;gap:8px;font-size:13px;padding:6px 8px}
+ .htax{grid-template-columns:1fr}.htax div{display:flex;justify-content:space-between;align-items:baseline}.coins li{grid-template-columns:60px 1fr auto;gap:10px}.ptotal{font-size:34px}
  .ex thead{display:none}.ex tr{display:block;padding:14px 0;border-bottom:1px solid var(--line)}
  .ex td{display:block;border:0;padding:2px 0}.ex td:first-child,.ex td:nth-child(2){display:inline-block;font-size:18px;margin-right:10px}
  .rules div{grid-template-columns:1fr;gap:2px}
@@ -216,26 +227,32 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 <div class="mobile" id="mob"><a href="#portefolje">Portefølje</a><a href="#skatt">Skatt</a><a href="#import">Import</a><a href="#innsikt">Innsikt</a><a href="#sporsmal">Spørsmål</a><div class="grp">Info</div><div class="in"><a href="info.html#guider">Guider</a><a href="info.html#eksempler">Eksempelrapporter</a><a href="info.html#lenker">Nyttige lenker</a><a href="info.html#om">Om Kryptokompis</a><a href="info.html#kontakt">Kontakt</a></div><a href="en.html">English</a></div></div></header>
 <main>
 <div class="w hero">
- <div><h1>Din kryptokompis for oversikt og skatt.</h1><p class="lead">Kryptokompis samler kryptoen din fra alle børsene. Du ser hele porteføljen på ett sted, og får skatterapporten for krypto regnet ut etter norske regler - med kostpris, gevinst, tap og formue i kroner.</p>
+ <div><h1>Din kryptokompis for oversikt og skatt.</h1><p class="lead">Se alle myntene dine fra alle børsene på ett sted, med verdien i kroner oppdatert av seg selv. Og når skattemeldingen kommer, er tallene allerede regnet ut etter norske regler.</p>
   <div class="cta"><a class="btn" href="#kom-i-gang">Kom i gang</a><a class="btn g" href="eksempel/Kryptokompis-eksempelrapport-2025.pdf">Se en eksempelrapport</a></div>
   <p class="note">Gratis å prøve. For Windows og Android.</p></div>
- <figure class="sheet" style="margin:0"><h3>Fra transaksjoner ...</h3><ul class="rows"><li><span class="d">19.01.2025</span><span>Kjøp 2 ETH</span><span class="v">67 200 kr</span></li><li><span class="d">06.02.2025</span><span>Kjøp 1 500 XRP</span><span class="v">8 663 kr</span></li><li><span class="d">14.03.2025</span><span>Staking-belønning ETH</span><span class="v">139 kr</span></li><li><span class="d">19.04.2025</span><span>Salg 0,02 BTC</span><span class="v">19 950 kr</span></li><li><span class="d">13.06.2025</span><span>Bytte XRP til ETH</span><span class="v">2 625 kr</span></li><li><span class="d">30.09.2025</span><span>Salg 1 ETH</span><span class="v">27 300 kr</span></li></ul>
-  <div class="into">... til tallene i skattemeldingen<span class="rules-tag"><svg class="flag" viewBox="0 0 22 16" role="img" aria-label="Norsk flagg"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><path d="M6 0h4v16H6zM0 6h22v4H0z" fill="#fff"/><path d="M7 0h2v16H7zM0 7h22v2H0z" fill="#00205B"/></svg>Norske regler</span></div><table class="fields"><tr><td>Formuesverdi</td><td class="">99 298 kr</td></tr><tr><td>Skattepliktig gevinst</td><td class="gain">7 527 kr</td></tr><tr><td>Fradragsberettiget tap</td><td class="loss">6 616 kr</td></tr><tr><td>Andre inntekter<small>staking og belønninger</small></td><td class="">428 kr</td></tr></table>
-  <figcaption class="cap">Eksempel: inntektsår 2025 med oppdiktede tall, utdrag fra <a href="eksempel/Kryptokompis-eksempelrapport-2025.pdf">eksempelrapporten</a>.</figcaption></figure>
+ <figure class="sheet" style="margin:0"><h3>Porteføljen din</h3>
+  <div class="ptotal">99 298 kr</div><div class="pchange up">+827 kr (+0,8 %) siste 24 timer</div>
+  <ul class="coins"><li><span class="cn"><b>BTC</b><small>0,04</small></span><span class="cb"><i style="width:40%"></i></span><span class="cv"><b>39 480 kr</b><small class="up">+1,2 %</small></span></li><li><span class="cn"><b>ETH</b><small>1,09</small></span><span class="cb"><i style="width:38%"></i></span><span class="cv"><b>37 769 kr</b><small class="down">−0,8 %</small></span></li><li><span class="cn"><b>XRP</b><small>1 000</small></span><span class="cb"><i style="width:22%"></i></span><span class="cv"><b>22 050 kr</b><small class="up">+3,1 %</small></span></li></ul>
+  <div class="into">... og tallene til skattemeldingen<span class="rules-tag"><svg class="flag" viewBox="0 0 22 16" role="img" aria-label="Norsk flagg"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><path d="M6 0h4v16H6zM0 6h22v4H0z" fill="#fff"/><path d="M7 0h2v16H7zM0 7h22v2H0z" fill="#00205B"/></svg>Norske regler</span></div>
+  <div class="htax"><div><small>Skattepliktig gevinst</small><b class="gain">7 527 kr</b></div><div><small>Fradragsberettiget tap</small><b class="loss">6 616 kr</b></div><div><small>Formuesverdi</small><b class="">99 298 kr</b></div></div>
+  <figcaption class="cap">Eksempel med oppdiktede tall, fra <a href="eksempel/Kryptokompis-eksempelrapport-2025.pdf">eksempelrapporten</a>.</figcaption></figure>
 </div>
 
 <section id="portefolje" class="band"><div class="w pf">
- <div><span class="free-tag">Gratis</span><h2>Kryptoporteføljen din, samlet på ett sted</h2><p class="sub">Har du mynter på flere børser, ser du dem samlet: hvor mye du har av hver mynt, hva den er verdt nå, og hva du har betalt for den.</p><ul class="ck"><li>Beholdning per mynt, lagt sammen fra alle børsene du har koblet til med API-nøkkel</li><li>Dagens verdi i USD, oppdatert når du åpner appen</li><li>Snittkostpris etter FIFO og urealisert gevinst eller tap</li><li>Verdi per børs, og futures-kontoen for seg</li></ul></div>
- <figure class="sheet" style="margin:0"><table class="hold"><thead><tr><th>Mynt</th><th>Beholdning</th><th>Verdi</th></tr></thead>
-  <tbody><tr><td>BTC</td><td class="e">0,04</td><td>3 760 $</td></tr><tr><td>ETH</td><td class="e">1,09</td><td>3 597 $</td></tr><tr><td>XRP</td><td class="e">1 000</td><td>2 100 $</td></tr><tr class="t"><td colspan="2">Totalt</td><td>9 457 $</td></tr></tbody></table>
+ <div><span class="free-tag">Gratis</span><h2>Kryptoporteføljen din, automatisk</h2><p class="sub">Som en kurs-app, bare uten å føre noe for hånd: Kryptokompis henter beholdningen fra børsene dine og viser hva alt er verdt nå, i kroner.</p><ul class="ck"><li>Alle børsene lagt sammen: én beholdning per mynt, også fra Earn og futures</li><li>Verdi i kroner, endring siste 24 timer og andel av porteføljen</li><li>Oppdateres av seg selv mens appen er åpen</li><li>Snittkost og urealisert gevinst eller tap per mynt</li><li>Bare eksportfiler? Da regnes beholdningen ut fra transaksjonene</li></ul></div>
+ <figure class="sheet" style="margin:0"><table class="hold"><thead><tr><th>Mynt</th><th>Verdi</th><th>24 t</th><th>Andel</th></tr></thead>
+  <tbody><tr><td>BTC</td><td>39 480 kr</td><td class="up">+1,2 %</td><td>39,8 %</td></tr><tr><td>ETH</td><td>37 769 kr</td><td class="down">−0,8 %</td><td>38,0 %</td></tr><tr><td>XRP</td><td>22 050 kr</td><td class="up">+3,1 %</td><td>22,2 %</td></tr><tr class="t"><td>Totalt</td><td>99 298 kr</td><td class="up">+0,8 %</td><td>100 %</td></tr></tbody></table>
   <figcaption class="cap">Eksempel med oppdiktede tall, samlet fra Kraken, Binance og Coinbase.</figcaption></figure>
 </div></section>
 
 <section id="skatt"><div class="w">
  <div class="head"><h2>Kryptoskatt for Norge</h2><p class="sub">Skatterapport for krypto som følger de norske reglene, med tallene klare for kortet Virtuelle eiendeler i skattemeldingen.</p></div>
  <div class="out">
-  <div><ul class="ck"><li>Tallene til skattemeldingen, i samme rekkefølge som feltene der</li><li>Hvert salg og bytte med FIFO-utregning: hvilke kjøp som ble brukt, og til hvilken pris</li><li>Formue per 31.12 med kursene som er brukt</li><li>Futures oppsummert per kategori, med alle poster i en egen CSV</li><li>PDF du kan vise Skatteetaten eller regnskapsføreren, og CSV-filer til Excel</li></ul><div class="files"><a class="btn g s" href="eksempel/Kryptokompis-eksempelrapport-2025.pdf">Eksempelrapport (PDF)</a><a class="btn g s" href="eksempel/fifo_transactions_2025_nb.csv">Eksempel-CSV</a></div></div>
-  <div><h3>Slik regnes det</h3><dl class="rules"><div><dt>FIFO per mynt</dt><dd>Første kjøp ut først, på tvers av alle børsene dine.</dd></div><div><dt>Bytte mellom mynter</dt><dd>Er et salg, også til og fra stablecoins.</dd></div><div><dt>Overføring mellom egne kontoer</dt><dd>Er ikke et salg.</dd></div><div><dt>Gebyr betalt i mynt</dt><dd>Regnes som et lite salg av mynten.</dd></div><div><dt>Staking og belønninger</dt><dd>Inntekt til markedsverdi, som også blir kostprisen.</dd></div><div><dt>Gevinst og tap</dt><dd>Føres hver for seg, aldri trukket fra hverandre.</dd></div><div><dt>Formue</dt><dd>Markedsverdi 31.12. Kontanter på børser vises for seg.</dd></div></dl><p class="note">Regelsettet heter NO-krypto-2026.1 og står i hver rapport.</p></div>
+  <div><ul class="ck"><li>Tallene til skattemeldingen, i samme rekkefølge som feltene der</li><li>Hvert salg og bytte med FIFO-utregning: hvilke kjøp som ble brukt, og til hvilken pris</li><li>Formue per 31.12 med kursene som er brukt</li><li>Futures oppsummert per kategori, med alle poster i en egen CSV</li><li>PDF du kan vise Skatteetaten eller regnskapsføreren, og CSV-filer til Excel</li></ul><div class="files"><a class="btn g s" href="eksempel/Kryptokompis-eksempelrapport-2025.pdf">Eksempelrapport (PDF)</a><a class="btn g s" href="eksempel/fifo_transactions_2025_nb.csv">Eksempel-CSV</a></div>
+   <h3 style="margin-top:40px">Slik regnes det</h3><dl class="rules"><div><dt>FIFO per mynt</dt><dd>Første kjøp ut først, på tvers av alle børsene dine.</dd></div><div><dt>Bytte mellom mynter</dt><dd>Er et salg, også til og fra stablecoins.</dd></div><div><dt>Overføring mellom egne kontoer</dt><dd>Er ikke et salg.</dd></div><div><dt>Gebyr betalt i mynt</dt><dd>Regnes som et lite salg av mynten.</dd></div><div><dt>Staking og belønninger</dt><dd>Inntekt til markedsverdi, som også blir kostprisen.</dd></div><div><dt>Gevinst og tap</dt><dd>Føres hver for seg, aldri trukket fra hverandre.</dd></div><div><dt>Formue</dt><dd>Markedsverdi 31.12. Kontanter på børser vises for seg.</dd></div></dl><p class="note">Regelsettet heter NO-krypto-2026.1 og står i hver rapport.</p></div>
+  <figure class="sheet" style="margin:0;align-self:start"><h3>Fra transaksjoner ...</h3><ul class="rows"><li><span class="d">19.01.2025</span><span>Kjøp 2 ETH</span><span class="v">67 200 kr</span></li><li><span class="d">06.02.2025</span><span>Kjøp 1 500 XRP</span><span class="v">8 663 kr</span></li><li><span class="d">14.03.2025</span><span>Staking-belønning ETH</span><span class="v">139 kr</span></li><li><span class="d">19.04.2025</span><span>Salg 0,02 BTC</span><span class="v">19 950 kr</span></li><li><span class="d">13.06.2025</span><span>Bytte XRP til ETH</span><span class="v">2 625 kr</span></li><li><span class="d">30.09.2025</span><span>Salg 1 ETH</span><span class="v">27 300 kr</span></li></ul>
+   <div class="into">... til tallene i skattemeldingen</div><table class="fields"><tr><td>Formuesverdi</td><td class="">99 298 kr</td></tr><tr><td>Skattepliktig gevinst</td><td class="gain">7 527 kr</td></tr><tr><td>Fradragsberettiget tap</td><td class="loss">6 616 kr</td></tr><tr><td>Andre inntekter<small>staking og belønninger</small></td><td class="">428 kr</td></tr></table>
+   <figcaption class="cap">Eksempel: inntektsår 2025 med oppdiktede tall, utdrag fra <a href="eksempel/Kryptokompis-eksempelrapport-2025.pdf">eksempelrapporten</a>.</figcaption></figure>
  </div>
 </div></section>
 
