@@ -43,12 +43,17 @@ details[open] summary:before{content:"–"}details p{margin:10px 0 0 22px}
 .risk{background:rgba(226,170,40,.06);border:1px solid rgba(226,170,40,.3);border-radius:10px;padding:20px 22px;font-size:14px}
 footer{border-top:1px solid var(--bd);padding:32px 0 48px;color:var(--mu);font-size:13px}
 .todo{outline:1px dashed var(--ac);outline-offset:3px}
+.dd{position:relative}.dd>button{background:none;border:0;color:var(--mu);font:14px Inter;cursor:pointer;padding:22px 0}
+.dd>button:after{content:" \25BE"}.dd:hover>button,.dd:focus-within>button{color:var(--hi)}
+.dd .m{display:none;position:absolute;right:0;top:58px;min-width:210px;background:var(--ac);border-radius:6px;padding:6px 0;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.dd:hover .m,.dd:focus-within .m{display:block}.dd .m a{display:block;padding:10px 18px;color:#111;font-size:15px;font-weight:500}
+.dd .m a:hover{background:rgba(0,0,0,.12);text-decoration:none}section[id]{scroll-margin-top:16px}
 @media(max-width:820px){.hero{grid-template-columns:1fr;padding:48px 0 40px;gap:32px}h1{font-size:34px}.g3,.g2{grid-template-columns:1fr}
- nav a.l{display:none}section{padding:48px 0}h2{font-size:26px}th,td{padding:8px 6px;font-size:14px}}
+ nav a.l{display:none}nav{gap:12px}nav .btn,.dd>button{white-space:nowrap}.dd .m{position:fixed;left:16px;right:16px;top:60px}nav .brand{font-size:13px;letter-spacing:.12em}section{padding:48px 0}h2{font-size:26px}th,td{padding:8px 6px;font-size:14px}}
 </style></head><body>
 <div class="w">
 <nav><div class="brand"><img src="icon.png" alt="">KRYPTOKLAR</div><span class="sp"></span>
-  <a class="l" href="#what">Hva den gjør</a><a class="l" href="#exchanges">Børser</a><a class="l" href="#beta">Beta</a><a class="l" href="#faq">Spørsmål</a><a class="l" href="info.html">Info</a><a class="lang" href="en.html">EN</a>
+  <a class="l" href="#what">Hva den gjør</a><a class="l" href="#exchanges">Børser</a><a class="l" href="#beta">Beta</a><a class="l" href="#faq">Spørsmål</a><div class="dd"><button type="button">Info</button><div class="m"><a href="info.html#guider">Guider</a><a href="info.html#eksempler">Eksempelrapporter</a><a href="info.html#lenker">Nyttige lenker</a><a href="info.html#om">Om KryptoKlar</a><a href="info.html#kontakt">Kontakt</a></div></div><a class="lang" href="en.html">EN</a>
   <a class="btn" href="#beta" style="padding:8px 16px;font-size:14px">Bli betatester</a></nav>
 
 <div class="hero">
@@ -119,7 +124,7 @@ footer{border-top:1px solid var(--bd);padding:32px 0 48px;color:var(--mu);font-s
   <details><summary>Forlater dataene mine PC-en?</summary><p>Nei. Transaksjoner, rapporter og innstillinger blir på din PC. API-nøkler lagres i Windows sitt nøkkellager og brukes kun til lesing. Tilbakemeldinger sendes bare når du trykker Send, og inneholder ingen transaksjonsdata.</p></details>
   <details><summary>Hva med tidligere år?</summary><p>Du velger hvor full FIFO-beregning starter. År som allerede er levert på annen måte forblir lukket. For mynter der du har hele historikken, kan de reelle gamle kjøpsprisene brukes - så et reelt tap kan føres opp når du selger.</p></details>
   <details><summary>Min børs står ikke på listen.</summary><p>Bruk importmalen inntil videre, og si fra på <a href="https://discord.gg/hnAGgsAQ5V" target="_blank" rel="noopener">Discord</a>. Nye børser legges til etter ønske.</p></details>
-  <details><summary>Mac eller Linux?</summary><p>Windows og Android nå. Mac og Linux står på lista - si fra på Discord hvis du trenger det.</p></details>
+  <details><summary>Hvilke enheter?</summary><p>Windows-PC og Android-mobil. Én lisens gjelder begge.</p></details>
 </section>
 
 <div class="risk"><b>Viktig:</b> Resultatet blir bare så komplett som dataene du gir KryptoKlar. Transaksjoner den aldri ser - andre børser, lommebøker, historikk en børs ikke lenger gir ut - må importeres, ellers blir resultatet feil. Programmet viser kontroller som hjelper deg å finne hull.</div>

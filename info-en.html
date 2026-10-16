@@ -41,8 +41,13 @@ details[open] summary:before{content:"–"}details p{margin:10px 0 0 22px}
 .risk{background:rgba(226,170,40,.06);border:1px solid rgba(226,170,40,.3);border-radius:10px;padding:20px 22px;font-size:14px}
 footer{border-top:1px solid var(--bd);padding:32px 0 48px;color:var(--mu);font-size:13px}
 .todo{outline:1px dashed var(--ac);outline-offset:3px}
+.dd{position:relative}.dd>button{background:none;border:0;color:var(--mu);font:14px Inter;cursor:pointer;padding:22px 0}
+.dd>button:after{content:" \25BE"}.dd:hover>button,.dd:focus-within>button{color:var(--hi)}
+.dd .m{display:none;position:absolute;right:0;top:58px;min-width:210px;background:var(--ac);border-radius:6px;padding:6px 0;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.dd:hover .m,.dd:focus-within .m{display:block}.dd .m a{display:block;padding:10px 18px;color:#111;font-size:15px;font-weight:500}
+.dd .m a:hover{background:rgba(0,0,0,.12);text-decoration:none}section[id]{scroll-margin-top:16px}
 @media(max-width:820px){.hero{grid-template-columns:1fr;padding:48px 0 40px;gap:32px}h1{font-size:34px}.g3,.g2{grid-template-columns:1fr}
- nav a.l{display:none}section{padding:48px 0}h2{font-size:26px}th,td{padding:8px 6px;font-size:14px}}
+ nav a.l{display:none}nav{gap:12px}nav .btn,.dd>button{white-space:nowrap}.dd .m{position:fixed;left:16px;right:16px;top:60px}nav .brand{font-size:13px;letter-spacing:.12em}section{padding:48px 0}h2{font-size:26px}th,td{padding:8px 6px;font-size:14px}}
 
 .sn{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 8px}.sn a{border:1px solid var(--bd);border-radius:999px;padding:6px 14px;
  font-size:14px;color:var(--hi)}.sn a:hover{border-color:var(--ac);text-decoration:none}
@@ -51,9 +56,9 @@ ol.st{padding-left:22px}ol.st li{margin:8px 0}.mono{font:500 13px "JetBrains Mon
 </style></head><body>
 <div class="w">
 <nav><a class="brand" href="en.html"><img src="icon.png" alt="">KRYPTOKLAR</a><span class="sp"></span>
-  <a class="l" href="en.html">Home</a><a class="lang" href="info.html">NO</a>
+  <a class="l" href="en.html">Home</a><div class="dd"><button type="button">Info</button><div class="m"><a href="#guides">Guides</a><a href="#examples">Example reports</a><a href="#links">Useful links</a><a href="#about">About KryptoKlar</a><a href="#contact">Contact</a></div></div><a class="lang" href="info.html">NO</a>
   <a class="btn" href="https://buy.stripe.com/4gM28r4nj6pf3oG257eUU00" target="_blank" rel="noopener" style="padding:8px 16px;font-size:14px">Buy - 99 NOK</a></nav>
-<div style="padding:48px 0 8px"><h1>Info</h1><p class="lead">Guides, example reports, useful links and how to reach us.</p><div class="sn"><a href="#guides">Guides</a><a href="#examples">Example reports</a><a href="#links">Useful links</a><a href="#about">About KryptoKlar</a><a href="#contact">Contact</a></div></div>
+<div style="padding:48px 0 8px"><h1>Info</h1><p class="lead">Guides, example reports, useful links and how to reach us.</p></div>
 <section id="guides">
 <h2>Guides</h2>
 <p class="sub">From installing to the figures in your tax return.</p>
