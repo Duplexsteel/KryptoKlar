@@ -4,8 +4,8 @@
 
 Kryptokompis samler kryptoen din fra alle børsene. Du ser hele kryptoporteføljen på ett sted, og får skatterapporten for krypto regnet ut etter norske regler: kostpris, gevinst, tap, inntekt og formue i kroner, med PDF og CSV som dokumentasjon bak hvert tall.
 
-- **Nettside:** https://duplexsteel.github.io/KryptoKlar/
-- **Nedlasting:** [Releases](https://github.com/Duplexsteel/KryptoKlar/releases/latest) (Windows og Android)
+- **Nettside:** https://duplexsteel.github.io/KryptoKompis/
+- **Nedlasting:** [Releases](https://github.com/Duplexsteel/KryptoKompis/releases/latest) (Windows og Android)
 - **Spørsmål og hjelp:** [Discord](https://discord.gg/hnAGgsAQ5V)
 
 ## Børser

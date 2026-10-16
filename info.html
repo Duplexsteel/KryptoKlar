@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#F4F7F5">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Kryptokompis">
 <meta property="og:title" content="Kryptokompis - din kryptokompis for oversikt og skatt"><meta property="og:description" content="Guider, eksempelrapporter, nyttige lenker og hvordan du får tak i oss.">
-<meta property="og:url" content="https://duplexsteel.github.io/KryptoKlar/info.html"><meta property="og:locale" content="nb_NO">
-<meta property="og:image" content="https://duplexsteel.github.io/KryptoKlar/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://duplexsteel.github.io/KryptoKompis/info.html"><meta property="og:locale" content="nb_NO">
+<meta property="og:image" content="https://duplexsteel.github.io/KryptoKompis/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="alternate" hreflang="nb" href="https://duplexsteel.github.io/KryptoKlar/index.html"><link rel="alternate" hreflang="en" href="https://duplexsteel.github.io/KryptoKlar/en.html">
+<link rel="alternate" hreflang="nb" href="https://duplexsteel.github.io/KryptoKompis/index.html"><link rel="alternate" hreflang="en" href="https://duplexsteel.github.io/KryptoKompis/en.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="icon.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -144,7 +144,7 @@ section{padding:88px 0}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:44px}
 .grid4 div{border-top:2px solid var(--ink);padding-top:16px}.grid4 h3{margin-bottom:8px}.grid4 p{color:var(--ink2);font-size:16px}
 .ins div{border-top-color:var(--spruce)}
-.go{margin-bottom:56px}.dark .steps:before{background:#2F4D45}.dark .steps li:before{background:var(--dark);border-color:var(--mint2);color:var(--mint2)}
+.go{margin-bottom:56px}.steps.go{grid-template-columns:repeat(3,1fr)}.steps.go:before{right:calc(33.3% - 6px)}.dark .steps:before{background:#2F4D45}.dark .steps li:before{background:var(--dark);border-color:var(--mint2);color:var(--mint2)}
 .dark .steps p{color:#B9CCC3}.dark .price h3{font-size:24px}
 .free{border:1px solid #2F4D45;border-radius:var(--r);padding:24px}
 .free h3{margin-bottom:12px}
@@ -181,7 +181,7 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 
 @media (max-width:900px){
  .hero,.out,.price,.pf{grid-template-columns:1fr;gap:44px}.hero{padding:44px 0 64px}
- .steps{grid-template-columns:1fr 1fr}.steps:before{display:none}
+ .steps,.steps.go{grid-template-columns:1fr 1fr}.steps:before{display:none}
  .trust{grid-template-columns:1fr;gap:28px}.g2{grid-template-columns:1fr}.grid4{grid-template-columns:1fr 1fr}
  nav .l,nav .dd{display:none}.menu-btn{display:flex}
  nav{gap:14px}
@@ -195,7 +195,7 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 @media (max-width:600px){
  .w{padding-left:16px;padding-right:16px}section{padding:60px 0}
  body{font-size:16px}.lead{font-size:18px}
- .steps{grid-template-columns:1fr}.grid4{grid-template-columns:1fr}
+ .steps,.steps.go{grid-template-columns:1fr}.grid4{grid-template-columns:1fr}
  nav .lang{display:none}
  .brand{font-size:19px}
  header .btn.s{padding:0 12px}
@@ -280,7 +280,7 @@ ol.st{list-style:none;padding:0;margin:0 0 20px;max-width:760px;counter-reset:n}
 <p><a class="btn" href="https://discord.gg/hnAGgsAQ5V" target="_blank" rel="noopener">Bli med på Discord</a></p>
 <p class="note">Du kan også sende en melding fra appen: Data og oppsett → Tilbakemelding og ønsker.</p></div></section>
 </main><footer><div class="w foot"><div><a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="5" y="5" width="5" height="22" rx="1.4"/><rect x="20" y="5" width="8" height="3.6" rx="1.4"/><rect x="16" y="9.6" width="8" height="3.6" rx="1.4"/><rect x="12" y="14.2" width="8" height="3.6" rx="1.4"/><rect x="16" y="18.8" width="8" height="3.6" rx="1.4"/><rect x="20" y="23.4" width="8" height="3.6" rx="1.4"/></g></svg>Kryptokompis</a><p><span class="made"><svg class="flag" viewBox="0 0 22 16" role="img" aria-label="Norsk flagg"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><path d="M6 0h4v16H6zM0 6h22v4H0z" fill="#fff"/><path d="M7 0h2v16H7zM0 7h22v2H0z" fill="#00205B"/></svg>Laget i Norge. Ikke skatterådgivning - du er selv ansvarlig for skattemeldingen.</span></p></div>
-<ul><li><a href="vilkar.html">Vilkår</a></li><li><a href="info.html">Info</a></li><li><a href="https://discord.gg/hnAGgsAQ5V">Discord</a></li><li><a href="https://github.com/Duplexsteel/KryptoKlar/releases">Nedlastinger</a></li><li><a href="en.html">English</a></li></ul></div></footer>
+<ul><li><a href="vilkar.html">Vilkår</a></li><li><a href="info.html">Info</a></li><li><a href="https://discord.gg/hnAGgsAQ5V">Discord</a></li><li><a href="https://github.com/Duplexsteel/KryptoKompis/releases">Nedlastinger</a></li><li><a href="en.html">English</a></li></ul></div></footer>
 <script>
 document.querySelectorAll('.dd>button,.menu-btn').forEach(function(b){
   var panel=document.getElementById(b.getAttribute('aria-controls'));
