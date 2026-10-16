@@ -1,0 +1,7 @@
+{
+ "version": "0.5.0",
+ "url": "https://github.com/Duplexsteel/KryptoKompis/releases/latest",
+ "notes": "Kryptokompis 0.5.0 - første offentlige beta: portefølje, kryptoskatt, Windows og Android",
+ "windows": "https://github.com/Duplexsteel/KryptoKompis/releases/download/v0.5.0/Kryptokompis-Setup-0.5.0.exe",
+ "android": "https://github.com/Duplexsteel/KryptoKompis/releases/download/v0.5.0/Kryptokompis-0.5.0.apk"
+}
