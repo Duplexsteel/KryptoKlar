@@ -309,7 +309,7 @@ T = {
       ("Varsler i appen", "Når en ny versjon er ute, og når en kostnad over 10 000 kr ikke er betalt via bank og kanskje ikke gir fradrag.")],
  # get started + price
  go_h="Kom i gang", go_sub="Prøv gratis først. Betal når du trenger tallene til skattemeldingen.",
- go_steps=[("Last ned", f'<a class="dl" href="{DL_WIN}">Windows 10 og 11</a> <a class="dl" href="{DL_APK}">Android (APK)</a><br><small>Versjon {VERSION}. <a href="{{RELEASES}}">Alle versjoner</a>. Viser Windows en blå advarsel: Mer info, Kjør likevel.</small>'),
+ go_steps=[("Last ned", f'<a class="dl" href="{DL_WIN}" data-goatcounter-click="download-windows" data-goatcounter-title="Download Windows {VERSION}">Windows 10 og 11</a> <a class="dl" href="{DL_APK}" data-goatcounter-click="download-android" data-goatcounter-title="Download Android {VERSION}">Android (APK)</a><br><small>Versjon {VERSION}. <a href="{{RELEASES}}">Alle versjoner</a>. Viser Windows en blå advarsel: Mer info, Kjør likevel.</small>'),
            ("Koble til børsene", "Porteføljen og kontrollene er gratis. Total formue vises."),
            ("Kjøp lisens", "Lisensen låser opp tallene til skattemeldingen, PDF-rapporten og CSV-filene.")],
  price_h="Betalisens", amount="99 kr", once="én gang",
@@ -409,7 +409,7 @@ T = {
       ("Results per coin and period", "Realised gains and losses, fees and win rate per coin - per week, month or year. Needs a licence."),
       ("Alerts in the app", "When a new version is out, and when a cost over NOK 10,000 wasn't paid via a bank and may not be deductible.")],
  go_h="Get started", go_sub="Try it free first. Pay when you need the figures for your tax return.",
- go_steps=[("Download", f'<a class="dl" href="{DL_WIN}">Windows 10 and 11</a> <a class="dl" href="{DL_APK}">Android (APK)</a><br><small>Version {VERSION}. <a href="{{RELEASES}}">All versions</a>. If Windows shows a blue warning: More info, Run anyway.</small>'),
+ go_steps=[("Download", f'<a class="dl" href="{DL_WIN}" data-goatcounter-click="download-windows" data-goatcounter-title="Download Windows {VERSION}">Windows 10 and 11</a> <a class="dl" href="{DL_APK}" data-goatcounter-click="download-android" data-goatcounter-title="Download Android {VERSION}">Android (APK)</a><br><small>Version {VERSION}. <a href="{{RELEASES}}">All versions</a>. If Windows shows a blue warning: More info, Run anyway.</small>'),
            ("Connect your exchanges", "The portfolio and the checks are free. Total wealth is shown."),
            ("Buy a licence", "The licence unlocks the figures for the tax return, the PDF report and the CSV files.")],
  price_h="Beta licence", amount="99 NOK", once="once",
@@ -466,7 +466,8 @@ def head(t, title, desc, path=None):
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{FONTS}" rel="stylesheet">
-<style>{CSS}</style></head><body>
+<style>{CSS}</style>
+<script data-goatcounter="https://duplexsteel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></head><body>
 """
 
 
