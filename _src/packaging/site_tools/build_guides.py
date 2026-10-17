@@ -34,7 +34,7 @@ L = {
                cta="Last ned Kryptokompis", cta_href="index.html#kom-i-gang", updated="Publisert", watch="Se videoen",
                feed_title="Kryptokompis - guider og nyheter", keys_h="Slik lager du API-nøkler",
                keys_p="Steg-for-steg for hver børs, skrevet og på video. Nøklene kan bare lese - Kryptokompis kan aldri handle eller ta ut penger.",
-               key_api="API-nøkkel som bare kan lese", key_file="Eksportfil (ingen API-nøkkel)", video="▶ Video", months=["januar", "februar", "mars", "april", "mai", "juni", "juli",
+               key_api="API-nøkkel som bare kan lese", api_intro="▶ Start her: Hva er en API? (video)", key_file="Eksportfil (ingen API-nøkkel)", video="▶ Video", months=["januar", "februar", "mars", "april", "mai", "juni", "juli",
                "august", "september", "oktober", "november", "desember"]),
     "en": dict(list="guides.html", about="about.html", about_src="about.en.md", other_list="guider.html", other_about="om.html",
                rss="rss-en.xml", h1="Guides and news",
@@ -43,7 +43,7 @@ L = {
                cta="Download Kryptokompis", cta_href="en.html#get-started", updated="Published", watch="Watch the video",
                feed_title="Kryptokompis - guides and news", keys_h="How to create API keys",
                keys_p="Step by step for each exchange, written and on video. The keys can only read - Kryptokompis can never trade or withdraw.",
-               key_api="Read-only API key", key_file="Statement file (no API key)", video="▶ Video (Norwegian)", months=["January", "February", "March", "April", "May", "June", "July",
+               key_api="Read-only API key", api_intro="▶ Start here: What is an API? (video, Norwegian)", key_file="Statement file (no API key)", video="▶ Video (Norwegian)", months=["January", "February", "March", "April", "May", "June", "July",
                "August", "September", "October", "November", "December"]),
 }
 
@@ -92,7 +92,7 @@ def page(lang: str, file: str, other: str, title: str, desc: str, main: str) -> 
 
 def video(vid: str, t: dict) -> str:
     return (f'<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/{escape(vid)}" title="{t["watch"]}" '
-            'loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>')
+            'loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>')
 
 
 def today() -> str:
@@ -156,7 +156,9 @@ def build() -> list:
             f'<span>{t["key_api"] if api else t["key_file"]}</span></a>'
             + (f'<a class="yt" href="https://youtu.be/{vids[g]}" target="_blank" rel="noopener">{t["video"]}</a>' if g in vids else "")
             + '</li>' for g, n, api in KEY_GUIDES if g in live)
-        keys = f'<div class="gsec"><h2>{t["keys_h"]}</h2><p>{t["keys_p"]}</p><ul class="glist">{rows}</ul></div>' if rows else ""
+        intro = next((m for m in posts[lang] if m["slug"] == "hva-er-api"), None)      # the explainer video, first
+        start = (f'<p><a class="btn s" href="{intro["file"]}">{t["api_intro"]}</a></p>' if intro else "")
+        keys = f'<div class="gsec"><h2>{t["keys_h"]}</h2><p>{t["keys_p"]}</p>{start}<ul class="glist">{rows}</ul></div>' if rows else ""
         main = (f'<div class="w art" style="max-width:900px"><h1>{t["h1"]}</h1><p class="lead">{t["lead"]}</p>'
                 f'<p class="rss"><a href="{t["rss"]}">{t["rss_label"]}</a></p>'
                 + keys + f'<div class="gsec"><h2>{t["guides"]}</h2><ul class="glist">{items("guide")}</ul></div>'
