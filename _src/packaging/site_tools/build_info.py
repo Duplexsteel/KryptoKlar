@@ -39,10 +39,10 @@ T = {
 <tr><td><b>Andre</b></td><td>Last ned Kryptokompis-malen i appen, fyll inn én rad per transaksjon og importer.</td></tr></table>
 <p>Det er trygt å importere samme periode flere ganger - ingenting telles dobbelt.</p></details>
 <details><summary>Slik fører du tallene i skattemeldingen</summary><ol class="st">
-<li>I skattemeldingen: <b>Finans → Virtuelle eiendeler / kryptovaluta</b>. Du kan bruke ett samlet kort for alle myntene.</li>
+<li>I skattemeldingen: <b>Finans → Virtuelle eiendeler / kryptovaluta</b>. Du kan samle myntene på ett kort, men skal kunne vise summen mynt for mynt - det gjør PDF-en og CSV-filene.</li>
 <li>Før inn beløpene fra Kryptokompis (kapittel 1 i PDF-en): Formuesverdi, Skattepliktig gevinst, Fradragsberettiget tap, Andre inntekter og Forvaltningskostnader.</li>
 <li>Gevinst og tap føres i hvert sitt felt - de skal ikke trekkes fra hverandre.</li>
-<li><b>Kontanter på børser</b> (dollar/kroner) er ikke en virtuell eiendel. Saldoen per 31.12 føres selv som innskudd/fordring i utlandet.</li>
+<li><b>Kontanter på børser</b> (dollar/kroner) er ikke en virtuell eiendel. Saldoen ved årsskiftet er formue, normalt et krav mot børsen. Hvor den føres, avhenger av saldoen, valutaen og hvor børsen holder til. <a href="guide-skattemeldingen.html">Mer i guiden</a>.</li>
 <li>Ta vare på PDF-en og CSV-filene. Den sendes ikke inn, men er dokumentasjonen hvis Skatteetaten spør.</li></ol></details>
 <details><summary>Flytt dataene til mobilen eller en annen PC</summary><ol class="st">
 <li>På PC-en: <b>Data og oppsett → Flytt til en annen PC → Eksporter alt</b>. Velg et passord hvis API-nøklene skal være med.</li>
@@ -101,10 +101,10 @@ T = {
 <tr><td><b>Others</b></td><td>Download the Kryptokompis template in the app, one row per transaction, and import it.</td></tr></table>
 <p>Importing the same period again is safe - nothing is counted twice.</p></details>
 <details><summary>Entering the figures in the tax return</summary><ol class="st">
-<li>In skattemeldingen: <b>Finans → Virtuelle eiendeler / kryptovaluta</b>. One combined card for all coins is allowed.</li>
+<li>In skattemeldingen: <b>Finans → Virtuelle eiendeler / kryptovaluta</b>. You can put the coins on one card, but must be able to show the total coin by coin - the PDF and CSV files do that.</li>
 <li>Enter the amounts from Kryptokompis (chapter 1 of the PDF): Formuesverdi, Skattepliktig gevinst, Fradragsberettiget tap, Andre inntekter and Forvaltningskostnader.</li>
 <li>Gains and losses go in separate fields - they are not netted.</li>
-<li><b>Cash on exchanges</b> (dollars/kroner) is not a virtual asset. Enter the 31.12 balance yourself as a deposit/claim abroad.</li>
+<li><b>Cash on exchanges</b> (dollars/kroner) is not a virtual asset. The balance at the turn of the year is wealth, normally a claim against the exchange. Where to report it depends on the balance, the currency and where the exchange is based. <a href="guide-skattemeldingen-en.html">More in the guide</a>.</li>
 <li>Keep the PDF and the CSV files. They are not submitted, but are your documentation if Skatteetaten asks.</li></ol></details>
 <details><summary>Move your data to the phone or another PC</summary><ol class="st">
 <li>On the PC: <b>Data &amp; setup → Move to another PC → Export everything</b>. Choose a password if the API keys should come along.</li>
