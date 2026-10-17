@@ -2,7 +2,7 @@
 title: Kraken: koble til med API-nøkkel
 date: 2026-10-16
 summary: Lag en lesenøkkel på Kraken, og en egen nøkkel for Kraken Futures hvis du handler futures. Tar fem minutter.
-order: 2
+order: 3
 kind: guide
 ---
 Med en API-nøkkel henter Kryptokompis alt fra Kraken av seg selv: handler, innskudd og uttak, staking og Earn, og futures. Nøkkelen kan bare lese - Kryptokompis kan aldri handle eller ta ut penger.

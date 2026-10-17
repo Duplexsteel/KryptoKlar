@@ -2,7 +2,7 @@
 title: Kraken: connect with an API key
 date: 2026-10-16
 summary: Create a read-only key on Kraken, plus a separate Kraken Futures key if you trade futures. Takes five minutes.
-order: 2
+order: 3
 kind: guide
 ---
 With an API key Kryptokompis fetches everything from Kraken by itself: trades, deposits and withdrawals, staking and Earn, and futures. The key can only read - Kryptokompis can never trade or withdraw.
