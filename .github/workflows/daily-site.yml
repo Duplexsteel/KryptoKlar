@@ -1,0 +1,31 @@
+# Publishes scheduled guides and videos on their date: rebuilds the site from _src every morning
+# (and by hand: Actions -> "Daily site build" -> Run workflow). Posts dated in the future and videos
+# with a later "publish" day in _src/packaging/site_tools/videos.json stay hidden until then.
+# _src is copied here from the private repo by packaging/site_tools/sync_public.sh - edit there, not here.
+name: Daily site build
+on:
+  schedule:
+    - cron: "10 5 * * *"        # 07:10 Oslo (summer time), 06:10 in winter
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Build
+        run: |
+          pip install -q markdown
+          cd _src/packaging/site_tools
+          python build_site.py "$GITHUB_WORKSPACE" && python build_info.py "$GITHUB_WORKSPACE" && python build_guides.py "$GITHUB_WORKSPACE"
+      - name: Publish if anything changed
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then echo "nothing new today"; exit 0; fi
+          git config user.name "Kryptokompis site" && git config user.email "actions@users.noreply.github.com"
+          git add -A && git commit -m "Daily site build: scheduled content" && git push
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages builds on push anyway"

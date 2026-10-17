@@ -231,7 +231,9 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 .glist{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px;max-width:860px}
 .glist a{display:block;padding:18px 20px;border:1px solid var(--line);border-radius:var(--r);background:var(--sheet);color:var(--ink);text-decoration:none}
 .glist a:hover{border-color:var(--spruce)}.glist b{font-size:18px}.glist span{display:block;color:var(--ink2);margin-top:4px}
-.glist small{color:var(--ink2)}.gsec{margin-top:40px}.rss{font-size:15px}
+.glist small{color:var(--ink2)}.krow{display:flex;gap:10px}.krow>a:first-child{flex:1}
+.glist a.yt{flex:none;display:grid;place-items:center;padding:0 22px;font-weight:700;color:#fff;background:var(--spruce);border-color:var(--spruce)}
+.glist a.yt:hover{background:var(--spruce-d)}.gsec{margin-top:40px}.rss{font-size:15px}
 </style></head><body>
 <header><div class="w"><nav aria-label="Main">
 <a class="brand" href="en.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="5" y="5" width="5" height="22" rx="1.4"/><rect x="20" y="5" width="8" height="3.6" rx="1.4"/><rect x="16" y="9.6" width="8" height="3.6" rx="1.4"/><rect x="12" y="14.2" width="8" height="3.6" rx="1.4"/><rect x="16" y="18.8" width="8" height="3.6" rx="1.4"/><rect x="20" y="23.4" width="8" height="3.6" rx="1.4"/></g></svg>Kryptokompis</a>
@@ -240,7 +242,7 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 <a class="btn s" href="en.html#get-started">Get started</a>
 <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mob">Menu</button></nav>
 <div class="mobile" id="mob"><a href="en.html#portfolio">Portfolio</a><a href="en.html#tax">Tax</a><a href="en.html#imports">Imports</a><a href="en.html#insights">Insights</a><a href="en.html#faq">Questions</a><div class="grp">Info</div><div class="in"><a href="guides.html">Guides and news</a><a href="info-en.html#examples">Example reports</a><a href="info-en.html#links">Useful links</a><a href="about.html">About Kryptokompis</a><a href="info-en.html#contact">Contact</a></div><a href="guide-kraken.html">Norsk</a></div></div></header>
-<main><article class="w art"><p class="meta"><a href="guides.html">All guides and news</a> · Published 16 October 2026</p><h1>Kraken: connect with an API key</h1><p class="lead">Create a read-only key on Kraken, plus a separate Kraken Futures key if you trade futures. Takes five minutes.</p><p>With an API key Kryptokompis fetches everything from Kraken by itself: trades, deposits and withdrawals, staking and Earn, and futures. The key can only read - Kryptokompis can never trade or withdraw.</p>
+<main><article class="w art"><p class="meta"><a href="guides.html">All guides and news</a> · Published 16 October 2026</p><h1>Kraken: connect with an API key</h1><p class="lead">Create a read-only key on Kraken, plus a separate Kraken Futures key if you trade futures. Takes five minutes.</p><div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/3fgkioh6Egg" title="Watch the video" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div><p>With an API key Kryptokompis fetches everything from Kraken by itself: trades, deposits and withdrawals, staking and Earn, and futures. The key can only read - Kryptokompis can never trade or withdraw.</p>
 <h2>1. Create the spot key</h2>
 <ol>
 <li>Log in to Kraken (Kraken Pro in the browser).</li>
