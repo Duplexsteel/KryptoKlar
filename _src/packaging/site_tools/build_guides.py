@@ -60,7 +60,9 @@ CSS = """<style>
 .glist{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px;max-width:860px}
 .glist a{display:block;padding:18px 20px;border:1px solid var(--line);border-radius:var(--r);background:var(--sheet);color:var(--ink);text-decoration:none}
 .glist a:hover{border-color:var(--spruce)}.glist b{font-size:18px}.glist span{display:block;color:var(--ink2);margin-top:4px}
-.glist small{color:var(--ink2)}.krow{display:flex;gap:10px}.krow>a:first-child{flex:1}
+.glist small{color:var(--ink2)}.whohead{display:flex;gap:28px;align-items:center;margin-bottom:8px}
+.who{width:120px;height:120px;border-radius:50%;object-fit:cover;flex:none;border:3px solid var(--mint)}
+@media(max-width:560px){.whohead{flex-direction:column;align-items:flex-start;gap:16px}.who{width:96px;height:96px}}.krow{display:flex;gap:10px}.krow>a:first-child{flex:1}
 .glist a.yt{flex:none;display:grid;place-items:center;padding:0 22px;font-weight:700;color:#fff;background:var(--spruce);border-color:var(--spruce)}
 .glist a.yt:hover{background:var(--spruce-d)}.gsec{margin-top:40px}.rss{font-size:15px}
 </style>"""
@@ -163,7 +165,10 @@ def build() -> list:
         urls.append((t["list"], posts[lang][0]["date"] if posts[lang] else None))
 
         a = read(HERE / "pages" / t["about_src"])
-        main = f'<article class="w art"><h1>{escape(a["title"])}</h1><p class="lead">{escape(a["summary"])}</p>{a["html"]}</article>'
+        photo = (f'<img class="who" src="{escape(a["photo"])}" alt="{escape(a.get("photo_alt", ""))}" width="120" height="120">'
+                 if a.get("photo") else "")
+        main = (f'<article class="w art"><div class="whohead">{photo}<div><h1>{escape(a["title"])}</h1>'
+                f'<p class="lead">{escape(a["summary"])}</p></div></div>{a["html"]}</article>')
         (SITE / t["about"]).write_text(page(lang, t["about"], t["other_about"], f'{a["title"]} - Kryptokompis', a["summary"], main), encoding="utf-8")
         urls.append((t["about"], None))
 

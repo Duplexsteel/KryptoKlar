@@ -2,10 +2,10 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>About Kryptokompis - Kryptokompis</title>
-<meta name="description" content="Who makes Kryptokompis, and why every figure should trace back to its source.">
+<meta name="description" content="Who makes Kryptokompis, and why.">
 <meta name="theme-color" content="#F4F7F5">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Kryptokompis">
-<meta property="og:title" content="Kryptokompis - your crypto companion for overview and tax"><meta property="og:description" content="Who makes Kryptokompis, and why every figure should trace back to its source.">
+<meta property="og:title" content="Kryptokompis - your crypto companion for overview and tax"><meta property="og:description" content="Who makes Kryptokompis, and why.">
 <meta property="og:url" content="https://kryptokompis.no/about.html"><meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kryptokompis.no/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -231,7 +231,9 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 .glist{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px;max-width:860px}
 .glist a{display:block;padding:18px 20px;border:1px solid var(--line);border-radius:var(--r);background:var(--sheet);color:var(--ink);text-decoration:none}
 .glist a:hover{border-color:var(--spruce)}.glist b{font-size:18px}.glist span{display:block;color:var(--ink2);margin-top:4px}
-.glist small{color:var(--ink2)}.krow{display:flex;gap:10px}.krow>a:first-child{flex:1}
+.glist small{color:var(--ink2)}.whohead{display:flex;gap:28px;align-items:center;margin-bottom:8px}
+.who{width:120px;height:120px;border-radius:50%;object-fit:cover;flex:none;border:3px solid var(--mint)}
+@media(max-width:560px){.whohead{flex-direction:column;align-items:flex-start;gap:16px}.who{width:96px;height:96px}}.krow{display:flex;gap:10px}.krow>a:first-child{flex:1}
 .glist a.yt{flex:none;display:grid;place-items:center;padding:0 22px;font-weight:700;color:#fff;background:var(--spruce);border-color:var(--spruce)}
 .glist a.yt:hover{background:var(--spruce-d)}.gsec{margin-top:40px}.rss{font-size:15px}
 </style></head><body>
@@ -242,28 +244,30 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 <a class="btn s" href="en.html#get-started">Get started</a>
 <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mob">Menu</button></nav>
 <div class="mobile" id="mob"><a href="en.html#portfolio">Portfolio</a><a href="en.html#tax">Tax</a><a href="en.html#imports">Imports</a><a href="en.html#insights">Insights</a><a href="en.html#faq">Questions</a><div class="grp">Info</div><div class="in"><a href="guides.html">Guides and news</a><a href="info-en.html#examples">Example reports</a><a href="info-en.html#links">Useful links</a><a href="about.html">About Kryptokompis</a><a href="info-en.html#contact">Contact</a></div><a href="om.html">Norsk</a></div></div></header>
-<main><article class="w art"><h1>About Kryptokompis</h1><p class="lead">Who makes Kryptokompis, and why every figure should trace back to its source.</p><p>Kryptokompis is made by <strong>Christian Thesen</strong>, an MSc materials engineer from NTNU with more than seven years in offshore energy and industry.</p>
-<p>I am used to working where errors are expensive, requirements are strict and everything must be documented. When I had to report my own crypto in the Norwegian tax return, I wanted figures I could trust - and a tool that tells you when something doesn't add up, instead of guessing. That became Kryptokompis.</p>
-<h2>Background</h2>
+<main><article class="w art"><div class="whohead"><img class="who" src="assets/christian.jpg" alt="Christian Thesen" width="120" height="120"><div><h1>About Kryptokompis</h1><p class="lead">Who makes Kryptokompis, and why.</p></div></div><p>My name is <strong>Christian Thesen</strong>, and I make Kryptokompis.</p>
+<h2>Why I made it</h2>
+<p>The idea came during the crypto upswing of 2019-2021. Some of my trades went well, and when tax time came, everything had to be reported. That was anything but easy.</p>
+<p>I found information online, but it was hard to use. I called the Norwegian Tax Administration, but often got vague and uncertain answers. And when I exported files from Binance, Coinbase, KuCoin and Crypto.com, I didn't know how to sort them, combine them or calculate anything from them. The technology wasn't there for me to do it myself, and AI was nowhere near good enough to help. The solutions that existed were expensive and hard to use. I simply missed a good solution.</p>
+<h2>Why now</h2>
+<p>In recent years AI tools have become remarkably good. I have worked hard to learn Python and have been a heavy AI user for two to three years. With today's tools - I use Claude - I have been able to finish what I have wanted for a long time: crypto tax worked out in a few clicks.</p>
+<p>I want to share that, at a price most people can afford.</p>
+<h2>How it works</h2>
 <ul>
-<li><strong>Education:</strong> MSc in Materials Technology, NTNU (2015-2018).</li>
-<li><strong>Aibel (2019-2024):</strong> Material Technology Lead and Senior Materials Engineer on large offshore wind projects (Dogger Bank, DolWin 5, Hornsea 3).</li>
-<li><strong>Solid-Energy (2024):</strong> Co-lead in metallisation.</li>
-<li><strong>Linjebygg (2024-):</strong> Senior ISO Engineer.</li>
+<li>The app runs on your own PC or Android phone. Your data stays with you - no account and no cloud.</li>
+<li>It fetches the transactions from your exchanges, works out the tax under Norwegian rules and produces a PDF and CSV files.</li>
+<li>You enter the figures in your tax return yourself.</li>
 </ul>
-<h2>What engineering brings to Kryptokompis</h2>
+<p>Kryptokompis is not an accounting or advisory service, but an advanced calculator. You are responsible for your tax return.</p>
+<h2>Why you can trust the figures</h2>
+<p>I hold an MSc in materials engineering and have long experience with standards, CE marking and regulations from the energy industry. There, everything must be documented, and I have brought that here:</p>
 <ul>
-<li><strong>Traceability.</strong> Every figure can be traced back to its source. The PDF report, the CSV files and the screen all read from one calculation, so they cannot disagree.</li>
-<li><strong>Issues flagged, not hidden.</strong> Sales without purchase history, coins without a price and trades stored twice are flagged - the same way non-conformances are in an engineering project.</li>
-<li><strong>Tested against fixed answers.</strong> The tax engine has a test suite with locked expected answers for the usual cases: buys, sells, swaps, fees paid in coin, staking, futures and transfers. Every new version must pass them all before release.</li>
-<li><strong>Rules read precisely.</strong> The Norwegian rules - FIFO per coin, NOK cost on the purchase date, wealth on 31.12 - are turned into fixed rules, and every report states which ruleset was used.</li>
+<li>Every figure can be traced back to the transaction it comes from.</li>
+<li>The screen, the PDF and the CSV files all come from one calculation, so they cannot disagree.</li>
+<li>The tax calculation is tested against fixed expected answers before every new version is released.</li>
+<li>What the app cannot know, it tells you about instead of guessing.</li>
 </ul>
-<h2>How I work</h2>
-<ul>
-<li>Your data stays on your own device. No account, no cloud, read-only keys.</li>
-<li>Small steps, measurable results and no promises that are not tested.</li>
-<li>What does not work is documented too.</li>
-</ul>
+<p>On top of that, I have an above-average curiosity and passion for technology.</p>
+<p>I hope Kryptokompis makes crypto a little easier for you.</p>
 <h2>Contact</h2>
 <p>The fastest answer is on <a href="https://discord.gg/hnAGgsAQ5V">Discord</a>. You can also find me on <a href="https://www.linkedin.com/in/christian-thesen">LinkedIn</a>.</p></article></main><footer><div class="w foot"><div><a class="brand" href="en.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="5" y="5" width="5" height="22" rx="1.4"/><rect x="20" y="5" width="8" height="3.6" rx="1.4"/><rect x="16" y="9.6" width="8" height="3.6" rx="1.4"/><rect x="12" y="14.2" width="8" height="3.6" rx="1.4"/><rect x="16" y="18.8" width="8" height="3.6" rx="1.4"/><rect x="20" y="23.4" width="8" height="3.6" rx="1.4"/></g></svg>Kryptokompis</a><p><span class="made"><svg class="flag" viewBox="0 0 22 16" role="img" aria-label="Norwegian flag"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><path d="M6 0h4v16H6zM0 6h22v4H0z" fill="#fff"/><path d="M7 0h2v16H7zM0 7h22v2H0z" fill="#00205B"/></svg>Made in Norway. Not tax advice - you are responsible for your tax return.</span></p></div>
 <ul><li><a href="terms.html">Terms</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="info-en.html">Info</a></li><li><a href="https://discord.gg/hnAGgsAQ5V">Discord</a></li><li><a href="https://github.com/Duplexsteel/KryptoKompis/releases">Downloads</a></li><li><a href="index.html">Norsk</a></li></ul></div></footer>

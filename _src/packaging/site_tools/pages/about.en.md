@@ -1,27 +1,39 @@
 ---
 title: About Kryptokompis
-summary: Who makes Kryptokompis, and why every figure should trace back to its source.
+summary: Who makes Kryptokompis, and why.
+photo: assets/christian.jpg
+photo_alt: Christian Thesen
 ---
-Kryptokompis is made by **Christian Thesen**, an MSc materials engineer from NTNU with more than seven years in offshore energy and industry.
+My name is **Christian Thesen**, and I make Kryptokompis.
 
-I am used to working where errors are expensive, requirements are strict and everything must be documented. When I had to report my own crypto in the Norwegian tax return, I wanted figures I could trust - and a tool that tells you when something doesn't add up, instead of guessing. That became Kryptokompis.
+## Why I made it
+The idea came during the crypto upswing of 2019-2021. Some of my trades went well, and when tax time came, everything had to be reported. That was anything but easy.
 
-## Background
-- **Education:** MSc in Materials Technology, NTNU (2015-2018).
-- **Aibel (2019-2024):** Material Technology Lead and Senior Materials Engineer on large offshore wind projects (Dogger Bank, DolWin 5, Hornsea 3).
-- **Solid-Energy (2024):** Co-lead in metallisation.
-- **Linjebygg (2024-):** Senior ISO Engineer.
+I found information online, but it was hard to use. I called the Norwegian Tax Administration, but often got vague and uncertain answers. And when I exported files from Binance, Coinbase, KuCoin and Crypto.com, I didn't know how to sort them, combine them or calculate anything from them. The technology wasn't there for me to do it myself, and AI was nowhere near good enough to help. The solutions that existed were expensive and hard to use. I simply missed a good solution.
 
-## What engineering brings to Kryptokompis
-- **Traceability.** Every figure can be traced back to its source. The PDF report, the CSV files and the screen all read from one calculation, so they cannot disagree.
-- **Issues flagged, not hidden.** Sales without purchase history, coins without a price and trades stored twice are flagged - the same way non-conformances are in an engineering project.
-- **Tested against fixed answers.** The tax engine has a test suite with locked expected answers for the usual cases: buys, sells, swaps, fees paid in coin, staking, futures and transfers. Every new version must pass them all before release.
-- **Rules read precisely.** The Norwegian rules - FIFO per coin, NOK cost on the purchase date, wealth on 31.12 - are turned into fixed rules, and every report states which ruleset was used.
+## Why now
+In recent years AI tools have become remarkably good. I have worked hard to learn Python and have been a heavy AI user for two to three years. With today's tools - I use Claude - I have been able to finish what I have wanted for a long time: crypto tax worked out in a few clicks.
 
-## How I work
-- Your data stays on your own device. No account, no cloud, read-only keys.
-- Small steps, measurable results and no promises that are not tested.
-- What does not work is documented too.
+I want to share that, at a price most people can afford.
+
+## How it works
+- The app runs on your own PC or Android phone. Your data stays with you - no account and no cloud.
+- It fetches the transactions from your exchanges, works out the tax under Norwegian rules and produces a PDF and CSV files.
+- You enter the figures in your tax return yourself.
+
+Kryptokompis is not an accounting or advisory service, but an advanced calculator. You are responsible for your tax return.
+
+## Why you can trust the figures
+I hold an MSc in materials engineering and have long experience with standards, CE marking and regulations from the energy industry. There, everything must be documented, and I have brought that here:
+
+- Every figure can be traced back to the transaction it comes from.
+- The screen, the PDF and the CSV files all come from one calculation, so they cannot disagree.
+- The tax calculation is tested against fixed expected answers before every new version is released.
+- What the app cannot know, it tells you about instead of guessing.
+
+On top of that, I have an above-average curiosity and passion for technology.
+
+I hope Kryptokompis makes crypto a little easier for you.
 
 ## Contact
 The fastest answer is on [Discord](https://discord.gg/hnAGgsAQ5V). You can also find me on [LinkedIn](https://www.linkedin.com/in/christian-thesen).

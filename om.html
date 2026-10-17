@@ -2,10 +2,10 @@
 <html lang="nb"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Om Kryptokompis - Kryptokompis</title>
-<meta name="description" content="Hvem som lager Kryptokompis, og hvorfor tallene skal kunne spores tilbake til kilden.">
+<meta name="description" content="Hvem som lager Kryptokompis, og hvorfor.">
 <meta name="theme-color" content="#F4F7F5">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Kryptokompis">
-<meta property="og:title" content="Kryptokompis - din kryptokompis for oversikt og skatt"><meta property="og:description" content="Hvem som lager Kryptokompis, og hvorfor tallene skal kunne spores tilbake til kilden.">
+<meta property="og:title" content="Kryptokompis - din kryptokompis for oversikt og skatt"><meta property="og:description" content="Hvem som lager Kryptokompis, og hvorfor.">
 <meta property="og:url" content="https://kryptokompis.no/om.html"><meta property="og:locale" content="nb_NO">
 <meta property="og:image" content="https://kryptokompis.no/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -231,7 +231,9 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 .glist{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px;max-width:860px}
 .glist a{display:block;padding:18px 20px;border:1px solid var(--line);border-radius:var(--r);background:var(--sheet);color:var(--ink);text-decoration:none}
 .glist a:hover{border-color:var(--spruce)}.glist b{font-size:18px}.glist span{display:block;color:var(--ink2);margin-top:4px}
-.glist small{color:var(--ink2)}.krow{display:flex;gap:10px}.krow>a:first-child{flex:1}
+.glist small{color:var(--ink2)}.whohead{display:flex;gap:28px;align-items:center;margin-bottom:8px}
+.who{width:120px;height:120px;border-radius:50%;object-fit:cover;flex:none;border:3px solid var(--mint)}
+@media(max-width:560px){.whohead{flex-direction:column;align-items:flex-start;gap:16px}.who{width:96px;height:96px}}.krow{display:flex;gap:10px}.krow>a:first-child{flex:1}
 .glist a.yt{flex:none;display:grid;place-items:center;padding:0 22px;font-weight:700;color:#fff;background:var(--spruce);border-color:var(--spruce)}
 .glist a.yt:hover{background:var(--spruce-d)}.gsec{margin-top:40px}.rss{font-size:15px}
 </style></head><body>
@@ -242,28 +244,30 @@ footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--ink2);fo
 <a class="btn s" href="index.html#kom-i-gang">Kom i gang</a>
 <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mob">Meny</button></nav>
 <div class="mobile" id="mob"><a href="index.html#portefolje">Portefølje</a><a href="index.html#skatt">Skatt</a><a href="index.html#import">Import</a><a href="index.html#innsikt">Innsikt</a><a href="index.html#sporsmal">Spørsmål</a><div class="grp">Info</div><div class="in"><a href="guider.html">Guider og nyheter</a><a href="info.html#eksempler">Eksempelrapporter</a><a href="info.html#lenker">Nyttige lenker</a><a href="om.html">Om Kryptokompis</a><a href="info.html#kontakt">Kontakt</a></div><a href="about.html">English</a></div></div></header>
-<main><article class="w art"><h1>Om Kryptokompis</h1><p class="lead">Hvem som lager Kryptokompis, og hvorfor tallene skal kunne spores tilbake til kilden.</p><p>Kryptokompis lages av <strong>Christian Thesen</strong>, sivilingeniør i materialteknologi fra NTNU, med over sju års erfaring fra offshore energi og industri.</p>
-<p>Jeg er vant til å jobbe der feil er dyre, kravene er strenge og alt skal kunne dokumenteres. Da jeg selv skulle føre krypto i skattemeldingen, ville jeg ha tall jeg kunne stole på - og et verktøy som sa fra når noe ikke stemte, i stedet for å gjette. Det ble Kryptokompis.</p>
-<h2>Bakgrunn</h2>
+<main><article class="w art"><div class="whohead"><img class="who" src="assets/christian.jpg" alt="Christian Thesen" width="120" height="120"><div><h1>Om Kryptokompis</h1><p class="lead">Hvem som lager Kryptokompis, og hvorfor.</p></div></div><p>Jeg heter <strong>Christian Thesen</strong>, og jeg lager Kryptokompis.</p>
+<h2>Hvorfor jeg lagde det</h2>
+<p>Ideen kom under oppgangen i kryptomarkedet 2019-2021. Jeg traff godt på en del handler, og da skattemeldingen kom, skulle alt føres. Det var sannelig ikke enkelt.</p>
+<p>Jeg fant informasjon på nett, men den var ikke lett å bruke. Jeg ringte Skatteetaten, men fikk ofte vage og usikre svar. Og da jeg hentet ut filer fra Binance, Coinbase, KuCoin og Crypto.com, visste jeg ikke hvordan de skulle sorteres, settes sammen eller regnes på. Teknologien var ikke kommet dit at jeg enkelt kunne gjøre det selv, og AI var ikke i nærheten av god nok til å hjelpe. De løsningene som fantes, var dyre og vanskelige å bruke. Jeg savnet rett og slett en god løsning.</p>
+<h2>Hvorfor nå</h2>
+<p>De siste årene har AI-verktøyene blitt utrolig gode. Jeg har jobbet hardt med å lære meg Python, og har brukt AI tungt i to-tre år. Med dagens verktøy - jeg bruker Claude - har jeg klart å gjøre ferdig det jeg lenge har ønsket meg: at kryptoskatten kan regnes ut med noen få tastetrykk.</p>
+<p>Det vil jeg dele, til en pris de fleste har råd til.</p>
+<h2>Slik fungerer det</h2>
 <ul>
-<li><strong>Utdanning:</strong> Master i materialteknologi, NTNU (2015-2018).</li>
-<li><strong>Aibel (2019-2024):</strong> Material Technology Lead og senior materialingeniør på store havvindprosjekter (Dogger Bank, DolWin 5, Hornsea 3).</li>
-<li><strong>Solid-Energy (2024):</strong> Delprosjektleder innen metallisering.</li>
-<li><strong>Linjebygg (2024-):</strong> Senior ISO-ingeniør.</li>
+<li>Appen kjører på din egen PC eller Android-mobil. Dataene dine blir hos deg - ingen konto og ingen sky.</li>
+<li>Den henter transaksjonene fra børsene, regner ut skatten etter norske regler og lager en PDF og CSV-filer.</li>
+<li>Du fører tallene inn i skattemeldingen selv.</li>
 </ul>
-<h2>Hva ingeniørfaget gir Kryptokompis</h2>
+<p>Kryptokompis er ikke en regnskaps- eller rådgivningstjeneste, men en avansert kalkulator. Du er selv ansvarlig for skattemeldingen.</p>
+<h2>Hvorfor du kan stole på tallene</h2>
+<p>Jeg er sivilingeniør i materialteknologi og har lang erfaring med standarder, CE-merking og regelverk fra energibransjen. Der må alt kunne dokumenteres, og det har jeg tatt med meg hit:</p>
 <ul>
-<li><strong>Sporbarhet.</strong> Hvert tall skal kunne følges tilbake til kilden. PDF-rapporten, CSV-filene og skjermbildet leser fra én og samme beregning, så de kan ikke vise forskjellige tall.</li>
-<li><strong>Avvik flagges, ikke skjules.</strong> Salg uten kjøpshistorikk, mynter uten pris og handler lagret to ganger blir varslet - på samme måte som avvik i et ingeniørprosjekt.</li>
-<li><strong>Testet mot fasit.</strong> Skattemotoren har en testpakke med låste fasitsvar for de vanlige tilfellene: kjøp, salg, bytte, gebyrer i mynt, staking, futures og overføringer. Hver ny versjon må bestå alle før den slippes.</li>
-<li><strong>Regler lest presist.</strong> De norske reglene - FIFO per mynt, kostpris i kroner på kjøpsdagen, formue per 31.12 - er omsatt til faste regler, og hver rapport sier hvilket regelsett som er brukt.</li>
+<li>Hvert tall kan følges tilbake til transaksjonen det kommer fra.</li>
+<li>Skjermen, PDF-en og CSV-filene bygger på én og samme beregning, så de kan ikke vise forskjellige tall.</li>
+<li>Skatteberegningen testes mot faste fasitsvar før hver ny versjon slippes.</li>
+<li>Det appen ikke kan vite, sier den fra om i stedet for å gjette.</li>
 </ul>
-<h2>Arbeidsmåte</h2>
-<ul>
-<li>Dataene dine blir på din egen enhet. Ingen konto, ingen sky, nøkler som bare kan lese.</li>
-<li>Små steg, målbare resultater og ingen lovnader som ikke er testet.</li>
-<li>Det som ikke virker, dokumenteres også.</li>
-</ul>
+<p>I tillegg har jeg en over middels stor nysgjerrighet og lidenskap for teknologi.</p>
+<p>Jeg håper Kryptokompis gjør krypto litt enklere for deg.</p>
 <h2>Kontakt</h2>
 <p>Raskest svar får du på <a href="https://discord.gg/hnAGgsAQ5V">Discord</a>. Du finner meg også på <a href="https://www.linkedin.com/in/christian-thesen">LinkedIn</a>.</p></article></main><footer><div class="w foot"><div><a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="5" y="5" width="5" height="22" rx="1.4"/><rect x="20" y="5" width="8" height="3.6" rx="1.4"/><rect x="16" y="9.6" width="8" height="3.6" rx="1.4"/><rect x="12" y="14.2" width="8" height="3.6" rx="1.4"/><rect x="16" y="18.8" width="8" height="3.6" rx="1.4"/><rect x="20" y="23.4" width="8" height="3.6" rx="1.4"/></g></svg>Kryptokompis</a><p><span class="made"><svg class="flag" viewBox="0 0 22 16" role="img" aria-label="Norsk flagg"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><path d="M6 0h4v16H6zM0 6h22v4H0z" fill="#fff"/><path d="M7 0h2v16H7zM0 7h22v2H0z" fill="#00205B"/></svg>Laget i Norge. Ikke skatterådgivning - du er selv ansvarlig for skattemeldingen.</span></p></div>
 <ul><li><a href="vilkar.html">Vilkår</a></li><li><a href="personvern.html">Personvern</a></li><li><a href="info.html">Info</a></li><li><a href="https://discord.gg/hnAGgsAQ5V">Discord</a></li><li><a href="https://github.com/Duplexsteel/KryptoKompis/releases">Nedlastinger</a></li><li><a href="en.html">English</a></li></ul></div></footer>
