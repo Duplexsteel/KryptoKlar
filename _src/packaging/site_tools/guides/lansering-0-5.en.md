@@ -21,4 +21,4 @@ The portfolio is free. The figures for the tax return, the PDF report and the CS
 - A new look, matching the website.
 - Management costs can be entered in the app and are included in the report.
 
-[Download Kryptokompis](en.html#get-started) · Questions? [Discord](https://discord.gg/hnAGgsAQ5V)
+[Download Kryptokompis](pricing.html#get-started) · Questions? [Discord](https://discord.gg/hnAGgsAQ5V)

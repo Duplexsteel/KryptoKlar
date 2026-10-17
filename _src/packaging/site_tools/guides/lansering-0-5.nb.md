@@ -21,4 +21,4 @@ Porteføljen er gratis. Tallene til skattemeldingen, PDF-rapporten og CSV-filene
 - Nytt utseende, likt nettsiden.
 - Forvaltningskostnader kan legges inn i appen og kommer med i rapporten.
 
-[Last ned Kryptokompis](index.html#kom-i-gang) · Spørsmål? [Discord](https://discord.gg/hnAGgsAQ5V)
+[Last ned Kryptokompis](priser.html#kom-i-gang) · Spørsmål? [Discord](https://discord.gg/hnAGgsAQ5V)

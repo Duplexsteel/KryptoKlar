@@ -332,6 +332,7 @@ T = {
       ("Hvilke enheter?", "Windows-PC og Android-mobil. Én lisens gjelder begge. iPhone kan komme senere."),
       ("Windows sier «Windows beskyttet PC-en». Er det trygt?", "Meldingen kommer fordi Kryptokompis er nytt og ennå ikke har bygget opp et rykte hos Microsoft, ikke fordi noe er galt. Trykk <b>Mer info</b> og så <b>Kjør likevel</b>. Installasjonen trenger ikke administrator, og alt havner i din egen brukermappe. Filens SHA-256-sjekksum står ved hver versjon på nedlastingssiden."),
       ("Hvordan installerer jeg på Android?", "Last ned APK-filen på mobilen og åpne den. Første gang ber Android deg tillate installasjon fra nettleseren - slå det på for denne ene gangen. Play Store-versjonen kommer senere, og da får du oppdateringer automatisk."),
+      ("Kan jeg trekke fra Kryptokompis på skatten?", "Kostnader til å forvalte kryptoen din, som et verktøy for oversikt og skatt, kan normalt føres som forvaltningskostnader i skattemeldingen. Fradraget er verdt 22 % av beløpet (18,5 % i Nord-Troms og Finnmark). Ta vare på kvitteringen. Sjekk hva som gjelder for deg hos Skatteetaten - dette er ikke skatterådgivning."),
       ("Hvordan får jeg hjelp?", f'Spør på <a href="{{DISCORD}}">Discord</a>, eller send en melding fra appen: Data og oppsett, Tilbakemelding og ønsker.')],
  warn="<b>Viktig:</b> Resultatet blir bare så komplett som dataene du gir Kryptokompis. Transaksjoner appen aldri ser - andre børser, lommebøker, historikk en børs ikke lenger gir ut - må importeres, ellers blir resultatet feil. Kontrollene hjelper deg å finne hull.",
  foot_p="Laget i Norge. Ikke skatterådgivning - du er selv ansvarlig for skattemeldingen.",
@@ -431,6 +432,7 @@ T = {
       ("Which devices?", "Windows PC and Android phone. One licence covers both. iPhone may come later."),
       ("Windows says \u201cWindows protected your PC\u201d. Is it safe?", "The message appears because Kryptokompis is new and has not yet built a reputation with Microsoft, not because anything is wrong. Click <b>More info</b>, then <b>Run anyway</b>. The installer needs no administrator rights and everything goes into your own user folder. Each version's SHA-256 checksum is listed on the downloads page."),
       ("How do I install on Android?", "Download the APK on your phone and open it. The first time, Android asks you to allow installs from your browser - allow it this once. A Play Store version comes later, with automatic updates."),
+      ("Can I deduct Kryptokompis on my tax?", "Costs of managing your crypto, such as a tool for overview and tax, can normally be claimed as management costs (forvaltningskostnader) in the Norwegian tax return. The deduction is worth 22 % of the amount (18.5 % in Nord-Troms and Finnmark). Keep the receipt. Check what applies to you with Skatteetaten - this is not tax advice."),
       ("How do I get help?", f'Ask on <a href="{{DISCORD}}">Discord</a>, or send a message from the app: Data &amp; setup, Feedback and requests.')],
  warn="<b>Important:</b> the result is only as complete as the data you give Kryptokompis. Transactions it never sees - other exchanges, wallets, history an exchange no longer provides - must be imported, or the result will be wrong. The checks help you find gaps.",
  foot_p="Made in Norway. Not tax advice - you are responsible for your tax return.",
@@ -471,19 +473,143 @@ def head(t, title, desc, path=None):
 """
 
 
-def nav(t, home_page=True):
+# ---------------------------------------------------------------------------------------------
+# Page structure (2026-10-18): a short front page that sums up the app and sends people on to one
+# page per topic. PAGES maps a topic to its file per language; the old one-page anchors
+# (index.html#skatt etc.) are forwarded by OLD_ANCHORS so links already shared keep working.
+PORTAL = "https://billing.stripe.com/p/login/4gM28r4nj6pf3oG257eUU00"     # Stripe customer portal: cancel / change card
+PLAN_LINKS = {"month": "https://buy.stripe.com/28EeVd1b700RcZg113eUU01?prefilled_promo_code=START99",
+              "year": "https://buy.stripe.com/cNi9ATg61bJzaR8dNPeUU02",
+              "life": "https://buy.stripe.com/bJe5kD5rnaFv0cueRTeUU03"}
+PLANS_LIVE = False      # True when licences for these plans are delivered automatically (licence service)
+
+PAGES = {
+    "nb": dict(portfolio="portefolje.html", tax="skatt.html", imports="borser.html", insights="innsikt.html",
+               pricing="priser.html", faq="sporsmal.html", guides="guider.html", blog="blogg.html", news="kryptonytt.html"),
+    "en": dict(portfolio="portfolio.html", tax="tax.html", imports="exchanges.html", insights="insights.html",
+               pricing="pricing.html", faq="faq.html", guides="guides.html", blog="blog.html", news="crypto-news.html"),
+}
+OLD_ANCHORS = {
+    "nb": {"portefolje": "portefolje.html", "skatt": "skatt.html", "import": "borser.html", "innsikt": "innsikt.html",
+           "kom-i-gang": "priser.html#kom-i-gang", "data": "innsikt.html#data", "sporsmal": "sporsmal.html"},
+    "en": {"portfolio": "portfolio.html", "tax": "tax.html", "imports": "exchanges.html", "insights": "insights.html",
+           "get-started": "pricing.html#get-started", "data": "insights.html#data", "faq": "faq.html"},
+}
+
+ICON = {   # simple line icons for the feature cards (24x24, stroke = currentColor)
+    "pie": '<path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/>',
+    "doc": '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>',
+    "plug": '<path d="M9 3v5M15 3v5M7 8h10v3a5 5 0 0 1-10 0zM12 16v5"/>',
+    "check": '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+    "lock": '<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+    "dev": '<rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M6 18h6"/><rect x="17" y="8" width="5" height="12" rx="1.2"/>',
+}
+
+X = {
+    "nb": dict(
+        feat_h="Alt på ett sted", feat_sub="Kryptokompis gjør to jobber: holder oversikt over kryptoen din hver dag, og regner ut skatten når skattemeldingen kommer.",
+        more="Les mer",
+        feats=[("pie", "Portefølje", "Alle myntene fra alle børsene lagt sammen, med verdi i kroner og endring siste 24 timer. Oppdateres av seg selv.", "portfolio", "Gratis"),
+               ("doc", "Kryptoskatt", "Gevinst, tap, inntekt og formue etter norske regler, klart for kortet Virtuelle eiendeler. Med PDF og CSV som dokumentasjon.", "tax", ""),
+               ("plug", "Børser og import", "Kraken, Binance, Coinbase og KuCoin med API-nøkkel som bare kan lese. Firi, Revolut X og resten med fil.", "imports", ""),
+               ("check", "Kontroller", "Beholdningen avstemmes mot børsene, og du får beskjed om hull i stedet for at appen gjetter.", "insights", ""),
+               ("lock", "Dataene blir hos deg", "Ingen konto og ingen sky. Alt lagres på din PC eller mobil, og nøklene kan aldri handle eller ta ut penger.", "insights#data", ""),
+               ("dev", "PC og mobil", "Windows 10 og 11, og Android. Én lisens gjelder begge, og nye versjoner installeres med ett klikk.", "pricing#kom-i-gang", "")],
+        ex_h="Fungerer med", ex_chips=["Kraken", "Binance", "Coinbase", "KuCoin", "Firi", "Revolut X", "Alle andre via mal"],
+        tiers_h="Priser", tiers_sub="Porteføljen er gratis. Du betaler når du trenger tallene til skattemeldingen.",
+        tiers=[("Beta", "99 kr", "én gang", "Livstidslisens til de første 50. Oppdateringer og nye børser inkludert.", "beta", "Kjøp betalisens"),
+               ("Måned", "49 kr", "per måned", "De tre første månedene for 99 kr til sammen. Si opp når du vil.", "month", "Velg måned"),
+               ("År", "399 kr", "per år", "Det samme som 33 kr i måneden. Si opp når du vil.", "year", "Velg år"),
+               ("Livstid", "999 kr", "én gang", "Betal én gang og bruk Kryptokompis for alltid.", "life", "Kjøp livstid")],
+        soon="Etter betaen", now_tag="Nå", all_prices="Se alle detaljer om priser",
+        deduct_h="Tips: Kryptokompis kan gi fradrag",
+        deduct='Kostnader du har for å forvalte kryptoen din, som et verktøy for oversikt og skatt, kan normalt føres som <b>forvaltningskostnader</b> i skattemeldingen. Fradraget er verdt 22 % av beløpet (18,5 % i Nord-Troms og Finnmark). 399 kr i året kan altså gi omtrent 88 kr lavere skatt. Ta vare på kvitteringen. Dette er ikke skatterådgivning - sjekk hva som gjelder for deg hos <a href="https://www.skatteetaten.no/person/skatt/hjelp-til-riktig-skatt/aksjer-og-verdipapirer/om/virtuelle-eiendeler/">Skatteetaten</a>.',
+        portal_h="Abonnement", portal_p="Du administrerer abonnementet selv hos Stripe: si opp, bytt kort eller last ned kvitteringer. Skriv inn e-posten du betalte med, så får du en kode.",
+        portal_btn="Administrer eller si opp abonnement",
+        latest_h="Siste guider og nytt", latest_all="Alle guider",
+        final_h="Prøv Kryptokompis gratis", final_p="Last ned, koble til børsene og se porteføljen din på få minutter.",
+        kicker="Funksjoner",
+        pages=dict(
+            portfolio=("Kryptoporteføljen din, automatisk", "Se alle myntene dine fra alle børsene på ett sted, med verdien i kroner og endring siste 24 timer."),
+            tax=("Kryptoskatt for Norge", "Gevinst, tap, inntekt og formue etter norske regler - klart for skattemeldingen."),
+            imports=("Børser og import", "Slik henter Kryptokompis transaksjonene dine, og hvilke børser som støttes."),
+            insights=("Kontroller og personvern", "Kryptokompis sier fra når noe ikke stemmer, og dataene dine blir hos deg."),
+            pricing=("Priser og nedlasting", "Prøv gratis først. Betal når du trenger tallene til skattemeldingen."),
+            faq=("Spørsmål og svar", "Det folk lurer mest på om kryptoskatt og Kryptokompis.")),
+        nav_feat="Funksjoner", nav_price="Priser", nav_read="Guider", nav_info="Info",
+        read_items=[("guides", "Guider"), ("blog", "Blogg"), ("news", "Kryptonytt")],
+        info_extra=[("faq", "Spørsmål og svar")],
+        foot_extra=[("pricing", "Priser"), (PORTAL, "Administrer abonnement")],
+    ),
+    "en": dict(
+        feat_h="Everything in one place", feat_sub="Kryptokompis does two jobs: keeps track of your crypto every day, and works out the tax when the tax return comes.",
+        more="Read more",
+        feats=[("pie", "Portfolio", "All your coins from every exchange added up, valued in NOK with the 24-hour change. Updates by itself.", "portfolio", "Free"),
+               ("doc", "Crypto tax", "Gains, losses, income and wealth under Norwegian rules, ready for the Virtuelle eiendeler card. With PDF and CSV as documentation.", "tax", ""),
+               ("plug", "Exchanges and imports", "Kraken, Binance, Coinbase and KuCoin with a read-only API key. Firi, Revolut X and the rest with a file.", "imports", ""),
+               ("check", "Checks", "Holdings are reconciled with the exchanges, and you are told about gaps instead of the app guessing.", "insights", ""),
+               ("lock", "Your data stays with you", "No account and no cloud. Everything is stored on your PC or phone, and the keys can never trade or withdraw.", "insights#data", ""),
+               ("dev", "PC and phone", "Windows 10 and 11, and Android. One licence covers both, and new versions install with one click.", "pricing#get-started", "")],
+        ex_h="Works with", ex_chips=["Kraken", "Binance", "Coinbase", "KuCoin", "Firi", "Revolut X", "Everything else via template"],
+        tiers_h="Pricing", tiers_sub="The portfolio is free. You pay when you need the figures for your tax return.",
+        tiers=[("Beta", "99 NOK", "once", "Lifetime licence for the first 50. Updates and new exchanges included.", "beta", "Buy the beta licence"),
+               ("Monthly", "49 NOK", "per month", "The first three months for 99 NOK in total. Cancel any time.", "month", "Choose monthly"),
+               ("Yearly", "399 NOK", "per year", "The same as 33 NOK a month. Cancel any time.", "year", "Choose yearly"),
+               ("Lifetime", "999 NOK", "once", "Pay once and use Kryptokompis for good.", "life", "Buy lifetime")],
+        soon="After the beta", now_tag="Now", all_prices="See all pricing details",
+        deduct_h="Tip: Kryptokompis can be tax deductible",
+        deduct='Costs of managing your crypto, such as a tool for overview and tax, can normally be claimed as <b>management costs (forvaltningskostnader)</b> in the Norwegian tax return. The deduction is worth 22 % of the amount (18.5 % in Nord-Troms and Finnmark), so 399 NOK a year can mean about 88 NOK less tax. Keep the receipt. This is not tax advice - check what applies to you with <a href="https://www.skatteetaten.no/en/person/taxes/get-the-taxes-right/shares-and-securities/about-shares-and-securities/virtual-currency/">Skatteetaten</a>.',
+        portal_h="Subscription", portal_p="You manage your subscription yourself at Stripe: cancel, change card or download receipts. Enter the email you paid with and you get a code.",
+        portal_btn="Manage or cancel subscription",
+        latest_h="Latest guides and news", latest_all="All guides",
+        final_h="Try Kryptokompis for free", final_p="Download, connect your exchanges and see your portfolio in minutes.",
+        kicker="Features",
+        pages=dict(
+            portfolio=("Your crypto portfolio, automatic", "See all your coins from every exchange in one place, valued in NOK with the 24-hour change."),
+            tax=("Crypto tax for Norway", "Gains, losses, income and wealth under Norwegian rules - ready for the tax return."),
+            imports=("Exchanges and imports", "How Kryptokompis collects your transactions, and which exchanges are supported."),
+            insights=("Checks and privacy", "Kryptokompis tells you when something doesn't add up, and your data stays with you."),
+            pricing=("Pricing and download", "Try it free first. Pay when you need the figures for your tax return."),
+            faq=("Questions and answers", "What people ask most about crypto tax and Kryptokompis.")),
+        nav_feat="Features", nav_price="Pricing", nav_read="Guides", nav_info="Info",
+        read_items=[("guides", "Guides"), ("blog", "Blog"), ("news", "Crypto news")],
+        info_extra=[("faq", "Questions and answers")],
+        foot_extra=[("pricing", "Pricing"), (PORTAL, "Manage subscription")],
+    ),
+}
+
+
+def url(t, key):
+    """A topic key ('tax', 'pricing#kom-i-gang') -> file name; anything else is returned as is."""
+    k, _, frag = key.partition("#")
+    f = PAGES[t["lang"]].get(k)
+    return (f + (f"#{frag}" if frag else "")) if f else key
+
+
+def nav(t, home_page=True):           # home_page kept for the callers in build_info / build_guides
+    x = X[t["lang"]]
     home = "index.html" if t["lang"] == "nb" else "en.html"
-    base = "" if home_page else home
-    links = "".join(f'<a class="l" href="{base}{h}">{lab}</a>' for h, lab in t["nav"])
-    info = "".join(f'<a href="{i if i.endswith(".html") else t["info"] + "#" + i}">{lab}</a>' for i, lab in t["info_items"])
-    mob = "".join(f'<a href="{base}{h}">{lab}</a>' for h, lab in t["nav"])
+    info = [(i if i.endswith(".html") else t["info"] + "#" + i, lab) for i, lab in t["info_items"] if not i.startswith("guide")]
+    info += [(url(t, k), lab) for k, lab in x["info_extra"]]
+    groups = [(x["nav_feat"], [(url(t, k), x["pages"][k][0].split(",")[0]) for k in ("portfolio", "tax", "imports", "insights")], "feat-m"),
+              (x["nav_read"], [(url(t, k), lab) for k, lab in x["read_items"]], "read-m"),
+              (x["nav_info"], info, "info-m")]
+    short = {"portfolio": x["feats"][0][1], "tax": x["feats"][1][1], "imports": x["feats"][2][1], "insights": x["pages"]["insights"][0]}
+    groups[0] = (x["nav_feat"], [(url(t, k), short[k]) for k in ("portfolio", "tax", "imports", "insights")], "feat-m")
+    dd = lambda g: (f'<div class="dd"><button type="button" aria-expanded="false" aria-controls="{g[2]}">{g[0]}</button>'
+                    f'<div class="m" id="{g[2]}">' + "".join(f'<a href="{h}">{lab}</a>' for h, lab in g[1]) + "</div></div>")
+    desk = dd(groups[0]) + f'<a class="l" href="{url(t, "pricing")}">{x["nav_price"]}</a>' + dd(groups[1]) + dd(groups[2])
+    mob = "".join(f'<div class="grp">{g[0]}</div><div class="in">' + "".join(f'<a href="{h}">{lab}</a>' for h, lab in g[1]) + "</div>"
+                  for g in groups[:1]) + f'<a href="{url(t, "pricing")}">{x["nav_price"]}</a>' + "".join(
+                  f'<div class="grp">{g[0]}</div><div class="in">' + "".join(f'<a href="{h}">{lab}</a>' for h, lab in g[1]) + "</div>" for g in groups[1:])
+    start = url(t, "pricing") + "#" + t["ids"][4]
     return f"""<header><div class="w"><nav aria-label="{'Hovedmeny' if t['lang']=='nb' else 'Main'}">
 <a class="brand" href="{home}">{MARK}Kryptokompis</a>
-{links}<div class="dd"><button type="button" aria-expanded="false" aria-controls="info-m">Info</button><div class="m" id="info-m">{info}</div></div>
+{desk}
 <span class="sp"></span><a class="lang" href="{t['other']}" lang="{'en' if t['lang']=='nb' else 'nb'}">{'EN' if t['lang']=='nb' else 'NO'}</a>
-<a class="btn s" href="{base}#{t['ids'][4]}">{t['cta']}</a>
+<a class="btn s" href="{start}">{t['cta']}</a>
 <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mob">{t['menu']}</button></nav>
-<div class="mobile" id="mob">{mob}<div class="grp">Info</div><div class="in">{info}</div><a href="{t['other']}">{t['other_label']}</a></div></div></header>
+<div class="mobile" id="mob">{mob}<a href="{t['other']}">{t['other_label']}</a></div></div></header>
 """
 
 
@@ -491,6 +617,7 @@ SCRIPT = """<script>
 document.querySelectorAll('.dd>button,.menu-btn').forEach(function(b){
   var panel=document.getElementById(b.getAttribute('aria-controls'));
   b.addEventListener('click',function(e){e.stopPropagation();var o=b.getAttribute('aria-expanded')!=='true';
+    document.querySelectorAll('.dd>button').forEach(function(x){if(x!==b)x.setAttribute('aria-expanded','false')});
     b.setAttribute('aria-expanded',o);if(b.classList.contains('menu-btn'))panel.classList.toggle('open',o);});
   panel.addEventListener('click',function(e){if(e.target.tagName==='A'){b.setAttribute('aria-expanded','false');panel.classList.remove('open');}});
 });
@@ -498,9 +625,49 @@ document.addEventListener('click',function(){document.querySelectorAll('.dd>butt
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('[aria-expanded=true]').forEach(function(b){b.click()})});
 </script>"""
 
+CSS += """
+/* 2026-10-18: front page summary + one page per topic */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat a{display:flex;flex-direction:column;gap:10px;padding:26px 24px 22px;background:var(--sheet);border:1px solid var(--line);border-radius:14px;
+ color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s,box-shadow .15s}
+.feat a:hover{border-color:var(--spruce);transform:translateY(-2px);box-shadow:0 18px 40px -22px rgba(21,48,42,.35);color:var(--ink)}
+.feat .ic{width:44px;height:44px;border-radius:12px;background:var(--mint);color:var(--spruce-d);display:grid;place-items:center}
+.feat .ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.feat h3{display:flex;align-items:center;gap:10px}.feat p{color:var(--ink2);font-size:16px;flex:1}
+.feat .go2{font-weight:600;color:var(--spruce-d);font-size:15px}.feat .go2:after{content:" →"}
+.feat .tag{font-size:12.5px;font-weight:700;color:var(--spruce-d);background:var(--mint);border-radius:999px;padding:2px 9px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:36px}
+.chips b{font-size:15px;color:var(--ink2);font-weight:600;margin-right:6px}
+.chips span{padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--sheet);font-weight:600;font-size:15px}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+.tier{border:1px solid #2F4D45;border-radius:14px;padding:22px 20px;display:flex;flex-direction:column;gap:8px}
+.tier.on{border:2px solid var(--mint2);background:rgba(154,216,189,.07)}
+.tier h3{display:flex;justify-content:space-between;align-items:center;font-size:18px}
+.tier .pill{font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--mint2);color:var(--ink)}
+.tier .pill.soon{background:transparent;border:1px solid #4A6A61;color:#B9CCC3}
+.tier .p{font-size:36px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1}.tier .p small{font-size:15px;font-weight:500;color:#B9CCC3;margin-left:6px}
+.tier p{color:#B9CCC3;font-size:15px;flex:1}.tier .btn{margin-top:6px;width:100%}
+.tier .btn.off{background:transparent;border-color:#4A6A61;color:#B9CCC3;pointer-events:none}
+.tip{margin-top:28px;padding:20px 22px;border-radius:var(--r);background:rgba(154,216,189,.1);border:1px solid #2F4D45}
+.tip h3{font-size:17px;margin-bottom:6px}.tip p{color:#CFE0D8;font-size:15.5px}
+.latest{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.latest a{display:block;padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--sheet);color:var(--ink);text-decoration:none}
+.latest a:hover{border-color:var(--spruce)}.latest small{color:var(--ink2)}.latest b{display:block;font-size:18px;margin:6px 0}
+.latest span{color:var(--ink2);font-size:15.5px}
+.headrow{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.phead{padding:64px 0 8px}.phead .kick{font-weight:700;color:var(--spruce-d);font-size:15px;margin-bottom:10px}
+.phead h1{font-size:clamp(34px,5vw,54px);margin-bottom:16px}
+.final{text-align:center}.final .cta{justify-content:center}.final .sub{margin:12px auto 0}
+.final .dl{margin:0 6px}
+@media (max-width:900px){.feat,.latest{grid-template-columns:1fr 1fr}.tiers{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.feat,.latest,.tiers{grid-template-columns:1fr}.phead{padding-top:40px}}
+"""
+
 
 def footer(t):
-    links = "".join(f'<li><a href="{h}">{lab}</a></li>' for h, lab in t["foot_links"])
+    x = X[t["lang"]]
+    links = [(url(t, h), lab) for h, lab in x["foot_extra"]] + list(t["foot_links"])
+    links = "".join(f'<li><a href="{h}">{lab}</a></li>' for h, lab in links)
     home = "index.html" if t["lang"] == "nb" else "en.html"
     return f"""<footer><div class="w foot"><div><a class="brand" href="{home}">{MARK}Kryptokompis</a><p><span class="made">{FLAG.format(label=t['flag_label'])}{t['foot_p']}</span></p></div>
 <ul>{links}</ul></div></footer>
@@ -509,30 +676,132 @@ def footer(t):
 """
 
 
-def page(t):
-    ids = t["ids"]
-    li = lambda xs: "".join(f"<li>{x}</li>" for x in xs)
+# --- sections (each used on its own page; head=False when the page header already says it) ---
+def _li(xs):
+    return "".join(f"<li>{x}</li>" for x in xs)
+
+
+def _head(h, sub, show):
+    return f'<div class="head"><h2>{h}</h2><p class="sub">{sub}</p></div>' if show else ""
+
+
+def sec_portfolio(t, head=True):
+    pfr = "".join(f'<tr><td>{a}</td><td>{v}</td><td class="{"up" if ch.startswith("+") else "down"}">{ch}</td><td>{sh}</td></tr>'
+                  for a, q, v, ch, sh, w in t["pf_rows"])
+    return f"""<section id="{t['ids'][0]}" class="band"><div class="w pf">
+ <div><span class="free-tag">{t['pf_free']}</span>{f"<h2>{t['pf_h']}</h2><p class='sub'>{t['pf_sub']}</p>" if head else ""}<ul class="ck">{_li(t['pf_list'])}</ul></div>
+ <figure class="sheet" style="margin:0"><table class="hold"><thead><tr>{"".join(f"<th>{c}</th>" for c in t['pf_cols'])}</tr></thead>
+  <tbody>{pfr}<tr class="t"><td>{t['pf_total']}</td><td>{t['pf_total_v']}</td><td class="up">{t['pf_change_pct']}</td><td>100 %</td></tr></tbody></table>
+  <figcaption class="cap">{t['pf_cap']}</figcaption></figure>
+</div></section>"""
+
+
+def sec_tax(t, head=True):
     rows = "".join(f'<li><span class="d">{d}</span><span>{w}</span><span class="v">{v}</span></li>' for d, w, v in t["rows"])
     fields = "".join(f'<tr><td>{a}{f"<small>{b}</small>" if b else ""}</td><td class="{c}">{v}</td></tr>' for a, b, v, c in t["fields"])
     files = "".join(f'<a class="btn g s" href="{h}">{lab}</a>' for h, lab in t["files"])
     rules = "".join(f"<div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in t["rules"])
+    return f"""<section id="{t['ids'][1]}"><div class="w">
+ {_head(t['tax_h'], t['tax_sub'], head)}
+ <div class="out">
+  <div><ul class="ck">{_li(t['out_list'])}</ul><div class="files">{files}</div>
+   <h3 style="margin-top:40px">{t['rules_h']}</h3><dl class="rules">{rules}</dl><p class="note">{t['rules_note']}</p></div>
+  <figure class="sheet" style="margin:0;align-self:start"><h3>{t['sheet_title']}</h3><ul class="rows">{rows}</ul>
+   <div class="into">{t['into']}</div><table class="fields">{fields}</table>
+   <figcaption class="cap">{t['cap']}</figcaption></figure>
+ </div>
+</div></section>"""
+
+
+def sec_imports(t, head=True):
     imp = "".join(f"<div><h3>{a}</h3><p>{b}</p></div>" for a, b in t["imp"])
     ex = "".join(f'<tr><td>{n}</td><td><span class="how{" f" if h in t["file_word"] else ""}">{h}</span></td><td>{c}</td></tr>' for n, h, c in t["ex"])
+    return f"""<section id="{t['ids'][2]}" class="band"><div class="w">
+ {_head(t['imp_h'], t['imp_sub'], head)}
+ <div class="grid4">{imp}</div>
+ <table class="ex"><thead><tr><th>{t['ex_cols'][0]}</th><th>{t['ex_cols'][1]}</th><th>{t['ex_cols'][2]}</th></tr></thead><tbody>{ex}</tbody></table>
+ <p class="note">{t['ex_more']}</p>
+</div></section>"""
+
+
+def sec_insights(t, head=True):
     ins = "".join(f"<div><h3>{a}</h3><p>{b}</p></div>" for a, b in t["ins"])
+    return f"""<section id="{t['ids'][3]}"><div class="w">
+ {_head(t['ins_h'], t['ins_sub'], head)}
+ <div class="grid4 ins">{ins}</div>
+</div></section>"""
+
+
+def sec_trust(t):
+    trust = "".join(f"<div><h3>{a}</h3><p>{b}</p></div>" for a, b in t["trust"])
+    return f"""<section id="{t['ids'][5]}" class="band"><div class="w">
+ <div class="head"><h2>{t['trust_h']}</h2></div><div class="trust">{trust}</div>
+</div></section>"""
+
+
+def tiers(t, buy_links=True):
+    x = X[t["lang"]]
+    out = []
+    for name, amount, per, txt, key, btn in x["tiers"]:
+        live = key == "beta" or PLANS_LIVE
+        href = BUY if key == "beta" else PLAN_LINKS[key]
+        pill = f'<span class="pill">{x["now_tag"]}</span>' if key == "beta" else ""
+        b = (f'<a class="btn s" href="{href}" target="_blank" rel="noopener" data-goatcounter-click="buy-{key}">{btn}</a>' if live
+             else f'<span class="btn s off">{x["soon"]}</span>') if buy_links else ""
+        out.append(f'<div class="tier{" on" if key == "beta" else ""}"><h3>{name}{pill}</h3><div class="p">{amount}<small>{per}</small></div><p>{txt}</p>{b}</div>')
+    return '<div class="tiers">' + "".join(out) + "</div>"
+
+
+def sec_start(t, head=True):
+    x = X[t["lang"]]
+    go = "".join(f"<li><h3>{a}</h3><p>{b}</p></li>" for a, b in t["go_steps"])
+    return f"""<section id="{t['ids'][4]}" class="dark"><div class="w">
+ {_head(t['go_h'], t['go_sub'], head)}
+ <ol class="steps go">{go}</ol>
+ <div class="head" style="margin-bottom:20px"><h2>{x['tiers_h']}</h2><p class="sub">{x['tiers_sub']}</p></div>
+ {tiers(t)}
+ <p class="note">{t['pay_note']}</p>
+ <div class="tip"><h3>{x['deduct_h']}</h3><p>{x['deduct']}</p></div>
+ <div class="tip"><h3>{x['portal_h']}</h3><p>{x['portal_p']}</p><div class="cta" style="margin-top:14px"><a class="btn s" href="{PORTAL}" target="_blank" rel="noopener">{x['portal_btn']}</a></div></div>
+</div></section>"""
+
+
+def sec_faq(t):
+    faq = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in t["faq"])
+    return f"""<section id="{t['ids'][6]}"><div class="w">
+ <div class="faq">{faq}</div>
+ <p class="warn">{t['warn']}</p>
+</div></section>"""
+
+
+def final_cta(t):
+    x = X[t["lang"]]
+    return f"""<section class="dark final"><div class="w">
+ <h2>{x['final_h']}</h2><p class="sub">{x['final_p']}</p>
+ <div class="cta"><a class="btn" href="{DL_WIN}" data-goatcounter-click="download-windows" data-goatcounter-title="Download Windows {VERSION}">Windows</a>
+ <a class="btn" href="{DL_APK}" data-goatcounter-click="download-android" data-goatcounter-title="Download Android {VERSION}">Android (APK)</a>
+ <a class="btn g" style="color:#fff;border-color:#fff" href="{url(t, 'pricing')}">{x['nav_price']}</a></div>
+</div></section>"""
+
+
+def page(t):
+    """The front page: hero, what the app does (each card links to its page), exchanges, prices, latest posts."""
+    x = X[t["lang"]]
     coins = "".join(f'<li><span class="cn"><b>{a}</b><small>{q}</small></span><span class="cb"><i style="width:{w}%"></i></span>'
                     f'<span class="cv"><b>{v}</b><small class="{"up" if ch.startswith("+") else "down"}">{ch}</small></span></li>'
                     for a, q, v, ch, sh, w in t["pf_rows"])
-    pfr = "".join(f'<tr><td>{a}</td><td>{v}</td><td class="{"up" if ch.startswith("+") else "down"}">{ch}</td><td>{sh}</td></tr>'
-                  for a, q, v, ch, sh, w in t["pf_rows"])
     htax = "".join(f'<div><small>{a}</small><b class="{c}">{v}</b></div>' for a, v, c in t["hero_tax"])
-    go = "".join(f"<li><h3>{a}</h3><p>{b}</p></li>" for a, b in t["go_steps"])
-    later = "".join(f"<div><b>{a}</b><span>{b}</span></div>" for a, b in t["later"])
-    trust = "".join(f"<div><h3>{a}</h3><p>{b}</p></div>" for a, b in t["trust"])
-    faq = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in t["faq"])
-    return (head(t, t["title"], t["desc"]) + nav(t) + f"""<main>
+    feats = "".join(
+        f'<a href="{url(t, k)}"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">{ICON[ic]}</svg></span>'
+        f'<h3>{h}{f"<span class=tag>{tag}</span>" if tag else ""}</h3><p>{p}</p><span class="go2">{x["more"]}</span></a>'
+        for ic, h, p, k, tag in x["feats"])
+    chips = "".join(f"<span>{c}</span>" for c in x["ex_chips"])
+    redirect = ("<script>(function(){var m=" + __import__("json").dumps(OLD_ANCHORS[t["lang"]]) +
+                ";var h=location.hash.slice(1);if(m[h])location.replace(m[h]);})();</script>")
+    return (head(t, t["title"], t["desc"]) + redirect + nav(t) + f"""<main>
 <div class="w hero">
  <div><h1>{t['h1']}</h1><p class="lead">{t['lead']}</p>
-  <div class="cta"><a class="btn" href="#{ids[4]}">{t['cta']}</a><a class="btn g" href="{t['report_pdf']}">{t['cta2']}</a></div>
+  <div class="cta"><a class="btn" href="{url(t, 'pricing')}#{t['ids'][4]}">{t['cta']}</a><a class="btn g" href="{t['report_pdf']}">{t['cta2']}</a></div>
   <p class="note">{t['hero_note']}</p></div>
  <figure class="sheet" style="margin:0"><h3>{t['hero_pf_title']}</h3>
   <div class="ptotal">{t['pf_total_v']}</div><div class="pchange up">{t['pf_change']}</div>
@@ -542,62 +811,51 @@ def page(t):
   <figcaption class="cap">{t['hero_cap']}</figcaption></figure>
 </div>
 
-<section id="{ids[0]}" class="band"><div class="w pf">
- <div><span class="free-tag">{t['pf_free']}</span><h2>{t['pf_h']}</h2><p class="sub">{t['pf_sub']}</p><ul class="ck">{li(t['pf_list'])}</ul></div>
- <figure class="sheet" style="margin:0"><table class="hold"><thead><tr>{"".join(f"<th>{c}</th>" for c in t['pf_cols'])}</tr></thead>
-  <tbody>{pfr}<tr class="t"><td>{t['pf_total']}</td><td>{t['pf_total_v']}</td><td class="up">{t['pf_change_pct']}</td><td>100 %</td></tr></tbody></table>
-  <figcaption class="cap">{t['pf_cap']}</figcaption></figure>
+<section class="band"><div class="w">
+ <div class="head"><h2>{x['feat_h']}</h2><p class="sub">{x['feat_sub']}</p></div>
+ <div class="feat">{feats}</div>
+ <div class="chips"><b>{x['ex_h']}</b>{chips}</div>
 </div></section>
 
-<section id="{ids[1]}"><div class="w">
- <div class="head"><h2>{t['tax_h']}</h2><p class="sub">{t['tax_sub']}</p></div>
- <div class="out">
-  <div><ul class="ck">{li(t['out_list'])}</ul><div class="files">{files}</div>
-   <h3 style="margin-top:40px">{t['rules_h']}</h3><dl class="rules">{rules}</dl><p class="note">{t['rules_note']}</p></div>
-  <figure class="sheet" style="margin:0;align-self:start"><h3>{t['sheet_title']}</h3><ul class="rows">{rows}</ul>
-   <div class="into">{t['into']}</div><table class="fields">{fields}</table>
-   <figcaption class="cap">{t['cap']}</figcaption></figure>
- </div>
+<section class="dark"><div class="w">
+ <div class="headrow"><div><h2>{x['tiers_h']}</h2><p class="sub">{x['tiers_sub']}</p></div><a href="{url(t, 'pricing')}">{x['all_prices']} →</a></div>
+ {tiers(t)}
+ <p class="note">{t['pay_note']}</p>
 </div></section>
 
-<section id="{ids[2]}" class="band"><div class="w">
- <div class="head"><h2>{t['imp_h']}</h2><p class="sub">{t['imp_sub']}</p></div>
- <div class="grid4">{imp}</div>
- <table class="ex"><thead><tr><th>{t['ex_cols'][0]}</th><th>{t['ex_cols'][1]}</th><th>{t['ex_cols'][2]}</th></tr></thead><tbody>{ex}</tbody></table>
- <p class="note">{t['ex_more']}</p>
-</div></section>
-
-<section id="{ids[3]}"><div class="w">
- <div class="head"><h2>{t['ins_h']}</h2><p class="sub">{t['ins_sub']}</p></div>
- <div class="grid4 ins">{ins}</div>
-</div></section>
-
-<section id="{ids[4]}" class="dark"><div class="w">
- <div class="head"><h2>{t['go_h']}</h2><p class="sub">{t['go_sub']}</p></div>
- <ol class="steps go">{go}</ol>
- <div class="price">
-  <div><h3>{t['price_h']}</h3>
-   <p class="amount"><b>{t['amount']}</b><span>{t['once']}</span></p>
-   <p class="sub">{t['price_sub']}</p><ul class="ck">{li(t['price_list'])}</ul>
-   <div class="cta"><a class="btn" href="{BUY}" target="_blank" rel="noopener">{t['buy']}</a></div>
-   <p class="note">{t['pay_note']}</p></div>
-  <div class="free"><h3>{t['later_h']}</h3><div class="later">{later}</div></div>
- </div>
-</div></section>
-
-<section id="{ids[5]}"><div class="w">
- <div class="head"><h2>{t['trust_h']}</h2></div><div class="trust">{trust}</div>
-</div></section>
-
-<section id="{ids[6]}" class="band"><div class="w">
- <div class="head"><h2>{t['faq_h']}</h2></div><div class="faq">{faq}</div>
- <p class="warn">{t['warn']}</p>
-</div></section>
+<!--LATEST-->
 </main>
 """ + footer(t))
+
+
+def subpage(t, key, body):
+    x = X[t["lang"]]
+    h1, lead = x["pages"][key]
+    p = dict(t, file=PAGES[t["lang"]][key], other=PAGES["en" if t["lang"] == "nb" else "nb"][key])
+    kick = f'<p class="kick">{x["kicker"]}</p>' if key in ("portfolio", "tax", "imports", "insights") else ""
+    return (head(p, f"{h1} - Kryptokompis", lead, p["file"]) + nav(p) + f"""<main>
+<div class="w phead">{kick}<h1>{h1}</h1><p class="lead">{lead}</p></div>
+{body}
+{final_cta(t) if key != "pricing" else ""}
+</main>
+""" + footer(p))
+
+
+def subpages(t):
+    return {
+        "portfolio": subpage(t, "portfolio", sec_portfolio(t, head=False)),
+        "tax": subpage(t, "tax", sec_tax(t, head=False)),
+        "imports": subpage(t, "imports", sec_imports(t, head=False)),
+        "insights": subpage(t, "insights", sec_insights(t, head=False) + sec_trust(t)),
+        "pricing": subpage(t, "pricing", sec_start(t, head=False)),
+        "faq": subpage(t, "faq", sec_faq(t)),
+    }
 
 
 if __name__ == "__main__":
     for t in T.values():
         (SITE / t["file"]).write_text(page(t), encoding="utf-8")
         print("wrote", t["file"])
+        for key, html in subpages(t).items():
+            (SITE / PAGES[t["lang"]][key]).write_text(html, encoding="utf-8")
+            print("wrote", PAGES[t["lang"]][key])

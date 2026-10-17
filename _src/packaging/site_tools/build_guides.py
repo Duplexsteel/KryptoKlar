@@ -3,12 +3,13 @@
 Content lives as Markdown next to this script - edit there, never in site/:
   guides/<slug>.nb.md and guides/<slug>.en.md   one guide or news post per language
   pages/om.nb.md, pages/about.en.md             the About page
-Front matter (between --- lines): title, date (YYYY-MM-DD), summary, kind (guide | news),
+Front matter (between --- lines): title, date (YYYY-MM-DD), summary, kind (guide | news | blog - news/blog go on the blog page),
 optional order (reading order of guides on the list page), optional video (a YouTube id, embedded privacy-friendly via youtube-nocookie.com).
 
 New post every other week: add the two .md files, run this script, push the site.
 Output (flat, so the shared head/nav/footer links keep working):
-  guide-<slug>.html / guide-<slug>-en.html, guider.html / guides.html (lists), om.html / about.html,
+  guide-<slug>.html / guide-<slug>-en.html, guider.html / guides.html, blogg.html / blog.html, om.html / about.html,
+  the three newest posts on the front page (<!--LATEST-->),
   rss.xml / rss-en.xml, sitemap.xml, robots.txt
 
 Run:  python packaging/site_tools/build_guides.py <site dir>   (needs: pip install markdown)"""
@@ -28,19 +29,21 @@ SITE = Path(sys.argv[1] if len(sys.argv) > 1 else "site")
 
 L = {
     "nb": dict(list="guider.html", about="om.html", about_src="om.nb.md", other_list="guides.html", other_about="about.html",
-               rss="rss.xml", h1="Guider og nyheter",
-               lead="Steg-for-steg for hver børs, hvordan du fører krypto i skattemeldingen, og nytt fra Kryptokompis. Ny artikkel annenhver uke.",
-               guides="Guider", news="Nyheter", rss_label="Følg med via RSS", back="Alle guider og nyheter",
-               cta="Last ned Kryptokompis", cta_href="index.html#kom-i-gang", updated="Publisert", watch="Se videoen",
+               rss="rss.xml", h1="Guider",
+               lead="Steg-for-steg for hver børs, og hvordan du fører krypto i skattemeldingen. Ny artikkel annenhver uke.",
+               blog="blogg.html", other_blog="blog.html", blog_h1="Blogg", blog_lead="Nytt fra Kryptokompis, nye versjoner og tanker om krypto og skatt i Norge.",
+               guides="Guider", news="Nyheter", rss_label="Følg med via RSS", back="Alle guider",
+               cta="Last ned Kryptokompis", cta_href="priser.html#kom-i-gang", updated="Publisert", watch="Se videoen",
                feed_title="Kryptokompis - guider og nyheter", keys_h="Slik lager du API-nøkler",
                keys_p="Steg-for-steg for hver børs, skrevet og på video. Nøklene kan bare lese - Kryptokompis kan aldri handle eller ta ut penger.",
                key_api="API-nøkkel som bare kan lese", api_intro="▶ Start her: Hva er en API? (video)", key_file="Eksportfil (ingen API-nøkkel)", video="▶ Video", months=["januar", "februar", "mars", "april", "mai", "juni", "juli",
                "august", "september", "oktober", "november", "desember"]),
     "en": dict(list="guides.html", about="about.html", about_src="about.en.md", other_list="guider.html", other_about="om.html",
-               rss="rss-en.xml", h1="Guides and news",
-               lead="Step by step for each exchange, how to report crypto in the Norwegian tax return, and news from Kryptokompis. A new article every other week.",
-               guides="Guides", news="News", rss_label="Follow via RSS", back="All guides and news",
-               cta="Download Kryptokompis", cta_href="en.html#get-started", updated="Published", watch="Watch the video",
+               rss="rss-en.xml", h1="Guides",
+               lead="Step by step for each exchange, and how to report crypto in the Norwegian tax return. A new article every other week.",
+               blog="blog.html", other_blog="blogg.html", blog_h1="Blog", blog_lead="News from Kryptokompis, new versions and thoughts on crypto and tax in Norway.",
+               guides="Guides", news="News", rss_label="Follow via RSS", back="All guides",
+               cta="Download Kryptokompis", cta_href="pricing.html#get-started", updated="Published", watch="Watch the video",
                feed_title="Kryptokompis - guides and news", keys_h="How to create API keys",
                keys_p="Step by step for each exchange, written and on video. The keys can only read - Kryptokompis can never trade or withdraw.",
                key_api="Read-only API key", api_intro="▶ Start here: What is an API? (video, Norwegian)", key_file="Statement file (no API key)", video="▶ Video (Norwegian)", months=["January", "February", "March", "April", "May", "June", "July",
@@ -135,7 +138,8 @@ def build() -> list:
 
     for lang, t in L.items():
         for m in posts[lang]:
-            main = (f'<article class="w art"><p class="meta"><a href="{t["list"]}">{t["back"]}</a> · {t["updated"]} {nice_date(m["date"], t)}</p>'
+            back = (t["blog"], t["blog_h1"]) if m.get("kind", "guide") != "guide" else (t["list"], t["back"])
+            main = (f'<article class="w art"><p class="meta"><a href="{back[0]}">{back[1]}</a> · {t["updated"]} {nice_date(m["date"], t)}</p>'
                     f'<h1>{escape(m["title"])}</h1><p class="lead">{escape(m["summary"])}</p>'
                     + (video(m["video"], t) if m.get("video") else "") + m["html"]
                     + f'<p class="end"><a class="btn" href="{t["cta_href"]}">{t["cta"]}</a>'
@@ -149,7 +153,6 @@ def build() -> list:
                 chosen.sort(key=lambda m: int(m.get("order", 99)))
             return "".join(f'<li><a href="{m["file"]}"><b>{escape(m["title"])}</b><span>{escape(m["summary"])}</span>'
                            f'<small>{nice_date(m["date"], t)}</small></a></li>' for m in chosen)
-        news = items("news")
         live = {m["slug"] for m in posts[lang]}
         rows = "".join(
             f'<li class="krow"><a href="{"guide-" + g + (".html" if lang == "nb" else "-en.html")}"><b>{n}</b>'
@@ -161,10 +164,29 @@ def build() -> list:
         keys = f'<div class="gsec"><h2>{t["keys_h"]}</h2><p>{t["keys_p"]}</p>{start}<ul class="glist">{rows}</ul></div>' if rows else ""
         main = (f'<div class="w art" style="max-width:900px"><h1>{t["h1"]}</h1><p class="lead">{t["lead"]}</p>'
                 f'<p class="rss"><a href="{t["rss"]}">{t["rss_label"]}</a></p>'
-                + keys + f'<div class="gsec"><h2>{t["guides"]}</h2><ul class="glist">{items("guide")}</ul></div>'
-                + (f'<div class="gsec"><h2>{t["news"]}</h2><ul class="glist">{news}</ul></div>' if news else "") + "</div>")
+                + keys + f'<div class="gsec"><h2>{t["guides"]}</h2><ul class="glist">{items("guide")}</ul></div></div>')
         (SITE / t["list"]).write_text(page(lang, t["list"], t["other_list"], f'{t["h1"]} - Kryptokompis', t["lead"], main), encoding="utf-8")
         urls.append((t["list"], posts[lang][0]["date"] if posts[lang] else None))
+
+        # Blog: news and blog posts (kind news | blog), newest first
+        blog = "".join(f'<li><a href="{m["file"]}"><b>{escape(m["title"])}</b><span>{escape(m["summary"])}</span>'
+                       f'<small>{nice_date(m["date"], t)}</small></a></li>' for m in posts[lang] if m.get("kind", "guide") != "guide")
+        main = (f'<div class="w art" style="max-width:900px"><h1>{t["blog_h1"]}</h1><p class="lead">{t["blog_lead"]}</p>'
+                f'<p class="rss"><a href="{t["rss"]}">{t["rss_label"]}</a></p><ul class="glist">{blog}</ul></div>')
+        (SITE / t["blog"]).write_text(page(lang, t["blog"], t["other_blog"], f'{t["blog_h1"]} - Kryptokompis', t["blog_lead"], main), encoding="utf-8")
+        urls.append((t["blog"], None))
+
+        # Front page: the three newest posts in place of <!--LATEST--> (written by build_site.py)
+        home = SITE / B.T[lang]["file"]
+        if home.exists():
+            x = B.X[lang]
+            cards = "".join(f'<a href="{m["file"]}"><small>{nice_date(m["date"], t)}</small><b>{escape(m["title"])}</b>'
+                            f'<span>{escape(m["summary"])}</span></a>' for m in posts[lang][:3])
+            block = (f'<section><div class="w"><div class="headrow"><h2>{x["latest_h"]}</h2>'
+                     f'<a href="{t["list"]}">{x["latest_all"]} →</a></div><div class="latest">{cards}</div></div></section>')
+            html = home.read_text(encoding="utf-8")
+            if "<!--LATEST-->" in html:
+                home.write_text(html.replace("<!--LATEST-->", block), encoding="utf-8")
 
         a = read(HERE / "pages" / t["about_src"])
         photo = (f'<img class="who" src="{escape(a["photo"])}" alt="{escape(a.get("photo_alt", ""))}" width="120" height="120">'
@@ -191,6 +213,7 @@ def build() -> list:
 
 def sitemap(urls: list) -> None:
     fixed = ["index.html", "en.html", "info.html", "info-en.html", "vilkar.html", "terms.html", "personvern.html", "privacy.html"]
+    fixed += [f for lang in B.PAGES for k, f in B.PAGES[lang].items() if k not in ("guides", "blog")]
     rows = [f"<url><loc>{B.SITE_URL}/{u}</loc></url>" for u in fixed]
     rows += [f"<url><loc>{B.SITE_URL}/{u}</loc>" + (f"<lastmod>{d}</lastmod>" if d else "") + "</url>" for u, d in urls]
     (SITE / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
